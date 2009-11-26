@@ -15,6 +15,8 @@ public class Jugador {
 	private String nombre;
 	private Fecha fecha;
 	private LinkedList<Club> clubs = new LinkedList<Club>();
+	private LinkedList<Fecha> fechasDeCambioActividad = new LinkedList<Fecha>();
+	private EstadosJugador estado;
 	
 	
 	public String getNombre() {
@@ -48,5 +50,18 @@ public class Jugador {
 			return null;
 		}
 		return lista.next();
+	}
+
+	public void iniciarActividadProfesional(Fecha fecha2) {
+		fechasDeCambioActividad.add(fecha2);
+		estado = EstadosJugador.ACTIVO;
+	}
+
+	public boolean enActivudad() {
+	
+		if (estado == EstadosJugador.ACTIVO){
+			return true;
+		}
+		return false;
 	}
 }
