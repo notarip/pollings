@@ -1,0 +1,29 @@
+Administrador:
+
+Acceso a todo lo post dicho.
+
+Operador:
+
+El operador da de alta jugadores/equipos/arbitros/estadios/cuerpos técnicos y toda entidad que se nos
+ocurra.
+Por otro lado imputa los datos de entrada de la manera que se defina en el futuro, con una aplicación
+win, importación de un archivo,etc.
+
+
+Jugador: 
+
+Un usuario de tipo jugador tiene acceso a sus estadisticas, como a las de su equipo.
+
+Técnico:
+
+Tiene el mismo acceso que el jugador más a los entrenamientos y estadisticas basicas de otros equipos.
+
+Arbitro:
+
+Tiene acceso a los partidos que dirigio o que va a dirigir, y estadisticas de sus acciones.
+
+Manager:
+
+Tiene el mismo acceso que el técnico, ver en un futuro informes adicionales.
+
+
