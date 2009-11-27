@@ -20,5 +20,9 @@ public class ModificarJugador {
 		pablo.iniciarActividadProfesional(fecha);
 		assertTrue(pablo.enActivudad() == true);
 	}
+	
+	public void LesionarJugador() {
+		
+	}   
 
 }
