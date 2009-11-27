@@ -18,10 +18,14 @@ public class ModificarJugador {
 		Jugador pablo = new Jugador();
 		Fecha fecha = new Fecha("01/01/2000");
 		pablo.iniciarActividadProfesional(fecha);
-		assertTrue(pablo.enActivudad() == true);
+		assertTrue(pablo.enActividad() == true);
 	}
-	
+	@Test
 	public void LesionarJugador() {
+		Jugador pablo = new Jugador();
+		Fecha fecha = new Fecha("01/01/2000");
+		pablo.notificarLesion(fecha,TipoDeLesion.FRACTURA_PERONE);
+		assertTrue(!pablo.enActividad());
 		
 	}   
 
