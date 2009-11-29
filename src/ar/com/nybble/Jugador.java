@@ -36,13 +36,11 @@ public class Jugador {
 	}
 
 	public Fecha getFecha() {
-		// TODO Auto-generated method stub
 		return fecha;
 	}
 
 	public void agregarClub(Club club1) {
 		clubs.add(club1);
-		
 	}
 
 	public Club getClubVigente() {
@@ -59,7 +57,6 @@ public class Jugador {
 	}
 
 	public boolean enActividad() {
-	
 		if (estado == EstadosJugador.ACTIVO){
 			return true;
 		}
@@ -70,5 +67,9 @@ public class Jugador {
 		fechasDeCambioActividad.add(fecha2);
 		estado = EstadosJugador.LESIONADO;
 		tipoDeLesion = lesion;
+	}
+
+	public Fecha getFechaDeInicioDeActividad() {
+		return null;
 	}
 }
