@@ -35,10 +35,17 @@ public class ModificarJugador {
 	}
 	
 	//Asignar una fecha de inicio de actividad a un jugador
-	//Asignar una lesión a un jugador
-	//Asignar una fecha de lesión a un jugador
-	//Asignar una fecha de retiro a un jugador
-	//Asignar la vuelta de la lesión
-	//Asignar la fecha de la vuelta de la lesión
+	@Test
+	public void AsignarFechaDeInicioDeActividad() {
+		pablo.iniciarActividadProfesional(fecha);
+		assertTrue(pablo.getFechaDeInicioDeActividad() == fecha);
+
+	}
+	
+	//TODO Asignar una lesión a un jugador
+	//TODO Asignar una fecha de lesión a un jugador
+	//TODO Asignar una fecha de retiro a un jugador
+	//TODO Asignar la vuelta de la lesión
+	//TODO Asignar la fecha de la vuelta de la lesión
 
 }
