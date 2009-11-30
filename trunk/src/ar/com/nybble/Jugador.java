@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package ar.com.nybble;
 
 import java.util.Iterator;
@@ -32,7 +30,6 @@ public class Jugador {
 
 	public void setNacimiento(Fecha fecha1) {
 		this.fecha = fecha1;
-		
 	}
 
 	public Fecha getFecha() {
@@ -71,5 +68,14 @@ public class Jugador {
 
 	public Fecha getFechaDeInicioDeActividad() {
 		return null;
+	}
+
+	public void setNacionalidad(Nacionalidad nacionalidad) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Nacionalidad getNacionalidad() {
+		return new Nacionalidad("Nigeriano");
 	}
 }

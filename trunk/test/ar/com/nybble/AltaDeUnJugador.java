@@ -15,7 +15,9 @@ import org.junit.Test;
 public class AltaDeUnJugador{
 	
 		Jugador jugador1 = new Jugador();
-		Club club1 = new Club();
+		Fecha fecha1 = new Fecha("01/01/1980");
+		Nacionalidad nigeriano = new Nacionalidad("Nigeriano");
+		
 
 	
 	/**
@@ -33,30 +35,19 @@ public class AltaDeUnJugador{
 	 */
 	@Test
 	public void agregaFechaDeNacimientoDelJugador() {
-		Fecha fecha1 = new Fecha("01/01/1980");
 		jugador1.setNacimiento(fecha1);
 		assertTrue(jugador1.getFecha() == fecha1); 
 	}	
 
-	
 	/**
-	 * Se agrega un club aljugador y queda como vigente
+	 * Agregar una Nacionalidad al Jugador
 	 */
 	@Test
-	public void agregaClubFederado() {
-		jugador1.agregarClub(club1);
-		assertTrue(jugador1.getClubVigente() == club1);
+	public void agregarNacionalidadJugador() {
+		jugador1.setNacionalidad(nigeriano);
+		assertEquals(jugador1.getNacionalidad(),nigeriano);
 	}
+  
 	
-	
-	/**
-	 * Si un jugador no tiene asignado club
-	 */
-	@Test
-	public void juagdorSinClub() {
-		assertTrue(jugador1.getClubVigente() == null);
-	}
-	
-
 	
 }
