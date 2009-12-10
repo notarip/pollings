@@ -31,8 +31,7 @@ public class Jugador {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-		
-		
+
 	}
 
 	public void setNacimiento(Date fecha1) {
@@ -94,7 +93,7 @@ public class Jugador {
 		else{
 			this.tipoDeLesion  = null;
 			this.fechasDeCambioActividad.add(fecha2);
-			this.estados.add(EstadosJugador.ACTIVO);
+			this.estados.add(estados.get(estados.size()-2));
 		}
 	}
 

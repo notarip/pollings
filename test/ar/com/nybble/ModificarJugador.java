@@ -193,7 +193,7 @@ public class ModificarJugador {
 	}
 	
 	/**
-	 * Que cuando se quede sin club se guarde la fecha
+	 * que cuando se quede sin club se guarde la fecha
 	 */
 	@Test
 	public void queCuandoSeQuedeSinClubGuardeLaFecha() {
@@ -202,8 +202,8 @@ public class ModificarJugador {
 	}
 
 	/**
-	 *que cuando se le asigne un club recupere la actividad anterior
-	 *a quedarse sin club
+	 * que cuando se le asigne un club recupere la actividad anterior
+	 * a quedarse sin club
 	 */
 	@Test
 	public void queCuandoSeLeAsigneClubRecupereLaActividad() {
@@ -212,9 +212,23 @@ public class ModificarJugador {
 
 	}
 	
-
+	/**
+	 * cuando vuelve de una lesion que vuelva al estado anterior 
+	 */
+	@Test
+	public void cuandoVuelveDeUnaLesionVuelvaAlEstadoAnterior() {
+		pablo.colgarLosGuantes(fecha);
+		assertEquals(EstadosJugador.RETIRADO, pablo.getEstado());
+		pablo.notificarLesion(fecha, lesion);
+		pablo.recuperarActividad(fecha);
+		assertEquals(EstadosJugador.RETIRADO, pablo.getEstado());
+	}
+	
+	
+	
+	
+	//TODO Que guarde la nacionalidad
 	//TODO Que si el jugador esta sin club solo se le pueda asignar club
-	//TODO Cuando vuelve de una lesion que vuelva al estado anterior
 	//TODO que cuando se le asigne un club no recupere la actividad si esta lesionado
 	//TODO Agregar una posicion la que jugo
 
