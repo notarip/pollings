@@ -13,7 +13,9 @@ public class Nacionalidad {
 		this.nacionalidad = nacionalidad;
 	}
 	
-		
+	
+	
+	
 	@Override
 	public boolean equals(Object otraNacionalidad) {
 		Nacionalidad nacionalidad2 = (Nacionalidad)otraNacionalidad;
