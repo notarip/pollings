@@ -5,6 +5,8 @@ package ar.com.nybble;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 
@@ -15,7 +17,7 @@ import org.junit.Test;
 public class AltaDeUnJugador{
 	
 		Jugador jugador1 = new Jugador();
-		Fecha fecha1 = new Fecha("01/01/1980");
+		Date fecha1 = new Date();
 		Nacionalidad nigeriano = new Nacionalidad("Nigeriano");
 		
 

@@ -1,6 +1,7 @@
 
 package ar.com.nybble;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -11,12 +12,18 @@ import java.util.LinkedList;
 public class Jugador {
 
 	private String nombre;
-	private Fecha fecha;
+	private Date fecha;
 	private LinkedList<Club> clubs = new LinkedList<Club>();
-	private LinkedList<Fecha> fechasDeCambioActividad = new LinkedList<Fecha>();
-	private EstadosJugador estado;
+	private LinkedList<Date> fechasDeCambioActividad = new LinkedList<Date>();
+	private LinkedList<EstadosJugador> estados = new LinkedList<EstadosJugador>();
 	private TipoDeLesion tipoDeLesion;
 	
+	
+	
+	public Jugador() {
+		estados.add(EstadosJugador.ACTIVO);
+		fechasDeCambioActividad.add(new Date());
+	}
 	
 	public String getNombre() {
 		return nombre;
@@ -28,16 +35,17 @@ public class Jugador {
 		
 	}
 
-	public void setNacimiento(Fecha fecha1) {
+	public void setNacimiento(Date fecha1) {
 		this.fecha = fecha1;
 	}
 
-	public Fecha getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
 	public void agregarClub(Club club1) {
 		clubs.add(club1);
+		this.estados.add(EstadosJugador.ACTIVO);
 	}
 
 	public Club getClubVigente() {
@@ -48,27 +56,24 @@ public class Jugador {
 		return lista.next();
 	}
 
-	public void iniciarActividadProfesional(Fecha fecha2) {
+	public void iniciarActividadProfesional(Date fecha2) {
 		fechasDeCambioActividad.add(fecha2);
-		estado = EstadosJugador.ACTIVO;
+		estados.add(EstadosJugador.ACTIVO);
 	}
 
 	public boolean enActividad() {
-		if (estado == EstadosJugador.ACTIVO){
+		if (estados.peekLast() == EstadosJugador.ACTIVO){
 			return true;
 		}
 		return false;
 	}
 
-	public void notificarLesion(Fecha fecha2, TipoDeLesion lesion) {
+	public void notificarLesion(Date fecha2, TipoDeLesion lesion) {
 		fechasDeCambioActividad.add(fecha2);
-		estado = EstadosJugador.LESIONADO;
+		estados.add(EstadosJugador.LESIONADO);
 		tipoDeLesion = lesion;
 	}
 
-	public Fecha getFechaDeInicioDeActividad() {
-		return null;
-	}
 
 	public void setNacionalidad(Nacionalidad nacionalidad) {
 		// TODO Auto-generated method stub
@@ -77,5 +82,41 @@ public class Jugador {
 
 	public Nacionalidad getNacionalidad() {
 		return new Nacionalidad("Nigeriano");
+	}
+
+	public Object getLesion() {
+		return tipoDeLesion;
+	}
+
+	public void recuperarActividad(Date fecha2) {
+		if (estados.peekLast() != EstadosJugador.LESIONADO)
+			throw new JugadorSinLesionException();
+		else{
+			this.tipoDeLesion  = null;
+			this.fechasDeCambioActividad.add(fecha2);
+			this.estados.add(EstadosJugador.ACTIVO);
+		}
+	}
+
+	public Object getEstado() {
+		return estados.peekLast();
+	}
+
+	public void colgarLosGuantes(Date fecha2) {
+		this.estados.add(EstadosJugador.RETIRADO);
+		this.fechasDeCambioActividad.add(fecha2);
+	}
+
+	public void desvincularClub(Date fecha2) throws JugadorSinClubException {
+		if (estados.peekLast() == EstadosJugador.SIN_CLUB)
+			throw new JugadorSinClubException();
+		else{
+			this.estados.add(EstadosJugador.SIN_CLUB);
+			this.fechasDeCambioActividad.add(fecha2);
+		}
+	}
+
+	public Object getFechaEstadoActual() {
+		return fechasDeCambioActividad.pop();
 	}
 }
