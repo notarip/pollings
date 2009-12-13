@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ar.com.nybble;
+package ar.com.nybble.futbol.test;
 
 import static org.junit.Assert.*;
 

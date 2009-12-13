@@ -1,4 +1,4 @@
-package ar.com.nybble;
+package ar.com.nybble.futbol;
 
 /**
  * @author Pablo Notari

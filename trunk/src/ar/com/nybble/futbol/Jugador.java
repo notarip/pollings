@@ -1,5 +1,5 @@
 
-package ar.com.nybble;
+package ar.com.nybble.futbol;
 
 import java.util.Date;
 import java.util.Iterator;
