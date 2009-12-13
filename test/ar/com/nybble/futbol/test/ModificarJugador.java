@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ar.com.nybble;
+package ar.com.nybble.futbol.test;
 
 
 import java.util.Date;
