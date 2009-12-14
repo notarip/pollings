@@ -16,8 +16,9 @@ public class Jugador {
 	private LinkedList<Club> clubs = new LinkedList<Club>();
 	private LinkedList<Date> fechasDeCambioActividad = new LinkedList<Date>();
 	private LinkedList<EstadosJugador> estados = new LinkedList<EstadosJugador>();
+	private LinkedList<Date> fechasDeCambioClub = new LinkedList<Date>();
 	private TipoDeLesion tipoDeLesion;
-	
+	private Nacionalidad nacionalidad;
 	
 	
 	public Jugador() {
@@ -42,9 +43,13 @@ public class Jugador {
 		return fecha;
 	}
 
-	public void agregarClub(Club club1) {
+	public void agregarClub(Club club1, Date fecha2) {
 		clubs.add(club1);
-		this.estados.add(EstadosJugador.ACTIVO);
+		fechasDeCambioClub.add(fecha2);
+		if (tipoDeLesion == null)
+			this.estados.add(EstadosJugador.ACTIVO);
+		else
+			estados.add(EstadosJugador.LESIONADO);
 	}
 
 	public Club getClubVigente() {
@@ -61,7 +66,7 @@ public class Jugador {
 	}
 
 	public boolean enActividad() {
-		if (estados.peekLast() == EstadosJugador.ACTIVO){
+		if (getEstado() == EstadosJugador.ACTIVO){
 			return true;
 		}
 		return false;
@@ -75,12 +80,11 @@ public class Jugador {
 
 
 	public void setNacionalidad(Nacionalidad nacionalidad) {
-		// TODO Auto-generated method stub
-		
+		this.nacionalidad = nacionalidad;
 	}
 
 	public Nacionalidad getNacionalidad() {
-		return new Nacionalidad("Nigeriano");
+		return nacionalidad;
 	}
 
 	public Object getLesion() {
@@ -88,7 +92,7 @@ public class Jugador {
 	}
 
 	public void recuperarActividad(Date fecha2) {
-		if (estados.peekLast() != EstadosJugador.LESIONADO)
+		if (getEstado() != EstadosJugador.LESIONADO)
 			throw new JugadorSinLesionException();
 		else{
 			this.tipoDeLesion  = null;
@@ -97,7 +101,7 @@ public class Jugador {
 		}
 	}
 
-	public Object getEstado() {
+	public EstadosJugador getEstado() {
 		return estados.peekLast();
 	}
 
@@ -107,7 +111,7 @@ public class Jugador {
 	}
 
 	public void desvincularClub(Date fecha2) throws JugadorSinClubException {
-		if (estados.peekLast() == EstadosJugador.SIN_CLUB)
+		if (getEstado() == EstadosJugador.SIN_CLUB)
 			throw new JugadorSinClubException();
 		else{
 			this.estados.add(EstadosJugador.SIN_CLUB);
@@ -116,6 +120,14 @@ public class Jugador {
 	}
 
 	public Object getFechaEstadoActual() {
-		return fechasDeCambioActividad.pop();
+		return fechasDeCambioActividad.getLast();
 	}
+
+	public Object getFechaDeInicioClubActual() {
+		return fechasDeCambioClub.peekLast();
+	}
+	
+	
+	
+	
 }

@@ -9,10 +9,13 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import ar.com.nybble.futbol.Jugador;
+import ar.com.nybble.futbol.Nacionalidad;
+
 
 /**
  * @author notarip
- *
+ * 
  */
 public class AltaDeUnJugador{
 	
