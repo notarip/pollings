@@ -22,6 +22,10 @@ public class Nacionalidad {
 		return (this.nacionalidad == nacionalidad2.nacionalidad);
 	}
 	
+	@Override
+	public String toString() {
+		return this.nacionalidad;
+	}
 	
 
 }

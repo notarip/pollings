@@ -7,6 +7,8 @@ package ar.com.nybble.futbol.test;
 import java.util.Date;
 
 import org.junit.Test;
+
+import ar.com.nybble.futbol.*;
 import static org.junit.Assert.*;
 
 /**
@@ -20,6 +22,12 @@ public class ModificarJugador {
 	Date fecha = new Date();
 	Club club1 = new Club();
 	TipoDeLesion lesion = TipoDeLesion.DISTENSIÓN_FEMORAL_POSTERIOR;
+	Nacionalidad nacionalidad = new Nacionalidad("PERUANO");
+	EstadosJugador retirado = EstadosJugador.RETIRADO;
+	EstadosJugador activo = EstadosJugador.ACTIVO;
+	EstadosJugador lesionado = EstadosJugador.LESIONADO;
+	EstadosJugador sinclub = EstadosJugador.SIN_CLUB;
+	
 	
 	
 	/**
@@ -27,7 +35,7 @@ public class ModificarJugador {
 	 */
 	@Test
 	public void agregaClubFederado() {
-		pablo.agregarClub(club1);
+		pablo.agregarClub(club1, fecha);
 		assertTrue(pablo.getClubVigente() == club1);
 	}
 	
@@ -40,6 +48,15 @@ public class ModificarJugador {
 		assertTrue(pablo.getClubVigente() == null);
 	}
 	
+	/**
+	 * Que guarde la nacionalidad
+	 */
+	@Test
+	public void queGuardeLaNacionalidad() {
+		pablo.setNacionalidad(nacionalidad);
+		assertEquals(nacionalidad, pablo.getNacionalidad());
+		
+	}
 	
 	/**
 	 * Poner a un jugador en actividad.
@@ -80,7 +97,7 @@ public class ModificarJugador {
 	}
 	
 	/**
-	 *TODO Si no esta lesionado que el get lesion devuelva null 
+	 * Si no esta lesionado que el get lesion devuelva null 
 	 */
 	@Test
 	 public void siNoEstaLesionadoGetLesionDevuelvaNull() {
@@ -105,7 +122,7 @@ public class ModificarJugador {
 	public void queCuandoRecupereLaActividadEsteActivo() {
 		pablo.notificarLesion(fecha, lesion);
 		pablo.recuperarActividad(fecha);
-		assertEquals(EstadosJugador.ACTIVO,pablo.getEstado());
+		assertEquals(activo,pablo.getEstado());
 
 	}
 	
@@ -128,12 +145,12 @@ public class ModificarJugador {
 	}
 
 	/**
-	 *TODO Que cuando de lesione el estado sea lesionado 
+	 * Que cuando de lesione el estado sea lesionado 
 	 */
 	@Test
 	public void queCuandoSeLesioneEstadoSeaLesionado() {
 		pablo.notificarLesion(fecha, lesion);
-		assertEquals(EstadosJugador.LESIONADO,pablo.getEstado());
+		assertEquals(lesionado,pablo.getEstado());
 	}
 
 	/**
@@ -152,7 +169,7 @@ public class ModificarJugador {
 	@Test
 	public void queCuandoPaseAActvidadEstadoSeaActivo() {
 		pablo.iniciarActividadProfesional(fecha);
-		assertEquals(EstadosJugador.ACTIVO,pablo.getEstado());
+		assertEquals(activo,pablo.getEstado());
 
 	}
 	
@@ -162,7 +179,7 @@ public class ModificarJugador {
 	@Test
 	public void queCuandoSeRetireEstadoSeaRetirado() {
 		pablo.colgarLosGuantes(fecha);
-		assertEquals( EstadosJugador.RETIRADO,pablo.getEstado());
+		assertEquals(retirado,pablo.getEstado());
 	}
 
 	/**
@@ -180,7 +197,7 @@ public class ModificarJugador {
 	@Test
 	public void queCuandoSeQuedeSinClubEstadoSeaSinClub() {
 		pablo.desvincularClub(fecha);
-		assertEquals(EstadosJugador.SIN_CLUB, pablo.getEstado());
+		assertEquals(sinclub, pablo.getEstado());
 	}
 
 	/**
@@ -207,7 +224,7 @@ public class ModificarJugador {
 	 */
 	@Test
 	public void queCuandoSeLeAsigneClubRecupereLaActividad() {
-		pablo.agregarClub(club1);
+		pablo.agregarClub(club1, fecha);
 		assertTrue(pablo.enActividad());
 
 	}
@@ -218,18 +235,34 @@ public class ModificarJugador {
 	@Test
 	public void cuandoVuelveDeUnaLesionVuelvaAlEstadoAnterior() {
 		pablo.colgarLosGuantes(fecha);
-		assertEquals(EstadosJugador.RETIRADO, pablo.getEstado());
+		assertEquals(retirado, pablo.getEstado());
 		pablo.notificarLesion(fecha, lesion);
 		pablo.recuperarActividad(fecha);
-		assertEquals(EstadosJugador.RETIRADO, pablo.getEstado());
+		assertEquals(retirado, pablo.getEstado());
+	}
+
+	/**
+	 * que cuando se le asigne un club no recupere la actividad si esta lesionado
+	 */
+	@Test
+	public void queCuandoAsigneClubNoRecupereActividadSiEstaLesionado() {
+		pablo.notificarLesion(fecha, lesion);
+		pablo.agregarClub(club1, fecha);
+		assertEquals(lesionado, pablo.getEstado());
+	}
+	
+	/**
+	 * que guarde la fecha cuando cambia de club
+	 */
+	@Test
+	public void queGuardeLaFechaCuandoCambiaDeClub() {
+		pablo.agregarClub(club1,fecha);
+		assertEquals(fecha, pablo.getFechaDeInicioClubActual());
 	}
 	
 	
 	
 	
-	//TODO Que guarde la nacionalidad
-	//TODO Que si el jugador esta sin club solo se le pueda asignar club
-	//TODO que cuando se le asigne un club no recupere la actividad si esta lesionado
 	//TODO Agregar una posicion la que jugo
 
 }
