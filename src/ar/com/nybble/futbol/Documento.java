@@ -1,7 +1,11 @@
 package ar.com.nybble.futbol;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import ar.com.nybble.futbol.test.TipoDeDocumento;
 
+@Entity
 public class Documento {
 
 	
@@ -15,6 +19,7 @@ public class Documento {
 		this.tipo = tipo;
 	}
 
+	@Id
 	public String getNumero() {
 		return numero;
 	}
