@@ -10,7 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 
-import common.dataSource.DataSourceException;
+
 
 
 
@@ -52,7 +52,7 @@ public class HibernateUtil {
             // Si no ponemos fichero, intenta cargar "/hibernate.cfg.xml" en el
             // raiz
             sessionFactory = new AnnotationConfiguration().configure(
-                    new File("src/hibernate.cfg.xml")).buildSessionFactory();
+                    new File("hibernate.cfg.xml")).buildSessionFactory();
         } catch (Throwable ex) {
             // Log exception!
             throw new ExceptionInInitializerError(ex);

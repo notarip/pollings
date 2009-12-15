@@ -1,9 +1,14 @@
 package ar.com.nybble.futbol;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * @author Pablo Notari
  * @category Value Object
  */
+
+@Entity
 public class Nacionalidad {
 	
 	
@@ -13,7 +18,10 @@ public class Nacionalidad {
 		this.nacionalidad = nacionalidad;
 	}
 	
-	
+	@Id
+	public String getNacionalidad() {
+		return nacionalidad;
+	}
 	
 	
 	@Override

@@ -1,6 +1,7 @@
 
 package ar.com.nybble.futbol;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -36,10 +37,10 @@ public class Jugador implements Persona {
 	private String nombre;
 	private Date fechaNacimiento;
 	private Documento documento;
-	private LinkedList<Club> clubs = new LinkedList<Club>();
-	private LinkedList<Date> fechasDeCambioClub = new LinkedList<Date>();
-	private LinkedList<EstadosJugador> estados = new LinkedList<EstadosJugador>();
-	private LinkedList<Date> fechasDeCambioEstados = new LinkedList<Date>();
+	private Collection<Club> clubs = new LinkedList<Club>();
+	private Collection<Date> fechasDeCambioClub = new LinkedList<Date>();
+	private Collection<EstadosJugador> estados = new LinkedList<EstadosJugador>();
+	private Collection<Date> fechasDeCambioEstados = new LinkedList<Date>();
 	private TipoDeLesion tipoDeLesion;
 	private Nacionalidad nacionalidad;
 	
@@ -105,8 +106,8 @@ public class Jugador implements Persona {
 	}
 
 	@ManyToMany 
-	public LinkedList<Club> getClubs() {
-		return clubs;
+	public Collection<Club> getClubs() {
+		return  clubs;
 	}
 
 	public void setFechasDeCambioClub(LinkedList<Date> fechasDeCambioClub) {
@@ -114,7 +115,7 @@ public class Jugador implements Persona {
 	}
 
 	@OneToMany
-	public LinkedList<Date> getFechasDeCambioClub() {
+	public Collection<Date> getFechasDeCambioClub() {
 		return fechasDeCambioClub;
 	}
 
@@ -158,13 +159,13 @@ public class Jugador implements Persona {
 		else{
 			this.tipoDeLesion  = null;
 			this.getFechasDeCambioEstados().add(fecha2);
-			this.getEstados().add(getEstados().get(getEstados().size()-2));
+			this.getEstados().add(((LinkedList<EstadosJugador>) getEstados()).get(getEstados().size()-2));
 		}
 	}
 
 	@Transient
 	public EstadosJugador getEstado() {
-		return getEstados().peekLast();
+		return ((LinkedList<EstadosJugador>) getEstados()).peekLast();
 	}
 
 	public void setEstados(LinkedList<EstadosJugador> estados) {
@@ -172,7 +173,7 @@ public class Jugador implements Persona {
 	}
 
 	@OneToMany
-	public LinkedList<EstadosJugador> getEstados() {
+	public Collection<EstadosJugador> getEstados() {
 		return estados;
 	}
 
@@ -192,7 +193,7 @@ public class Jugador implements Persona {
 
 	@Transient
 	public Object getFechaEstadoActual() {
-		return getFechasDeCambioEstados().getLast();
+		return ((LinkedList<Date>) getFechasDeCambioEstados()).getLast();
 	}
 
 	public void setFechasDeCambioEstados(LinkedList<Date> fechasDeCambioEstados) {
@@ -200,13 +201,13 @@ public class Jugador implements Persona {
 	}
 	
 	@OneToMany
-	public LinkedList<Date> getFechasDeCambioEstados() {
+	public Collection<Date> getFechasDeCambioEstados() {
 		return fechasDeCambioEstados;
 	}
 
 	@Transient
 	public Object getFechaDeInicioClubActual() {
-		return getFechasDeCambioClub().peekLast();
+		return ((LinkedList<Date>) getFechasDeCambioClub()).peekLast();
 	}
 
 	@OneToOne
