@@ -27,6 +27,7 @@ public class ModificarJugador {
 	EstadosJugador activo = EstadosJugador.ACTIVO;
 	EstadosJugador lesionado = EstadosJugador.LESIONADO;
 	EstadosJugador sinclub = EstadosJugador.SIN_CLUB;
+	Documento doc = new Documento("29317973",TipoDeDocumento.DNI);
 	
 	
 	
@@ -56,6 +57,16 @@ public class ModificarJugador {
 		pablo.setNacionalidad(nacionalidad);
 		assertEquals(nacionalidad, pablo.getNacionalidad());
 		
+	}
+	
+	
+	/**
+	 * Que guarde el documento 
+	 */
+	@Test
+	public void queGuardeElDocumento() {
+		pablo.setDocumento(doc);
+		assertEquals(doc, pablo.getDocumeto());
 	}
 	
 	/**
@@ -260,7 +271,7 @@ public class ModificarJugador {
 		assertEquals(fecha, pablo.getFechaDeInicioClubActual());
 	}
 	
-	
+
 	
 	
 	//TODO Agregar una posicion la que jugo

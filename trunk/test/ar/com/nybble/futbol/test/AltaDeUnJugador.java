@@ -40,8 +40,8 @@ public class AltaDeUnJugador{
 	 */
 	@Test
 	public void agregaFechaDeNacimientoDelJugador() {
-		jugador1.setNacimiento(fecha1);
-		assertTrue(jugador1.getFecha() == fecha1); 
+		jugador1.setFechaNacimiento(fecha1);
+		assertTrue(jugador1.getFechaNacimieto() == fecha1); 
 	}	
 
 	/**
