@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="Annotations" systemlibrary="false">
+        <archive path="C:/Java/Aplicaciones/hibernate-distribution-3.3.1.GA-dist/hibernate-distribution-3.3.1.GA/hibernate3.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-distribution-3.3.1.GA-dist/hibernate-distribution-3.3.1.GA/hibernate-testing.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/hibernate-annotations.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/dom4j.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/ejb3-persistence.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/hibernate-commons-annotations.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/hibernate-core.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/slf4j-api.jar"/>
+        <archive path="C:/Archivos de programa/PostgreSQL/pgJDBC/postgresql-8.3-604.jdbc4.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/test/slf4j-log4j12.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/test/antlr.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/test/asm.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/test/asm-attrs.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/test/commons-collections.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/test/javassist.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/test/jta.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/test/junit.jar"/>
+        <archive path="C:/Java/Aplicaciones/hibernate-annotations-3.4.0.GA/hibernate-annotations-3.4.0.GA/lib/test/log4j.jar"/>
+    </library>
+</eclipse-userlibraries>
