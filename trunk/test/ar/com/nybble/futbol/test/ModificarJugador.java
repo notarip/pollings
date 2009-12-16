@@ -20,7 +20,7 @@ public class ModificarJugador {
 	
 	Jugador pablo = new Jugador();
 	Date fecha = new Date();
-	Club club1 = new Club();
+	Club club1 = new Club("Milan");
 	TipoDeLesion lesion = TipoDeLesion.DISTENSIÓN_FEMORAL_POSTERIOR;
 	Nacionalidad nacionalidad = new Nacionalidad("PERUANO");
 	EstadosJugador retirado = EstadosJugador.RETIRADO;
@@ -66,7 +66,7 @@ public class ModificarJugador {
 	@Test
 	public void queGuardeElDocumento() {
 		pablo.setDocumento(doc);
-		assertEquals(doc, pablo.getDocumeto());
+		assertEquals(doc, pablo.getDocumento());
 	}
 	
 	/**
@@ -272,7 +272,6 @@ public class ModificarJugador {
 	}
 	
 
-	
 	
 	//TODO Agregar una posicion la que jugo
 

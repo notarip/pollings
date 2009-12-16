@@ -19,14 +19,15 @@ public final class Ejemplo1 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		HibernateUtil session = new HibernateUtil();
-		session.openSession("1");
+		HibernateUtil.openSession("1");
+			
 		try {
-			session.closeSession("1");
+			HibernateUtil.closeSession("1");
 		} catch (DataSourceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 }

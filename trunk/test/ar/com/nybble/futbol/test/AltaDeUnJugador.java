@@ -53,6 +53,6 @@ public class AltaDeUnJugador{
 		assertEquals(jugador1.getNacionalidad(),nigeriano);
 	}
   
-	
+	//Dar de alta un jugador con Documento
 	
 }
