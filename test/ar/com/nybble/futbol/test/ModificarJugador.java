@@ -23,10 +23,10 @@ public class ModificarJugador {
 	Club club1 = new Club("Milan");
 	TipoDeLesion lesion = TipoDeLesion.DISTENSIÓN_FEMORAL_POSTERIOR;
 	Nacionalidad nacionalidad = new Nacionalidad("PERUANO");
-	EstadosJugador retirado = EstadosJugador.RETIRADO;
-	EstadosJugador activo = EstadosJugador.ACTIVO;
-	EstadosJugador lesionado = EstadosJugador.LESIONADO;
-	EstadosJugador sinclub = EstadosJugador.SIN_CLUB;
+	TipoEstadosJugador retirado = TipoEstadosJugador.RETIRADO;
+	TipoEstadosJugador activo = TipoEstadosJugador.ACTIVO;
+	TipoEstadosJugador lesionado = TipoEstadosJugador.LESIONADO;
+	TipoEstadosJugador sinclub = TipoEstadosJugador.SIN_CLUB;
 	Documento doc = new Documento("29317973",TipoDeDocumento.DNI);
 	
 	
