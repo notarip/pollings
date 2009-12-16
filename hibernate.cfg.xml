@@ -30,5 +30,6 @@
 		<mapping class="ar.com.nybble.futbol.EstadosJugador" />
 		
 		
+		
 	</session-factory>
 </hibernate-configuration>

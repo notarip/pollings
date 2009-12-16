@@ -39,5 +39,5 @@ public interface Persona {
 	/**
 	 * @return
 	 */
-	Documento getDocumeto();
+	Documento getDocumento();
 }

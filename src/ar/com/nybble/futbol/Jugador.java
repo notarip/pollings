@@ -6,8 +6,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -49,6 +47,11 @@ public class Jugador implements Persona {
 	public Jugador() {
 		getEstados().add(EstadosJugador.ACTIVO);
 		getFechasDeCambioEstados().add(new Date());
+	}
+	public Jugador(Documento documento) {
+		getEstados().add(EstadosJugador.ACTIVO);
+		getFechasDeCambioEstados().add(new Date());
+		this.documento = documento;
 	}
 	
 	private void setId(long id) {
@@ -211,7 +214,7 @@ public class Jugador implements Persona {
 	}
 
 	@OneToOne
-	public Documento getDocumeto() {
+	public Documento getDocumento() {
 		return this.documento;
 	}
 
@@ -219,6 +222,13 @@ public class Jugador implements Persona {
 	public void setDocumento(Documento documento) {
 		this.documento = documento;
 		
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this.documento.equals(((Jugador) obj).getDocumento()))
+			return true;
+		return false;
 	}
 
 	
