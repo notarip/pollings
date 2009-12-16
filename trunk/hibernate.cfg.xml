@@ -27,7 +27,8 @@
 		<mapping class="ar.com.nybble.futbol.Jugador" />
 		<mapping class="ar.com.nybble.futbol.Nacionalidad" />
 		<mapping class="ar.com.nybble.futbol.TipoDeLesion" />
-		<mapping class="ar.com.nybble.futbol.EstadosJugador" />
+		<mapping class="ar.com.nybble.futbol.CambioDeEstado" />
+		<mapping class="ar.com.nybble.futbol.CambioDeClub" />
 		
 		
 		

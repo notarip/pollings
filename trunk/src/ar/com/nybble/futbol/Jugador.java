@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -22,6 +23,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 
+
 /**
  * @author notarip
  *
@@ -35,22 +37,19 @@ public class Jugador implements Persona {
 	private String nombre;
 	private Date fechaNacimiento;
 	private Documento documento;
-	private Collection<Club> clubs = new LinkedList<Club>();
-	private Collection<Date> fechasDeCambioClub = new LinkedList<Date>();
-	private Collection<EstadosJugador> estados = new LinkedList<EstadosJugador>();
-	private Collection<Date> fechasDeCambioEstados = new LinkedList<Date>();
+	private Collection<CambioDeClub> clubs = new LinkedList<CambioDeClub>();
+	private Collection<CambioDeEstado> estados = new LinkedList<CambioDeEstado>();
 	private TipoDeLesion tipoDeLesion;
 	private Nacionalidad nacionalidad;
 	
 	
 	
 	public Jugador() {
-		getEstados().add(EstadosJugador.ACTIVO);
-		getFechasDeCambioEstados().add(new Date());
+		getEstados().add(new CambioDeEstado(TipoEstadosJugador.ACTIVO,new Date(), this));
 	}
+	
 	public Jugador(Documento documento) {
-		getEstados().add(EstadosJugador.ACTIVO);
-		getFechasDeCambioEstados().add(new Date());
+		getEstados().add(new CambioDeEstado(TipoEstadosJugador.ACTIVO,new Date(), this));
 		this.documento = documento;
 	}
 	
@@ -86,58 +85,40 @@ public class Jugador implements Persona {
 	}
 
 	public void agregarClub(Club club1, Date fecha2) {
-		getClubs().add(club1);
-		getFechasDeCambioClub().add(fecha2);
+		CambioDeClub cambio = new CambioDeClub(club1,fecha2,this);
+		this.getCambiosDeClub().add(cambio);
 		if (tipoDeLesion == null)
-			this.getEstados().add(EstadosJugador.ACTIVO);
+			getEstados().add(new CambioDeEstado(TipoEstadosJugador.ACTIVO,fecha2, this));
 		else
-			getEstados().add(EstadosJugador.LESIONADO);
+			getEstados().add(new CambioDeEstado(TipoEstadosJugador.LESIONADO,fecha2, this));
 	}
 	
 	
 	@Transient
 	public Club getClubVigente() {
-		Iterator<Club> lista = getClubs().iterator();
-		if (!lista.hasNext()) {
+		LinkedList<CambioDeClub> cambios = (LinkedList<CambioDeClub>)getCambiosDeClub(); 
+		if (!cambios.isEmpty())
+			return cambios.peekLast().getClub();
+		else
 			return null;
-		}
-		return lista.next();
 	}
 
-	public void setClubs(LinkedList<Club> clubs) {
-		this.clubs = clubs;
-	}
 
-	@ManyToMany 
-	public Collection<Club> getClubs() {
-		return  clubs;
-	}
-
-	public void setFechasDeCambioClub(LinkedList<Date> fechasDeCambioClub) {
-		this.fechasDeCambioClub = fechasDeCambioClub;
-	}
-
-	@OneToMany
-	public Collection<Date> getFechasDeCambioClub() {
-		return fechasDeCambioClub;
-	}
-
+	
 	public void iniciarActividadProfesional(Date fecha2) {
-		getFechasDeCambioEstados().add(fecha2);
-		getEstados().add(EstadosJugador.ACTIVO);
+		getEstados().add(new CambioDeEstado(TipoEstadosJugador.ACTIVO,fecha2, this));
 	}
 
 	@Transient
 	public boolean enActividad() {
-		if (getEstado() == EstadosJugador.ACTIVO){
+		if (getEstado() == TipoEstadosJugador.ACTIVO){
 			return true;
 		}
 		return false;
 	}
 
 	public void notificarLesion(Date fecha2, TipoDeLesion lesion) {
-		getFechasDeCambioEstados().add(fecha2);
-		getEstados().add(EstadosJugador.LESIONADO);
+		getEstados().add(new CambioDeEstado(TipoEstadosJugador.LESIONADO,fecha2, this));
 		tipoDeLesion = lesion;
 	}
 
@@ -157,60 +138,50 @@ public class Jugador implements Persona {
 	}
 
 	public void recuperarActividad(Date fecha2) {
-		if (getEstado() != EstadosJugador.LESIONADO)
+		if (getEstado() != TipoEstadosJugador.LESIONADO)
 			throw new JugadorSinLesionException();
 		else{
 			this.tipoDeLesion  = null;
-			this.getFechasDeCambioEstados().add(fecha2);
-			this.getEstados().add(((LinkedList<EstadosJugador>) getEstados()).get(getEstados().size()-2));
-		}
+			CambioDeEstado cambio =((LinkedList<CambioDeEstado>)this.getEstados()).get(getEstados().size()-2);
+			CambioDeEstado cambio2 = new CambioDeEstado(cambio.getEstado(),fecha2,this);
+			getEstados().add(cambio2);
+			}
 	}
 
 	@Transient
-	public EstadosJugador getEstado() {
-		return ((LinkedList<EstadosJugador>) getEstados()).peekLast();
+	public TipoEstadosJugador getEstado() {
+		LinkedList<CambioDeEstado> cambios = (LinkedList<CambioDeEstado>) getEstados();
+		return cambios.peekLast().getEstado();
 	}
 
-	public void setEstados(LinkedList<EstadosJugador> estados) {
-		this.estados = estados;
-	}
-
-	@OneToMany
-	public Collection<EstadosJugador> getEstados() {
-		return estados;
-	}
 
 	public void colgarLosGuantes(Date fecha2) {
-		this.getEstados().add(EstadosJugador.RETIRADO);
-		this.getFechasDeCambioEstados().add(fecha2);
+		CambioDeEstado cambio = new CambioDeEstado(TipoEstadosJugador.RETIRADO,fecha2,this);
+		getEstados().add(cambio);
 	}
 
 	public void desvincularClub(Date fecha2) throws JugadorSinClubException {
-		if (getEstado() == EstadosJugador.SIN_CLUB)
+		if (getEstado() == TipoEstadosJugador.SIN_CLUB)
 			throw new JugadorSinClubException();
 		else{
-			this.getEstados().add(EstadosJugador.SIN_CLUB);
-			this.getFechasDeCambioEstados().add(fecha2);
+			CambioDeEstado cambio = new CambioDeEstado(TipoEstadosJugador.SIN_CLUB,fecha2,this);
+			getEstados().add(cambio);
 		}
 	}
 
 	@Transient
-	public Object getFechaEstadoActual() {
-		return ((LinkedList<Date>) getFechasDeCambioEstados()).getLast();
+	public Date getFechaEstadoActual() {
+		return ((LinkedList<CambioDeEstado>)getEstados()).peekLast().getFecha();
 	}
 
-	public void setFechasDeCambioEstados(LinkedList<Date> fechasDeCambioEstados) {
-		this.fechasDeCambioEstados = fechasDeCambioEstados;
-	}
-	
-	@OneToMany
-	public Collection<Date> getFechasDeCambioEstados() {
-		return fechasDeCambioEstados;
-	}
 
 	@Transient
 	public Object getFechaDeInicioClubActual() {
-		return ((LinkedList<Date>) getFechasDeCambioClub()).peekLast();
+		LinkedList<CambioDeClub> cambios = (LinkedList<CambioDeClub>)getCambiosDeClub(); 
+		if (!cambios.isEmpty())
+			return cambios.peekLast().getFecha();
+		else
+			return null;
 	}
 
 	@OneToOne
@@ -229,6 +200,26 @@ public class Jugador implements Persona {
 		if (this.documento.equals(((Jugador) obj).getDocumento()))
 			return true;
 		return false;
+	}
+	
+	
+	public void setCambiosDeClub(Collection<CambioDeClub> cambiosDeClub) {
+		this.clubs = cambiosDeClub;
+	}
+	
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador")
+	public Collection<CambioDeClub> getCambiosDeClub() {
+		return clubs;
+	}
+
+
+	public void setEstados(Collection<CambioDeEstado> estados) {
+		this.estados = estados;
+	}
+
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador")
+	public Collection<CambioDeEstado> getEstados() {
+		return estados;
 	}
 
 	

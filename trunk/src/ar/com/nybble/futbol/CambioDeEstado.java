@@ -16,24 +16,22 @@ import javax.persistence.TemporalType;
  * @author notarip
  *
  */
-
 @Entity
-public class CambioDeClub {
+public class CambioDeEstado {
 
+	private TipoEstadosJugador estado;
 	private Date fecha;
-	private Club club;
 	private Jugador jugador;
-	
 
-	public CambioDeClub(Club club, Date fecha, Jugador jugador) {
+	public CambioDeEstado(TipoEstadosJugador estado, Date fecha, Jugador jugador) {
+		this.estado = estado;
 		this.fecha = fecha;
-		this.club = club;
-		this.jugador =(jugador);
+		this.jugador = jugador;
 	}
 
 	
-	public Club getClub() {
-		return this.club;
+	public TipoEstadosJugador getEstado() {
+		return this.estado;
 	}
 
 	@Temporal(value=TemporalType.DATE)
@@ -46,9 +44,7 @@ public class CambioDeClub {
 	@ManyToOne
 	@JoinColumn (name = "JUGADOR_ID", nullable = false)
 	public Jugador getJugador() {
-		return jugador;
+		return this.jugador;
 	}
-	
-	
 
 }
