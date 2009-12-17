@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -31,24 +32,39 @@ public class CambioDeClub {
 		this.jugador =(jugador);
 	}
 
-	
+	@ManyToOne
+	@JoinColumn (name = "CLUB_ID")
 	public Club getClub() {
 		return this.club;
 	}
 
+	
+	public void setFecha(Date fecha){
+		this.fecha = fecha;
+	}
+	
+	public void setClub(Club club){
+		this.club =club;
+	}
+	
 	@Temporal(value=TemporalType.DATE)
 	@Id
 	public Date getFecha() {
 		return this.fecha;
 	}
 
-	@Id
+	
+	
 	@ManyToOne
 	@JoinColumn (name = "JUGADOR_ID", nullable = false)
 	public Jugador getJugador() {
 		return jugador;
 	}
 	
+	
+	public void setJugador(Jugador jugador){
+		this.jugador = jugador;
+	}
 	
 
 }

@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Nacionalidad {
 	
 	
-	public final String nacionalidad;
+	public String nacionalidad;
 
 	public Nacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
@@ -24,6 +24,10 @@ public class Nacionalidad {
 	}
 	
 	
+	public void setNacionalidad(String nacionalidad){
+		this.nacionalidad = nacionalidad;
+	}
+	
 	@Override
 	public boolean equals(Object otraNacionalidad) {
 		Nacionalidad nacionalidad2 = (Nacionalidad)otraNacionalidad;
@@ -34,6 +38,7 @@ public class Nacionalidad {
 	public String toString() {
 		return this.nacionalidad;
 	}
+	
 	
 
 }

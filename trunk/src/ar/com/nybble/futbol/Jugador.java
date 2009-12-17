@@ -80,7 +80,7 @@ public class Jugador implements Persona {
 	}
 
 	@Temporal(value = TemporalType.DATE)
-	public Date getFechaNacimieto() {
+	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
@@ -133,10 +133,14 @@ public class Jugador implements Persona {
 	}
 
 	@Enumerated (EnumType.STRING)
-	public Object getLesion() {
+	public TipoDeLesion getLesion() {
 		return tipoDeLesion;
 	}
 
+	public void setLesion (TipoDeLesion lesion){
+		this.tipoDeLesion = lesion;
+	}
+	
 	public void recuperarActividad(Date fecha2) {
 		if (getEstado() != TipoEstadosJugador.LESIONADO)
 			throw new JugadorSinLesionException();
@@ -222,5 +226,7 @@ public class Jugador implements Persona {
 		return estados;
 	}
 
+	
+	
 	
 }
