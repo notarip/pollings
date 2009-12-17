@@ -40,11 +40,25 @@ public class CambioDeEstado {
 		return this.fecha;
 	}
 
-	@Id
+	public void setFecha(Date fecha){
+		this.fecha = fecha;
+		
+	}
+	
+	public void setEstado(TipoEstadosJugador estado){
+		this.estado = estado;
+	}
+	
+	
 	@ManyToOne
 	@JoinColumn (name = "JUGADOR_ID", nullable = false)
 	public Jugador getJugador() {
 		return this.jugador;
 	}
+	
+	public void setJugador(Jugador jugador){
+		this.jugador = jugador;
+	}
+	
 
 }

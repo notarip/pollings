@@ -23,20 +23,25 @@ public class Documento {
 	public String getNumero() {
 		return numero;
 	}
+	
+	public void setNumero (String numero){
+		this.numero = numero;
+	}
 
 	public TipoDeDocumento getTipoDeDocumento() {
 		return tipo;
 	}
 	
-	
-	public TipoDeDocumento getTipo() {
-		return tipo;
+	public void setTipoDeDocumento (TipoDeDocumento tipo){
+		this.tipo = tipo;
 	}
+	
+	
 	
 	@Override
 	public boolean equals(Object otroDoc) {
 		if (this.numero == ((Documento) otroDoc).getNumero() && 
-		this.tipo == ((Documento) otroDoc).getTipo())
+		this.tipo == ((Documento) otroDoc).getTipoDeDocumento())
 			return true;
 		else
 			return false;

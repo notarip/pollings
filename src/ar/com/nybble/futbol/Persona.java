@@ -29,7 +29,7 @@ public interface Persona {
 	/**
 	 * @return
 	 */
-	Date getFechaNacimieto();
+	Date getFechaNacimiento();
 
 	/**
 	 * @param documento
