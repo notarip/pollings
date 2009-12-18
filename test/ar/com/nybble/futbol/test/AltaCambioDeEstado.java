@@ -4,15 +4,11 @@
 package ar.com.nybble.futbol.test;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
-
 import java.util.Date;
 
 import org.junit.Test;
 
-import ar.com.nybble.futbol.CambioDeClub;
 import ar.com.nybble.futbol.CambioDeEstado;
-import ar.com.nybble.futbol.Club;
 import ar.com.nybble.futbol.Documento;
 import ar.com.nybble.futbol.TipoEstadosJugador;
 import ar.com.nybble.futbol.Jugador;

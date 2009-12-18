@@ -8,9 +8,9 @@ import ar.com.nybble.futbol.dataSource.util.DataSourceException;
  *
  * @author msaladino
  */
-final class JugadorRepositorioImpl extends RepositoryImpl implements JugadorRepositorio{
+public final class JugadorRepositorioImpl extends RepositoryImpl implements JugadorRepositorio{
     
-    JugadorRepositorioImpl() {
+    public JugadorRepositorioImpl() {
         super(Jugador.class);
     }
     

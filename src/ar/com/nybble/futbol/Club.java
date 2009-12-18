@@ -18,7 +18,7 @@ public class Club {
 	private long Id;
 
 	public Club(String string) {
-		this.nombre = string;
+		this.setNombre(string);
 	}
 
 	public void setId(long id) {
@@ -30,16 +30,25 @@ public class Club {
 		return Id;
 	}
 	
+	
 	@Override
 	public String toString() {
-		return this.nombre;
+		return this.getNombre();
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (this.nombre == obj.toString())
+		if (this.getNombre() == obj.toString())
 			return true;
 		return false;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 
 
