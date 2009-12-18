@@ -53,6 +53,7 @@ public class HibernateUtil {
             // raiz
             sessionFactory = new AnnotationConfiguration().configure(
                     new File("hibernate.cfg.xml")).buildSessionFactory();
+            sessionFactories.put(DEFAULT, sessionFactory);
         } catch (Throwable ex) {
             // Log exception!
             throw new ExceptionInInitializerError(ex);
