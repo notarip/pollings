@@ -272,7 +272,7 @@ public class ModificarJugador {
 	}
 	
 
-	
+	//TODO que no pueda agregar un club null
 	//TODO Agregar una posicion la que jugo
 
 }

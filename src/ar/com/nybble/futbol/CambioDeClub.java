@@ -26,6 +26,10 @@ public class CambioDeClub {
 	private Jugador jugador;
 	
 
+	public CambioDeClub() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public CambioDeClub(Club club, Date fecha, Jugador jugador) {
 		this.fecha = fecha;
 		this.club = club;
@@ -47,7 +51,7 @@ public class CambioDeClub {
 		this.club =club;
 	}
 	
-	@Temporal(value=TemporalType.DATE)
+	@Temporal(value=TemporalType.TIMESTAMP)
 	@Id
 	public Date getFecha() {
 		return this.fecha;

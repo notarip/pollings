@@ -1,6 +1,8 @@
 package ar.com.nybble.futbol;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -12,13 +14,29 @@ import javax.persistence.Id;
 public class Nacionalidad {
 	
 	
-	public String nacionalidad;
+	private String nacionalidad;
+	private long id;
+	
 
 	public Nacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}
+	public Nacionalidad() {
+		// TODO Auto-generated constructor stub
+	}
 	
+	
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public long getId() {
+		return id;
+	}
+	
+		
 	public String getNacionalidad() {
 		return nacionalidad;
 	}
@@ -38,6 +56,7 @@ public class Nacionalidad {
 	public String toString() {
 		return this.nacionalidad;
 	}
+
 	
 	
 
