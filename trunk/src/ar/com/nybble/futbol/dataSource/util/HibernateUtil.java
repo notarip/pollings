@@ -14,6 +14,8 @@ import org.hibernate.cfg.AnnotationConfiguration;
 
 
 
+
+
 /*
  * Clase de utilidad para obtener la sesion de hibernate.
  * 
@@ -242,7 +244,39 @@ public class HibernateUtil {
         commitTransaction(DEFAULT);
     }
     
-
-    
+    /**
+     * Revierte los cambios de la <code>Transaction</code> asociada al thread
+     * actual, sobre la <code>Session</code> dada. Si anteriormente estos
+     * cambios hubiesen sido aplicados o revertidos, no tiene efecto.
+     *
+     * @param key
+     *            clave que identifica la <code>Session</code> sobre la que se
+     *            quieren revertir los cambios.
+     * @throws DataSourceException
+     */
+    public static void rollbackTransaction(String key)
+    throws DataSourceException {
+        Map map = (Map) getThreadLocalMap();
+        Transaction t = (Transaction) map.get(key.concat(TRANSACTION_SUFIX));
+        try {
+            map.remove(key.concat(TRANSACTION_SUFIX));
+            sessions.set(map);
+            if (t != null && !t.wasCommitted() && !t.wasRolledBack()) {
+                t.rollback();
+            }
+        } catch (HibernateException e) {
+            throw new DataSourceException(e);
+        }
+    }
+    /**
+     * Revierte los cambios de la <code>Transaction</code> asociada al thread
+     * actual, sobre la <code>Session</code> por defecto. Si anteriormente
+     * estos cambios hubiesen sido aplicados o revertidos, no tiene efecto.
+     *
+     * @throws DataSourceException
+     */
+    public static void rollbackTransaction() throws DataSourceException {
+        rollbackTransaction(DEFAULT);
+    }
     
 }

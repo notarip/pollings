@@ -1,10 +1,12 @@
 
 package ar.com.nybble.futbol;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,6 +24,15 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.IndexColumn;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
+import org.hibernate.collection.PersistentBag;
+import org.hibernate.collection.PersistentCollection;
+import org.hibernate.collection.PersistentList;
+
 
 
 /**
@@ -37,8 +48,8 @@ public class Jugador implements Persona {
 	private String nombre;
 	private Date fechaNacimiento;
 	private Documento documento;
-	private Collection<CambioDeClub> clubs = new LinkedList<CambioDeClub>();
-	private Collection<CambioDeEstado> estados = new LinkedList<CambioDeEstado>();
+	private List<CambioDeClub> clubs = new LinkedList<CambioDeClub>();
+	private List<CambioDeEstado> estados = new LinkedList<CambioDeEstado>();
 	private TipoDeLesion tipoDeLesion;
 	private Nacionalidad nacionalidad;
 	
@@ -96,9 +107,9 @@ public class Jugador implements Persona {
 	
 	@Transient
 	public Club getClubVigente() {
-		LinkedList<CambioDeClub> cambios = (LinkedList<CambioDeClub>)getCambiosDeClub(); 
+		List<CambioDeClub> cambios = getCambiosDeClub(); 
 		if (!cambios.isEmpty())
-			return cambios.peekLast().getClub();
+			return ((List<CambioDeClub>)cambios).get(cambios.size()-1).getClub();
 		else
 			return null;
 	}
@@ -146,7 +157,7 @@ public class Jugador implements Persona {
 			throw new JugadorSinLesionException();
 		else{
 			this.tipoDeLesion  = null;
-			CambioDeEstado cambio =((LinkedList<CambioDeEstado>)this.getEstados()).get(getEstados().size()-2);
+			CambioDeEstado cambio =((List<CambioDeEstado>)this.getEstados()).get(getEstados().size()-2);
 			CambioDeEstado cambio2 = new CambioDeEstado(cambio.getEstado(),fecha2,this);
 			getEstados().add(cambio2);
 			}
@@ -154,8 +165,8 @@ public class Jugador implements Persona {
 
 	@Transient
 	public TipoEstadosJugador getEstado() {
-		LinkedList<CambioDeEstado> cambios = (LinkedList<CambioDeEstado>) getEstados();
-		return cambios.peekLast().getEstado();
+		List<CambioDeEstado> cambios = (List<CambioDeEstado>) getEstados();
+		return cambios.get(cambios.size()-1).getEstado();
 	}
 
 
@@ -175,15 +186,16 @@ public class Jugador implements Persona {
 
 	@Transient
 	public Date getFechaEstadoActual() {
-		return ((LinkedList<CambioDeEstado>)getEstados()).peekLast().getFecha();
+		List<CambioDeEstado> estados = getEstados();
+		return estados.get(estados.size()-1).getFecha();
 	}
 
 
 	@Transient
 	public Object getFechaDeInicioClubActual() {
-		LinkedList<CambioDeClub> cambios = (LinkedList<CambioDeClub>)getCambiosDeClub(); 
+		List<CambioDeClub> cambios = (List<CambioDeClub>)getCambiosDeClub(); 
 		if (!cambios.isEmpty())
-			return cambios.peekLast().getFecha();
+			return cambios.get(cambios.size()-1).getFecha();
 		else
 			return null;
 	}
@@ -207,26 +219,29 @@ public class Jugador implements Persona {
 	}
 	
 	
-	public void setCambiosDeClub(Collection<CambioDeClub> cambiosDeClub) {
+	public void setCambiosDeClub(List<CambioDeClub> cambiosDeClub) {
 		this.clubs = cambiosDeClub;
 	}
 	
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador")
-	public Collection<CambioDeClub> getCambiosDeClub() {
+	public List<CambioDeClub> getCambiosDeClub() {
 		return clubs;
 	}
 
 
-	public void setEstados(Collection<CambioDeEstado> estados) {
+	public void setEstados(List<CambioDeEstado> estados) {
 		this.estados = estados;
 	}
 
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador")
-	public Collection<CambioDeEstado> getEstados() {
+	public List<CambioDeEstado> getEstados() {
 		return estados;
 	}
 
 	
-	
+	@Override
+	public String toString() {
+		return this.nombre;
+	}
 	
 }
