@@ -5,10 +5,12 @@
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 	<bean id="nacionalidad" class = "ar.com.nybble.futbol.Nacionalidad"></bean>
+	<bean id="clubRepositorio" class = "ar.com.nybble.futbol.dataSource.repositorio.ClubRepositorioImpl"></bean>
 	
 	<bean id="AbmClubService"
 	class="ar.com.nybble.futbol.services.AbmClubServiceImpl">
 	<property name="nacion" ref="nacionalidad"></property>
+	<property name="clubRepo" ref="clubRepositorio"></property>
 	</bean>
 
 
