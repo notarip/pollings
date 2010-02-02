@@ -6,7 +6,10 @@
 
 	<bean id="nacionalidad" class = "ar.com.nybble.futbol.Nacionalidad"></bean>
 	<bean id="clubRepositorio" class = "ar.com.nybble.futbol.dataSource.repositorio.ClubRepositorioImpl"></bean>
-	
+	<bean id="jugadorRepositorio" class = "ar.com.nybble.futbol.dataSource.repositorio.JugadorRepositorioImpl"></bean>
+	<bean id ="documentoRepositorio" class = "ar.com.nybble.futbol.dataSource.repositorio.DocumentoRepositorioImpl"></bean>
+	<bean id ="nacionalidadRepositorio" class = "ar.com.nybble.futbol.dataSource.repositorio.NacionalidadRepositorioImpl" ></bean>
+		
 	<bean id="AbmClubService"
 	class="ar.com.nybble.futbol.services.AbmClubServiceImpl">
 	<property name="nacion" ref="nacionalidad"></property>
@@ -14,6 +17,13 @@
 	</bean>
 
 
-
-
+	<bean id="AbmJugadorService"
+	class="ar.com.nybble.futbol.services.AbmJugadorServiceImpl">
+	<property name="jugadorRepo" ref="jugadorRepositorio" ></property>
+	<property name="clubRepo" ref = "clubRepositorio"></property>
+	<property name="documentoRepo" ref = "documentoRepositorio"></property>
+	<property name="nacionalidadRepo" ref = "nacionalidadRepositorio"></property>
+	</bean>
+		
+		
 </beans>
