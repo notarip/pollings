@@ -15,6 +15,9 @@ public class ManejoAbmClub {
 	/**
 	 * @param args
 	 */
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 
@@ -23,10 +26,13 @@ public class ManejoAbmClub {
 		
 		
 		System.out.println("listo !");
-		//AbmClubServiceFactory.getAbmclub().crearClub("RIVER PLATE");
-		Club boca = abmClub.buscarClub(new Long(5));
-		System.out.println(boca);
-//		AbmClubServiceFactory.getAbmclub().modificarClub(boca);
+		abmClub.crearClub("RIVER PLATE");
+//		Club boca = abmClub.buscarClub(new Long(1));
+//		System.out.println(boca);
+//		boca.setNombre("BOCA JUNIORS!!");
+//		abmClub.modificarClub(boca);
+//		boca = abmClub.buscarClub(new Long(1));
+//		System.out.println(boca);
 
 	}
 

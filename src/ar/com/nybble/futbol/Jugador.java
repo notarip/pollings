@@ -17,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -138,7 +139,7 @@ public class Jugador implements Persona {
 		this.nacionalidad = nacionalidad;
 	}
 
-	@OneToOne
+	@ManyToOne
 	public Nacionalidad getNacionalidad() {
 		return nacionalidad;
 	}
