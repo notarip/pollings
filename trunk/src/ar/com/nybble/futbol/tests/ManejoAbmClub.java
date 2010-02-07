@@ -26,7 +26,7 @@ public class ManejoAbmClub {
 		
 		
 		System.out.println("listo !");
-		abmClub.crearClub("RIVER PLATE");
+		abmClub.crearClub("RIVER PLATEs");
 //		Club boca = abmClub.buscarClub(new Long(1));
 //		System.out.println(boca);
 //		boca.setNombre("BOCA JUNIORS!!");

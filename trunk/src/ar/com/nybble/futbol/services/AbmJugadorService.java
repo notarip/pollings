@@ -26,7 +26,4 @@ public interface AbmJugadorService {
 	public void crearJugador (String nombre, Date fechaDeNacimiento, Nacionalidad nacionalidad,
 			 Documento documento);
 	
-	
-	
-
-}
+	}

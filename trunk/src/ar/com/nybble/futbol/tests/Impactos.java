@@ -8,18 +8,20 @@ public class Impactos {
 	/**
 	 * @param args
 	 */
+	
+	static String conf = new String("hibernate.cfg.xml");
 	public static void main(String[] args) {
 		try {
-			HibernateUtil.currentSession("hibernate.cfg.xml");
+			HibernateUtil.currentSession(conf);
 		} catch (DataSourceException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		HibernateUtil.openSession("hibernate.cfg.xml");
+		HibernateUtil.openSession(conf);
 		
 			
 		try {
-			HibernateUtil.closeSession("hibernate.cfg.xml");
+			HibernateUtil.closeSession(conf);
 			System.out.println("IMPACTOS SATIFACTORIOS");
 		} catch (DataSourceException e) {
 			// TODO Auto-generated catch block
