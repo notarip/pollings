@@ -3,11 +3,19 @@
  */
 package ar.com.nybble.futbol.services;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
+
+import javax.swing.text.StyledEditorKit.ItalicAction;
+
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.context.ApplicationContext;
 
 import ar.com.nybble.futbol.Documento;
 import ar.com.nybble.futbol.Jugador;
 import ar.com.nybble.futbol.Nacionalidad;
+import ar.com.nybble.futbol.common.ContextFactory;
 import ar.com.nybble.futbol.dataSource.repositorio.ClubRepositorio;
 import ar.com.nybble.futbol.dataSource.repositorio.DocumentoRepositorio;
 import ar.com.nybble.futbol.dataSource.repositorio.JugadorRepositorio;
@@ -80,12 +88,37 @@ final class AbmJugadorServiceImpl implements AbmJugadorService {
 
 	@Override
 	public void crearJugador(String nombre, Date fechaDeNacimiento,
-			Nacionalidad nacionalidad, Documento documento) {
+			Nacionalidad nacionalidad, Documento documento) throws DataSourceException {
+		Long idNacionalidad = null;
+		Nacionalidad nacionalidad2 = null;
+		ApplicationContext context = ContextFactory.getInstancia();
+		NacionalidadRepositorio nacionRepo = (NacionalidadRepositorio) context.getBean("nacionalidadRepositorio");
+		
+		//------Rutina de nacionalidad
+		for ( Iterator nacionalidades = nacionRepo.findAll().iterator();  nacionalidades != null && nacionalidades.hasNext();) {
+				nacionalidad2 = (Nacionalidad) nacionalidades.next();
+			if (nacionalidad.equals(nacionalidad2)){
+				idNacionalidad = new Long(nacionalidad2.getId());
+				nacionalidades = null;
+			}
+		}
+		if (idNacionalidad == null)
+			nacionRepo.create(nacionalidad);
+		else
+			nacionalidad = nacionalidad2;		
+		//-----------------------------
+		
+		//-----Rutina de Documento
+		DocumentoRepositorio docuRepo = (DocumentoRepositorio) context.getBean("documentoRepositorio");
+		docuRepo.create(documento);
+		//-----------------------------
+		
 		JugadorRepositorio repo =  (JugadorRepositorio) TransactionalProxyFactory.newInstance(jugadorRepo);
-		Jugador jugador = new Jugador (documento);
+		Jugador jugador = new Jugador ();
 		jugador.setNombre(nombre);
 		jugador.setFechaNacimiento(fechaDeNacimiento);
 		jugador.setNacionalidad(nacionalidad);
+		jugador.setDocumento(documento);
 		
 		try {
 			repo.create(jugador);
@@ -94,6 +127,19 @@ final class AbmJugadorServiceImpl implements AbmJugadorService {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public Jugador buscarJugador(Long id) {
+		JugadorRepositorio repo =  (JugadorRepositorio) TransactionalProxyFactory.newInstance(jugadorRepo);
+		try {
+			return (Jugador) repo.findById(id);
+		} catch (DataSourceException e) {
+			System.out.println("Error a Buscar al Jugador " + id);
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 }
