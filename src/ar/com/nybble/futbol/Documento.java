@@ -14,6 +14,11 @@ public class Documento {
 	private String numero;
 	private TipoDeDocumento tipo;
 
+	
+	public Documento() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Documento(String numero, TipoDeDocumento tipo) {
 		this.numero = numero;
 		this.tipo = tipo;

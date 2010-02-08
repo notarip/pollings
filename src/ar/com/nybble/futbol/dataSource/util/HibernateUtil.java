@@ -1,12 +1,14 @@
 package ar.com.nybble.futbol.dataSource.util;
 
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 /**
@@ -54,7 +56,7 @@ public class HibernateUtil {
          * Inicialización de la sesión por defecto.
          */
         try {
-            SessionFactory sessionFactory = new Configuration().configure()
+            SessionFactory sessionFactory = new AnnotationConfiguration().configure(new File(DEFAULT))
             .buildSessionFactory();
             sessionFactories.put(DEFAULT, sessionFactory);
         } catch (Throwable e) {

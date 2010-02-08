@@ -49,7 +49,8 @@ public class Nacionalidad {
 	@Override
 	public boolean equals(Object otraNacionalidad) {
 		Nacionalidad nacionalidad2 = (Nacionalidad)otraNacionalidad;
-		return (this.nacionalidad == nacionalidad2.nacionalidad);
+		int result = (this.nacionalidad.compareTo(nacionalidad2.nacionalidad));
+		return (result == 0); 
 	}
 	
 	@Override
