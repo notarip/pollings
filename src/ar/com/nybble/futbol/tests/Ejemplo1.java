@@ -25,7 +25,9 @@ public final class Ejemplo1 {
 
 	/**
 	 * @param args
-	 * @throws DataSourceException 
+	 * @throws DataSourceException
+	 * Antes de comitear una entidad hay que comitear las que la componen
+	 *  
 	 */
 	public static void main(String[] args) throws DataSourceException {
 		try {
@@ -37,17 +39,23 @@ public final class Ejemplo1 {
 		HibernateUtil.openSession("hibernate.cfg.xml");
 		
 		JugadorRepositorioImpl jugaRepo = new JugadorRepositorioImpl();
-		Jugador pablo = new Jugador(new Documento("29317973", TipoDeDocumento.DNI));
-		pablo.agregarClub(new Club("BOCA JUNIORS"), new Date());
-		pablo.setNombre("Pablo E. Notari");
-		//pablo.setNacionalidad(new Nacionalidad("ARGENTINO"));
+		ClubRepositorioImpl clubRepo = new ClubRepositorioImpl();
+		 
+		
+		Club club = (Club) clubRepo.findById(new Long(1));
+		Jugador pablo = (Jugador) jugaRepo.findById(new Long(5));
+		 
+		
+		//Jugador pablo = new Jugador();
+		//pablo.agregarClub(club, new Date());
+		//pablo.setNombre("Pablo E. Notari");
+		pablo.setNacionalidad(new Nacionalidad("ARGENTINO"));
 		
 		
 		try {
 			HibernateUtil.beginTransaction();
 			jugaRepo.create(pablo);
 		} catch (DataSourceException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
