@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-public class CambioDeEstado {
+public class CambioDeEstado implements Comparable<CambioDeEstado> {
 
 	private long Id;
 	private TipoEstadosJugador estado;
@@ -74,6 +74,11 @@ public class CambioDeEstado {
 	
 	public void setJugador(Jugador jugador){
 		this.jugador = jugador;
+	}
+
+	@Override
+	public int compareTo(CambioDeEstado o) {
+		return (this.fecha.compareTo(o.fecha));
 	}
 	
 

@@ -9,10 +9,10 @@ import ar.com.nybble.futbol.Nacionalidad;
  * @author Administrador
  *
  */
-public final class NacionalidadRepositorioImpl extends RepositoryImpl implements
+public class NacionalidadRepositorioImpl extends RepositoryImpl implements
 		NacionalidadRepositorio {
 
-	protected NacionalidadRepositorioImpl() {
+	public NacionalidadRepositorioImpl() {
 		super(Nacionalidad.class);
 	}
 

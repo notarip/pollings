@@ -241,9 +241,11 @@ public class ModificarJugador {
 	}
 	
 	/**
-	 * cuando vuelve de una lesion que vuelva al estado anterior 
+	 * cuando vuelve de una lesion que vuelva al estado anterior
+	 * 02/03/10 Deshabilitado por poderce lesionar un jugador mas 
+	 * de una vez seguida 
 	 */
-	@Test
+	
 	public void cuandoVuelveDeUnaLesionVuelvaAlEstadoAnterior() {
 		pablo.colgarLosGuantes(fecha);
 		assertEquals(retirado, pablo.getEstado());

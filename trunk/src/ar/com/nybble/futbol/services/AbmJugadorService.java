@@ -30,6 +30,7 @@ public interface AbmJugadorService {
 			 Documento documento) throws DataSourceException;
 
 	public Jugador buscarJugador(Long id);
-	
+
+	public void modificarJugador(Jugador jugador);
 		
 	}

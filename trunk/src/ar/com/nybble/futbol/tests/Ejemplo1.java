@@ -40,16 +40,18 @@ public final class Ejemplo1 {
 		
 		JugadorRepositorioImpl jugaRepo = new JugadorRepositorioImpl();
 		ClubRepositorioImpl clubRepo = new ClubRepositorioImpl();
-		 
+		NacionalidadRepositorioImpl nacionalidadRepo = new NacionalidadRepositorioImpl();  
 		
 		Club club = (Club) clubRepo.findById(new Long(1));
 		Jugador pablo = (Jugador) jugaRepo.findById(new Long(5));
+		Nacionalidad nacionalidad = (Nacionalidad) nacionalidadRepo.findById(new Long(1));
+		
 		 
 		
 		//Jugador pablo = new Jugador();
 		//pablo.agregarClub(club, new Date());
 		//pablo.setNombre("Pablo E. Notari");
-		pablo.setNacionalidad(new Nacionalidad("ARGENTINO"));
+		pablo.setNacionalidad(nacionalidad);
 		
 		
 		try {

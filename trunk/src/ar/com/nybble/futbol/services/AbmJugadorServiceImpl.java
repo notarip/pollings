@@ -128,6 +128,18 @@ final class AbmJugadorServiceImpl implements AbmJugadorService {
 		}
 		
 	}
+	
+	@Override
+	public void modificarJugador (Jugador jugador){
+		JugadorRepositorio repo = (JugadorRepositorio) TransactionalProxyFactory.newInstance(jugadorRepo);
+		
+		try {
+			repo.update(jugador);
+		} catch (DataSourceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public Jugador buscarJugador(Long id) {
