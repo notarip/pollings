@@ -3,6 +3,7 @@ package ar.com.nybble.futbol;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -13,6 +14,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,6 +27,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.IndexColumn;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -109,6 +112,7 @@ public class Jugador implements Persona {
 	@Transient
 	public Club getClubVigente() {
 		List<CambioDeClub> cambios = getCambiosDeClub(); 
+		Collections.sort(cambios);
 		if (!cambios.isEmpty())
 			return ((List<CambioDeClub>)cambios).get(cambios.size()-1).getClub();
 		else
@@ -158,8 +162,8 @@ public class Jugador implements Persona {
 			throw new JugadorSinLesionException();
 		else{
 			this.tipoDeLesion  = null;
-			CambioDeEstado cambio =((List<CambioDeEstado>)this.getEstados()).get(getEstados().size()-2);
-			CambioDeEstado cambio2 = new CambioDeEstado(cambio.getEstado(),fecha2,this);
+			//CambioDeEstado cambio =((List<CambioDeEstado>)this.getEstados()).get(getEstados().size()-2);
+			CambioDeEstado cambio2 = new CambioDeEstado(TipoEstadosJugador.ACTIVO,fecha2,this);
 			getEstados().add(cambio2);
 			}
 	}
@@ -167,6 +171,7 @@ public class Jugador implements Persona {
 	@Transient
 	public TipoEstadosJugador getEstado() {
 		List<CambioDeEstado> cambios = (List<CambioDeEstado>) getEstados();
+		Collections.sort(cambios);
 		return cambios.get(cambios.size()-1).getEstado();
 	}
 
@@ -234,7 +239,7 @@ public class Jugador implements Persona {
 		this.estados = estados;
 	}
 
-	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador")
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador", fetch = FetchType.EAGER)
 	public List<CambioDeEstado> getEstados() {
 		return estados;
 	}

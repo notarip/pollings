@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-public class CambioDeClub {
+public class CambioDeClub implements Comparable<CambioDeClub>{
 
 	private Date fecha;
 	private Club club;
@@ -68,6 +68,12 @@ public class CambioDeClub {
 	
 	public void setJugador(Jugador jugador){
 		this.jugador = jugador;
+	}
+
+	@Override
+	public int compareTo(CambioDeClub o) {
+		return this.fecha.compareTo(o.fecha);
+		
 	}
 	
 
