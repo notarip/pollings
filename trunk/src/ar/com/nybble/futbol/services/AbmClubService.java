@@ -4,6 +4,7 @@
 package ar.com.nybble.futbol.services;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import ar.com.nybble.futbol.Club;
 
@@ -33,6 +34,12 @@ public interface AbmClubService {
 	 * @param club
 	 */
 	public void modificarClub(Club club);
+	
+	/**
+	 * Devuelve un iterador con los clubs
+	 * @return
+	 */
+	public Iterator<Club> buscarClubs();
 	
 
 }

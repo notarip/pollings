@@ -3,6 +3,8 @@
  */
 package ar.com.nybble.futbol.services;
 
+import java.util.Iterator;
+
 import ar.com.nybble.futbol.Club;
 import ar.com.nybble.futbol.Nacionalidad;
 import ar.com.nybble.futbol.dataSource.repositorio.ClubRepositorio;
@@ -78,9 +80,20 @@ public class AbmClubServiceImpl implements AbmClubService {
 		try {
 			repo.update(club);
 		} catch (DataSourceException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public Iterator<Club> buscarClubs() {
+		try {
+			return clubRepo.findAll().iterator();
+		} catch (DataSourceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 		
 	}
 
