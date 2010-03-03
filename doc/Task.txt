@@ -1,0 +1,4 @@
+02/03/2010----------------------------------------------------------
+En cuanto a las capas se decidio implementar un modelo hibrido, osea
+que los Servicios resuelvan busquedas, altas bajas y modificaciones mientras que la Vista recibe los objetos del Servicio y operan sobre él.
+--------------------------------------------------------------------

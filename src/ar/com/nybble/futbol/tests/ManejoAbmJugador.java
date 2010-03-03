@@ -21,6 +21,14 @@ public class ManejoAbmJugador {
 	 * @param args
 	 * @throws DataSourceException 
 	 */
+	/**
+	 * @param args
+	 * @throws DataSourceException
+	 */
+	/**
+	 * @param args
+	 * @throws DataSourceException
+	 */
 	public static void main(String[] args) throws DataSourceException {
 		
 		ApplicationContext context = ContextFactory.getInstancia();
@@ -40,12 +48,12 @@ public class ManejoAbmJugador {
 //		}
 //		
 //		System.out.println(pablo.getEstado().ordinal());
-//		System.out.println(pablo.getEstado());
+		System.out.println(pablo.getEstado());
 		
-		//pablo.notificarLesion(new Date(), TipoDeLesion.FRACTURA_PERONE);
-		pablo.recuperarActividad(new Date());
+//		pablo.notificarLesion(new Date(), TipoDeLesion.FRACTURA_PERONE);
+		//pablo.recuperarActividad(new Date());
 		
-		abmJugador.modificarJugador(pablo);
+//		abmJugador.modificarJugador(pablo);
 		System.out.println(pablo);
 		
 		System.out.println("listo") ;
