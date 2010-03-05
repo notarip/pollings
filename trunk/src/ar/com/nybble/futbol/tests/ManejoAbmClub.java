@@ -25,8 +25,9 @@ public class ManejoAbmClub {
 		AbmClubService abmClub = (AbmClubService) context.getBean("AbmClubService");
 		
 		
+		
+		abmClub.crearClub("BOCA JUNIORS");
 		System.out.println("listo !");
-		abmClub.crearClub("RIVER PLATEs");
 //		Club boca = abmClub.buscarClub(new Long(1));
 //		System.out.println(boca);
 //		boca.setNombre("BOCA JUNIORS!!");

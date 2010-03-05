@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,7 +54,7 @@ public class Jugador implements Persona {
 	private String nombre;
 	private Date fechaNacimiento;
 	private Documento documento;
-	private List<CambioDeClub> clubs = new LinkedList<CambioDeClub>();
+	private Set<CambioDeClub> clubs = new HashSet<CambioDeClub>();
 	private List<CambioDeEstado> estados = new LinkedList<CambioDeEstado>();
 	private TipoDeLesion tipoDeLesion;
 	private Nacionalidad nacionalidad;
@@ -111,10 +113,15 @@ public class Jugador implements Persona {
 	
 	@Transient
 	public Club getClubVigente() {
-		List<CambioDeClub> cambios = getCambiosDeClub(); 
-		Collections.sort(cambios);
-		if (!cambios.isEmpty())
-			return ((List<CambioDeClub>)cambios).get(cambios.size()-1).getClub();
+		Set<CambioDeClub> cambios = getCambiosDeClub();
+		CambioDeClub ultimoCambio = null;
+		//Collections.sort(cambios);
+		if (!cambios.isEmpty()){
+			for (Iterator iterator = cambios.iterator(); iterator.hasNext();) {
+				ultimoCambio = (CambioDeClub) iterator.next();
+			}
+			return  ultimoCambio.getClub();
+		}	
 		else
 			return null;
 	}
@@ -199,9 +206,15 @@ public class Jugador implements Persona {
 
 	@Transient
 	public Object getFechaDeInicioClubActual() {
-		List<CambioDeClub> cambios = (List<CambioDeClub>)getCambiosDeClub(); 
-		if (!cambios.isEmpty())
-			return cambios.get(cambios.size()-1).getFecha();
+		Set<CambioDeClub> cambios = getCambiosDeClub();
+		CambioDeClub ultimoCambio = null;
+		//Collections.sort(cambios);
+		if (!cambios.isEmpty()){
+			for (Iterator iterator = cambios.iterator(); iterator.hasNext();) {
+				ultimoCambio = (CambioDeClub) iterator.next();
+			}
+			return  ultimoCambio.getFecha();
+		}	
 		else
 			return null;
 	}
@@ -225,13 +238,13 @@ public class Jugador implements Persona {
 	}
 	
 	
-	public void setCambiosDeClub(List<CambioDeClub> cambiosDeClub) {
+	public void setCambiosDeClub(Set<CambioDeClub> cambiosDeClub) {
 		this.clubs = cambiosDeClub;
 	}
 	
-	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador")
-	public List<CambioDeClub> getCambiosDeClub() {
-		return clubs;
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador", fetch = FetchType.EAGER)
+	public Set<CambioDeClub> getCambiosDeClub() {
+		return (Set<CambioDeClub>) clubs;
 	}
 
 

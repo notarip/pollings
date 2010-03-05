@@ -9,10 +9,12 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 
 import ar.com.nybble.futbol.CambioDeEstado;
+import ar.com.nybble.futbol.Club;
 import ar.com.nybble.futbol.Jugador;
 import ar.com.nybble.futbol.TipoDeLesion;
 import ar.com.nybble.futbol.common.ContextFactory;
 import ar.com.nybble.futbol.dataSource.util.DataSourceException;
+import ar.com.nybble.futbol.services.AbmClubService;
 import ar.com.nybble.futbol.services.AbmJugadorService;
 
 public class ManejoAbmJugador {
@@ -33,14 +35,27 @@ public class ManejoAbmJugador {
 		
 		ApplicationContext context = ContextFactory.getInstancia();
 		AbmJugadorService abmJugador = (AbmJugadorService) context.getBean("AbmJugadorService");
-				
+		AbmClubService abmClub = (AbmClubService) context.getBean("AbmClubService");
 
 //		Nacionalidad nac = new Nacionalidad("ARGENTINO");
 //		Documento doc = new Documento("29317973", TipoDeDocumento.DNI);
 //		Date fecha = new Date();
 //		abmJugador.crearJugador("PABLO NOTARI", fecha, nac, doc);
 		
-		Jugador pablo = abmJugador.buscarJugador(new Long(5));
+		Club club = abmClub.buscarClub(new Long(1));
+		
+		Jugador pablo = abmJugador.buscarJugador(new Long(11));
+		
+		Iterator jugadores = abmJugador.buscarJugadoresPorClub(new Long(1));
+		for (Iterator iterator = jugadores; iterator.hasNext();) {
+			Jugador object = (Jugador) iterator.next();
+			System.out.println(object);
+			System.out.println(object.getClubVigente());
+	}
+		
+		//pablo.agregarClub(club, new Date());
+
+		
 //		List lista = pablo.getEstados();
 //		for (Iterator iterator = lista.iterator(); iterator.hasNext();) {
 //			CambioDeEstado object = (CambioDeEstado) iterator.next();
@@ -53,7 +68,7 @@ public class ManejoAbmJugador {
 //		pablo.notificarLesion(new Date(), TipoDeLesion.FRACTURA_PERONE);
 		//pablo.recuperarActividad(new Date());
 		
-//		abmJugador.modificarJugador(pablo);
+		//abmJugador.modificarJugador(pablo);
 		System.out.println(pablo);
 		
 		System.out.println("listo") ;
