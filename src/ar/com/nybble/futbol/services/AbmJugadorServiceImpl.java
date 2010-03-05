@@ -6,6 +6,8 @@ package ar.com.nybble.futbol.services;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.text.StyledEditorKit.ItalicAction;
 
@@ -149,9 +151,42 @@ final class AbmJugadorServiceImpl implements AbmJugadorService {
 		} catch (DataSourceException e) {
 			System.out.println("Error a Buscar al Jugador " + id);
 			e.printStackTrace();
+			return null;
 		}
 
-		return null;
+		
 	}
+
+	@Override
+	public Iterator<Jugador> buscarJugadores() {
+		JugadorRepositorio repo =  (JugadorRepositorio) TransactionalProxyFactory.newInstance(jugadorRepo);
+		try {
+			return repo.findAll().iterator();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+
+	@Override
+	public Iterator<Jugador> buscarJugadoresPorClub(Long idClub) {
+		JugadorRepositorio repo =  (JugadorRepositorio) TransactionalProxyFactory.newInstance(jugadorRepo);
+		List jugadores = new LinkedList<Jugador>();
+		try {
+			for (Iterator iterator = repo.findAll().iterator(); iterator.hasNext();) {
+				Jugador jugador = (Jugador) iterator.next();
+				if (jugador.getClubVigente().getId() == idClub)
+					jugadores.add(jugador);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		return jugadores.iterator(); 
+	}		
+		
 
 }

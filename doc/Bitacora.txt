@@ -1,0 +1,8 @@
+02/03/2010----------------------------------------------------------
+En cuanto a las capas se decidio implementar un modelo hibrido, osea
+que los Servicios resuelvan busquedas, altas bajas y modificaciones mientras que la Vista recibe los objetos del Servicio y operan sobre él.
+--------------------------------------------------------------------
+04/03/2010----------------------------------------------------------
+Por un problema de Hiberate en el manejo de listas decidi basandome
+en info de internet utiliza Set (HashSet, etc) para todas las relaciones @OneToMany
+-------------------------------------------------------------------

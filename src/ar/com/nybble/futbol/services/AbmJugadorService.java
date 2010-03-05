@@ -4,6 +4,7 @@
 package ar.com.nybble.futbol.services;
 
 import java.util.Date;
+import java.util.Iterator;
 
 import ar.com.nybble.futbol.Documento;
 import ar.com.nybble.futbol.Jugador;
@@ -12,6 +13,14 @@ import ar.com.nybble.futbol.dataSource.util.DataSourceException;
 
 /**
  * @author notarip
+ *
+ */
+/**
+ * @author Administrador
+ *
+ */
+/**
+ * @author Administrador
  *
  */
 public interface AbmJugadorService {
@@ -29,8 +38,36 @@ public interface AbmJugadorService {
 	public void crearJugador (String nombre, Date fechaDeNacimiento, Nacionalidad nacionalidad,
 			 Documento documento) throws DataSourceException;
 
+	
+	/**
+	 * Busca un jugador por id
+	 * @param id
+	 * @return Jugador
+	 */
 	public Jugador buscarJugador(Long id);
-
+	
+	/**
+	 * Busca a todos los Jugadores
+	 * @return Iterator<Jugador>
+	 */
+	public Iterator<Jugador> buscarJugadores();
+	
+	/**
+	 * Busca a todos los jugadores pertenecientes a un club
+	 * 
+	 * @param idClub
+	 * @return Iterator<Jugador>
+	 */
+	public Iterator<Jugador> buscarJugadoresPorClub(Long idClub);
+		
+	
+	/**
+	 * Guarda al jugador
+	 * @param jugador
+	 */
 	public void modificarJugador(Jugador jugador);
+	
+	
 		
 	}
+
