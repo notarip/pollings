@@ -55,7 +55,7 @@ public class Jugador implements Persona {
 	private Date fechaNacimiento;
 	private Documento documento;
 	private Set<CambioDeClub> clubs = new HashSet<CambioDeClub>();
-	private List<CambioDeEstado> estados = new LinkedList<CambioDeEstado>();
+	private Set<CambioDeEstado> estados = new HashSet<CambioDeEstado>();
 	private TipoDeLesion tipoDeLesion;
 	private Nacionalidad nacionalidad;
 	
@@ -177,9 +177,12 @@ public class Jugador implements Persona {
 
 	@Transient
 	public TipoEstadosJugador getEstado() {
-		List<CambioDeEstado> cambios = (List<CambioDeEstado>) getEstados();
-		Collections.sort(cambios);
-		return cambios.get(cambios.size()-1).getEstado();
+		Set<CambioDeEstado> estados = getEstados();
+		CambioDeEstado ultimoCambio = null;
+		for (Iterator iterator = estados.iterator(); iterator.hasNext();) {
+			ultimoCambio = (CambioDeEstado) iterator.next();
+		}
+		return  ultimoCambio.getEstado();
 	}
 
 
@@ -199,8 +202,14 @@ public class Jugador implements Persona {
 
 	@Transient
 	public Date getFechaEstadoActual() {
-		List<CambioDeEstado> estados = getEstados();
-		return estados.get(estados.size()-1).getFecha();
+		Set<CambioDeEstado> estados = getEstados();
+		CambioDeEstado ultimoCambio = null;
+		if (!estados.isEmpty()){
+			for (Iterator iterator = estados.iterator(); iterator.hasNext();) 
+				ultimoCambio = (CambioDeEstado) iterator.next();
+			return ultimoCambio.getFecha();
+		}else
+			return null;
 	}
 
 
@@ -214,8 +223,7 @@ public class Jugador implements Persona {
 				ultimoCambio = (CambioDeClub) iterator.next();
 			}
 			return  ultimoCambio.getFecha();
-		}	
-		else
+		}else
 			return null;
 	}
 
@@ -248,12 +256,12 @@ public class Jugador implements Persona {
 	}
 
 
-	public void setEstados(List<CambioDeEstado> estados) {
+	public void setEstados(Set<CambioDeEstado> estados) {
 		this.estados = estados;
 	}
 
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador", fetch = FetchType.EAGER)
-	public List<CambioDeEstado> getEstados() {
+	public Set<CambioDeEstado> getEstados() {
 		return estados;
 	}
 
