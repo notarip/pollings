@@ -171,13 +171,15 @@ final class AbmJugadorServiceImpl implements AbmJugadorService {
 	}
 
 	@Override
-	public Iterator<Jugador> buscarJugadoresPorClub(Long idClub) {
+	public Iterator<Jugador> buscarJugadoresPorClub(Long idClub){
 		JugadorRepositorio repo =  (JugadorRepositorio) TransactionalProxyFactory.newInstance(jugadorRepo);
 		List jugadores = new LinkedList<Jugador>();
+				
 		try {
 			for (Iterator iterator = repo.findAll().iterator(); iterator.hasNext();) {
 				Jugador jugador = (Jugador) iterator.next();
-				if (jugador.getClubVigente().getId() == idClub)
+				if (jugador.getClubVigente() != null &&  jugador.getClubVigente().getId() == idClub)
+					System.out.println("recupera");
 					jugadores.add(jugador);
 			}
 			

@@ -3,6 +3,7 @@
  */
 package ar.com.nybble.futbol;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -19,8 +20,12 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-public class CambioDeEstado implements Comparable<CambioDeEstado> {
+public class CambioDeEstado implements Comparable<CambioDeEstado>, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long Id;
 	private TipoEstadosJugador estado;
 	private Date fecha;
