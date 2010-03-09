@@ -4,6 +4,7 @@
 package ar.com.nybble.futbol;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -83,7 +84,15 @@ public class CambioDeEstado implements Comparable<CambioDeEstado>, Serializable 
 
 	@Override
 	public int compareTo(CambioDeEstado o) {
-		return (this.fecha.compareTo(o.fecha));
+		return	this.fecha.compareTo(o.getFecha());
+	}
+
+	
+	@Override
+	public boolean equals(Object obj) {
+		CambioDeEstado otro = (CambioDeEstado) obj;
+		return (this.getEstado() == otro.getEstado() && (this.getFecha().compareTo(otro.getFecha())== 0));
+			
 	}
 	
 

@@ -44,19 +44,19 @@ public class ManejoAbmJugador {
 		
 		//Jugador pablo = abmJugador.buscarJugador(new Long(11));
 		
-//		Iterator<Jugador> jugadores = abmJugador.buscarJugadoresPorClub(new Long(1));
-//		for (Iterator<Jugador> iterator = jugadores; iterator.hasNext();) {
-//			Jugador object = (Jugador) iterator.next();
-//			System.out.println(object);
-//			System.out.println(object.getClubVigente());
-//		}
-		
-		Iterator<Jugador> jugadores =  abmJugador.buscarJugadores();
-		for (Iterator iterator = jugadores; iterator.hasNext();) {
-			Jugador type = (Jugador) iterator.next();
-			System.out.println(type);
-			
+		Iterator<Jugador> jugadores = abmJugador.buscarJugadoresPorClub(new Long(2));
+		for (Iterator<Jugador> iterator = jugadores; iterator.hasNext();) {
+			Jugador object = (Jugador) iterator.next();
+			System.out.println(object);
+			System.out.println(object.getClubVigente());
 		}
+		
+//		Iterator<Jugador> jugadores =  abmJugador.buscarJugadores();
+//		for (Iterator iterator = jugadores; iterator.hasNext();) {
+//			Jugador type = (Jugador) iterator.next();
+//			System.out.println(type);
+//			
+//		}
 		
 		
 		//pablo.agregarClub(club, new Date());
