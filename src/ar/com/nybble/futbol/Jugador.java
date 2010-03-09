@@ -4,12 +4,14 @@ package ar.com.nybble.futbol;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -54,8 +56,8 @@ public class Jugador implements Persona {
 	private String nombre;
 	private Date fechaNacimiento;
 	private Documento documento;
-	private Set<CambioDeClub> clubs = new HashSet<CambioDeClub>();
-	private Set<CambioDeEstado> estados = new HashSet<CambioDeEstado>();
+	private Set<CambioDeClub> clubs = new TreeSet<CambioDeClub>();
+	private Set<CambioDeEstado> estados = new TreeSet<CambioDeEstado>();
 	private TipoDeLesion tipoDeLesion;
 	private Nacionalidad nacionalidad;
 	
@@ -177,11 +179,11 @@ public class Jugador implements Persona {
 
 	@Transient
 	public TipoEstadosJugador getEstado() {
-		Set<CambioDeEstado> estados = getEstados();
-		CambioDeEstado ultimoCambio = null;
-		for (Iterator iterator = estados.iterator(); iterator.hasNext();) {
-			ultimoCambio = (CambioDeEstado) iterator.next();
-		}
+		TreeSet<CambioDeEstado> estados = getEstados();
+		CambioDeEstado ultimoCambio = estados.first(); //null;
+//		for (Iterator iterator = estados.iterator(); iterator.hasNext();) {
+//			ultimoCambio = (CambioDeEstado) iterator.next();
+//		}
 		return  ultimoCambio.getEstado();
 	}
 
@@ -250,7 +252,7 @@ public class Jugador implements Persona {
 		this.clubs = cambiosDeClub;
 	}
 	
-	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador", fetch = FetchType.EAGER)
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador", fetch = FetchType.LAZY)
 	public Set<CambioDeClub> getCambiosDeClub() {
 		return (Set<CambioDeClub>) clubs;
 	}
@@ -260,9 +262,9 @@ public class Jugador implements Persona {
 		this.estados = estados;
 	}
 
-	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador", fetch = FetchType.EAGER)
-	public Set<CambioDeEstado> getEstados() {
-		return estados;
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador", fetch = FetchType.LAZY)
+	public TreeSet<CambioDeEstado> getEstados() {
+		return (TreeSet<CambioDeEstado>) estados;
 	}
 
 	
