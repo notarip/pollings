@@ -8,8 +8,11 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -31,6 +34,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.apache.commons.collections.map.LinkedMap;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.IndexColumn;
 import org.hibernate.annotations.LazyCollection;
@@ -40,6 +44,9 @@ import org.hibernate.annotations.LazyToOneOption;
 import org.hibernate.collection.PersistentBag;
 import org.hibernate.collection.PersistentCollection;
 import org.hibernate.collection.PersistentList;
+
+import ar.com.nybble.fulbo.common.exceptions.JugadorSinClubException;
+import ar.com.nybble.fulbo.common.exceptions.JugadorSinLesionException;
 
 
 
@@ -53,11 +60,11 @@ public class Jugador implements Persona {
 
 	
 	private long Id;
-	private String nombre;
+	private String nombre = new String();
 	private Date fechaNacimiento;
 	private Documento documento;
-	private Set<CambioDeClub> clubs = new TreeSet<CambioDeClub>();
-	private Set<CambioDeEstado> estados = new TreeSet<CambioDeEstado>();
+	private Collection<CambioDeClub> clubs = new ArrayList<CambioDeClub>(); 
+	private Collection<CambioDeEstado> estados = new ArrayList<CambioDeEstado>();
 	private TipoDeLesion tipoDeLesion;
 	private Nacionalidad nacionalidad;
 	
@@ -115,7 +122,7 @@ public class Jugador implements Persona {
 	
 	@Transient
 	public Club getClubVigente() {
-		Set<CambioDeClub> cambios = getCambiosDeClub();
+		Collection<CambioDeClub> cambios = getCambiosDeClub();
 		CambioDeClub ultimoCambio = null;
 		//Collections.sort(cambios);
 		if (!cambios.isEmpty()){
@@ -179,11 +186,11 @@ public class Jugador implements Persona {
 
 	@Transient
 	public TipoEstadosJugador getEstado() {
-		TreeSet<CambioDeEstado> estados = getEstados();
-		CambioDeEstado ultimoCambio = estados.first(); //null;
-//		for (Iterator iterator = estados.iterator(); iterator.hasNext();) {
-//			ultimoCambio = (CambioDeEstado) iterator.next();
-//		}
+		Collection<CambioDeEstado> estados = getEstados();
+		CambioDeEstado ultimoCambio = null;
+		for (Iterator iterator = estados.iterator(); iterator.hasNext();) {
+			ultimoCambio = (CambioDeEstado) iterator.next();
+		}
 		return  ultimoCambio.getEstado();
 	}
 
@@ -204,7 +211,7 @@ public class Jugador implements Persona {
 
 	@Transient
 	public Date getFechaEstadoActual() {
-		Set<CambioDeEstado> estados = getEstados();
+		Collection<CambioDeEstado> estados = getEstados();
 		CambioDeEstado ultimoCambio = null;
 		if (!estados.isEmpty()){
 			for (Iterator iterator = estados.iterator(); iterator.hasNext();) 
@@ -217,7 +224,7 @@ public class Jugador implements Persona {
 
 	@Transient
 	public Object getFechaDeInicioClubActual() {
-		Set<CambioDeClub> cambios = getCambiosDeClub();
+		Collection<CambioDeClub> cambios = getCambiosDeClub();
 		CambioDeClub ultimoCambio = null;
 		//Collections.sort(cambios);
 		if (!cambios.isEmpty()){
@@ -248,23 +255,23 @@ public class Jugador implements Persona {
 	}
 	
 	
-	public void setCambiosDeClub(Set<CambioDeClub> cambiosDeClub) {
+	public void setCambiosDeClub(Collection<CambioDeClub> cambiosDeClub) {
 		this.clubs = cambiosDeClub;
 	}
 	
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador", fetch = FetchType.LAZY)
-	public Set<CambioDeClub> getCambiosDeClub() {
-		return (Set<CambioDeClub>) clubs;
+	public Collection<CambioDeClub> getCambiosDeClub() {
+		return (Collection<CambioDeClub>) clubs;
 	}
 
 
-	public void setEstados(Set<CambioDeEstado> estados) {
+	public void setEstados(Collection<CambioDeEstado> estados) {
 		this.estados = estados;
 	}
 
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "jugador", fetch = FetchType.LAZY)
-	public TreeSet<CambioDeEstado> getEstados() {
-		return (TreeSet<CambioDeEstado>) estados;
+	public Collection<CambioDeEstado> getEstados() {
+		return (Collection<CambioDeEstado>) estados;
 	}
 
 	

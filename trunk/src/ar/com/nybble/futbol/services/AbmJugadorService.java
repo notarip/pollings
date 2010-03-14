@@ -59,6 +59,12 @@ public interface AbmJugadorService {
 	 * @return Iterator<Jugador>
 	 */
 	public Iterator<Jugador> buscarJugadoresPorClub(Long idClub);
+	
+	/**
+	 * @param nombre
+	 * @return Iterator<Jugador>
+	 */
+	public Iterator<Jugador> buscarJugadoresPorNombre(String nombre); 
 		
 	
 	/**
@@ -66,6 +72,7 @@ public interface AbmJugadorService {
 	 * @param jugador
 	 */
 	public void modificarJugador(Jugador jugador);
+	
 	
 	
 		

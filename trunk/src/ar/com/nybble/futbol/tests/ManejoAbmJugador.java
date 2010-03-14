@@ -4,16 +4,20 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.aop.aspectj.AspectJAdviceParameterNameDiscoverer.AmbiguousBindingException;
 import org.springframework.context.ApplicationContext;
 
 import ar.com.nybble.futbol.CambioDeEstado;
 import ar.com.nybble.futbol.Club;
+import ar.com.nybble.futbol.Documento;
 import ar.com.nybble.futbol.Jugador;
+import ar.com.nybble.futbol.Nacionalidad;
 import ar.com.nybble.futbol.TipoDeLesion;
 import ar.com.nybble.futbol.common.ContextFactory;
 import ar.com.nybble.futbol.dataSource.util.DataSourceException;
 import ar.com.nybble.futbol.services.AbmClubService;
 import ar.com.nybble.futbol.services.AbmJugadorService;
+import ar.com.nybble.futbol.test.TipoDeDocumento;
 
 public class ManejoAbmJugador {
 
@@ -35,20 +39,25 @@ public class ManejoAbmJugador {
 		AbmJugadorService abmJugador = (AbmJugadorService) context.getBean("AbmJugadorService");
 		AbmClubService abmClub = (AbmClubService) context.getBean("AbmClubService");
 
+
+		
+		
 //		Nacionalidad nac = new Nacionalidad("ARGENTINO");
-//		Documento doc = new Documento("29317973", TipoDeDocumento.DNI);
+//		Documento doc = new Documento("29300000", TipoDeDocumento.DNI);
 //		Date fecha = new Date();
-//		abmJugador.crearJugador("PABLO NOTARI", fecha, nac, doc);
+//		abmJugador.crearJugador("Armando Samarbide", fecha, nac, doc);
 		
-		//Club club = abmClub.buscarClub(new Long(1));
+//		Club club = abmClub.buscarClub(new Long(1));
+//		
+//		Jugador pablo = abmJugador.buscarJugador(new Long(12));
+//		pablo.agregarClub(club, new Date());
+//		abmJugador.modificarJugador(pablo);
 		
-		//Jugador pablo = abmJugador.buscarJugador(new Long(11));
-		
-		Iterator<Jugador> jugadores = abmJugador.buscarJugadoresPorClub(new Long(2));
+		Iterator<Jugador> jugadores = abmJugador.buscarJugadoresPorNombre("Pablo");
 		for (Iterator<Jugador> iterator = jugadores; iterator.hasNext();) {
 			Jugador object = (Jugador) iterator.next();
 			System.out.println(object);
-			System.out.println(object.getClubVigente());
+//			System.out.println(object.getClubVigente());
 		}
 		
 //		Iterator<Jugador> jugadores =  abmJugador.buscarJugadores();

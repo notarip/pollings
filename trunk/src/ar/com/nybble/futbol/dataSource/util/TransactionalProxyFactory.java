@@ -5,6 +5,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+/**
+ * @author notarip
+ * Solo para utilizar en llamadas a metodos transaccionales
+ * ya que su utilidad es el manejo de la integridad mediante
+ * el rollback de la operacion en el caso de error
+ *
+ */
 public class TransactionalProxyFactory implements InvocationHandler {
 	 private Object target;
 	    
