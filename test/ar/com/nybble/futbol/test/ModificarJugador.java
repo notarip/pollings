@@ -8,6 +8,8 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import ar.com.nybble.fulbo.common.exceptions.JugadorSinClubException;
+import ar.com.nybble.fulbo.common.exceptions.JugadorSinLesionException;
 import ar.com.nybble.futbol.*;
 import static org.junit.Assert.*;
 

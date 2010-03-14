@@ -64,7 +64,7 @@ public class AbmClubServiceImpl implements AbmClubService {
 	
 	@Override
 	public Club buscarClub(Long id) {
-		ClubRepositorio repo =  (ClubRepositorio) TransactionalProxyFactory.newInstance(clubRepo);
+		ClubRepositorio repo = clubRepo; //(ClubRepositorio) TransactionalProxyFactory.newInstance(clubRepo);
 		try {
 			return (Club) repo.findById(id);
 		} catch (DataSourceException e) {

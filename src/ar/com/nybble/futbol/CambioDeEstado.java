@@ -3,7 +3,7 @@
  */
 package ar.com.nybble.futbol;
 
-import java.io.Serializable;
+
 import java.util.Comparator;
 import java.util.Date;
 
@@ -21,16 +21,17 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-public class CambioDeEstado implements Comparable<CambioDeEstado>, Serializable {
+public class CambioDeEstado implements Comparable<CambioDeEstado>{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	
 	private long Id;
 	private TipoEstadosJugador estado;
 	private Date fecha;
 	private Jugador jugador;
+
 	
 	
 	public CambioDeEstado() {
@@ -91,9 +92,11 @@ public class CambioDeEstado implements Comparable<CambioDeEstado>, Serializable 
 	@Override
 	public boolean equals(Object obj) {
 		CambioDeEstado otro = (CambioDeEstado) obj;
-		return (this.getEstado() == otro.getEstado() && (this.getFecha().compareTo(otro.getFecha())== 0));
+		return (this.getEstado() == otro.getEstado() && (this.hashCode() == otro.hashCode()));
 			
 	}
 	
+
+		
 
 }

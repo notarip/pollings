@@ -145,7 +145,7 @@ final class AbmJugadorServiceImpl implements AbmJugadorService {
 
 	@Override
 	public Jugador buscarJugador(Long id) {
-		JugadorRepositorio repo =  (JugadorRepositorio) TransactionalProxyFactory.newInstance(jugadorRepo);
+		JugadorRepositorio repo = jugadorRepo;// (JugadorRepositorio) TransactionalProxyFactory.newInstance(jugadorRepo);
 		try {
 			return (Jugador) repo.findById(id);
 		} catch (DataSourceException e) {
@@ -159,7 +159,7 @@ final class AbmJugadorServiceImpl implements AbmJugadorService {
 
 	@Override
 	public Iterator<Jugador> buscarJugadores() {
-		JugadorRepositorio repo =  (JugadorRepositorio) TransactionalProxyFactory.newInstance(jugadorRepo);
+		JugadorRepositorio repo = jugadorRepo; //(JugadorRepositorio) TransactionalProxyFactory.newInstance(jugadorRepo);
 		try {
 			return repo.findAll().iterator();
 		} catch (Exception e) {
@@ -189,7 +189,28 @@ final class AbmJugadorServiceImpl implements AbmJugadorService {
 			e.printStackTrace();
 			}
 		return jugadores.iterator(); 
-	}		
+	}
+
+	@Override
+	public Iterator<Jugador> buscarJugadoresPorNombre(String nombre){
+		JugadorRepositorio repo = jugadorRepo; //(JugadorRepositorio) TransactionalProxyFactory.newInstance(jugadorRepo);
+		List jugadores = new LinkedList<Jugador>();
+				
+		try {
+			for (Iterator iterator = repo.findAll().iterator(); iterator.hasNext();) {
+				Jugador jugador = (Jugador) iterator.next();
+				if (jugador.getNombre().contains(nombre)){
+					System.out.println("recupera");
+					jugadores.add(jugador);
+				}	
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		return jugadores.iterator(); 
+	}	
 		
 
 }
