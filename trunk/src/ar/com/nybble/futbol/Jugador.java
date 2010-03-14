@@ -45,8 +45,8 @@ import org.hibernate.collection.PersistentBag;
 import org.hibernate.collection.PersistentCollection;
 import org.hibernate.collection.PersistentList;
 
-import ar.com.nybble.fulbo.common.exceptions.JugadorSinClubException;
-import ar.com.nybble.fulbo.common.exceptions.JugadorSinLesionException;
+import ar.com.nybble.futbol.common.exceptions.JugadorSinClubException;
+import ar.com.nybble.futbol.common.exceptions.JugadorSinLesionException;
 
 
 
