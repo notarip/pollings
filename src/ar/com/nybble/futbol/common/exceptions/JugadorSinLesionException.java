@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ar.com.nybble.fulbo.common.exceptions;
+package ar.com.nybble.futbol.common.exceptions;
 
 /**
  * @author Administrador
