@@ -5,3 +5,5 @@ Ejecutando ManejoAbmJugador obtengo un nullPointer, es un error en la implementa
 
 14/03/2010
 Prbloma en el metodo buscarjugadorpornombre revisar ejecutando desde ManejodeJugador
+--------------------------------------------------------------------
+

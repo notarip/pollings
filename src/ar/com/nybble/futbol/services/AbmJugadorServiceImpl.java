@@ -179,7 +179,6 @@ final class AbmJugadorServiceImpl implements AbmJugadorService {
 			for (Iterator iterator = repo.findAll().iterator(); iterator.hasNext();) {
 				Jugador jugador = (Jugador) iterator.next();
 				if (jugador.getClubVigente() != null &&  jugador.getClubVigente().getId() == idClub){
-					System.out.println("recupera");
 					jugadores.add(jugador);
 				}	
 			}
@@ -199,14 +198,12 @@ final class AbmJugadorServiceImpl implements AbmJugadorService {
 		try {
 			for (Iterator iterator = repo.findAll().iterator(); iterator.hasNext();) {
 				Jugador jugador = (Jugador) iterator.next();
-				if (jugador.getNombre().contains(nombre)){
-					System.out.println("recupera");
+				if (jugador.getNombre().contains(nombre) || (jugador.getNombre().contains(nombre.toUpperCase())) ){
 					jugadores.add(jugador);
 				}	
 			}
-			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 			}
 		return jugadores.iterator(); 

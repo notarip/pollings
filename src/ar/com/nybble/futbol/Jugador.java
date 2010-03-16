@@ -54,13 +54,15 @@ import ar.com.nybble.futbol.common.exceptions.JugadorSinLesionException;
  * @author notarip
  *
  */
+
+//TODO: hacer obligatorio el campo nombre
 @Entity
 @Table(name = "Jugador")
 public class Jugador implements Persona {
 
 	
 	private long Id;
-	private String nombre = new String();
+	private String nombre = new String(" ");
 	private Date fechaNacimiento;
 	private Documento documento;
 	private Collection<CambioDeClub> clubs = new ArrayList<CambioDeClub>(); 
@@ -71,12 +73,16 @@ public class Jugador implements Persona {
 	
 	
 	public Jugador() {
-		getEstados().add(new CambioDeEstado(TipoEstadosJugador.ACTIVO,new Date(), this));
+		construccionEnComun();
 	}
 	
 	public Jugador(Documento documento) {
-		getEstados().add(new CambioDeEstado(TipoEstadosJugador.ACTIVO,new Date(), this));
+		construccionEnComun();
 		this.documento = documento;
+	}
+	
+	private void construccionEnComun(){
+		getEstados().add(new CambioDeEstado(TipoEstadosJugador.ACTIVO,new Date(), this));
 	}
 	
 	private void setId(long id) {
