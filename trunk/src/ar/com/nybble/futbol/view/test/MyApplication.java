@@ -21,7 +21,7 @@ public class MyApplication extends WebApplication {
 	@Override
 	public Class getHomePage() {
 		// TODO Auto-generated method stub
-		return Pagina1.class;
+		return AbmClub.class;
 	}
 }
   
