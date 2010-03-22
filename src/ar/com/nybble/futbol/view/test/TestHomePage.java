@@ -3,6 +3,8 @@ package ar.com.nybble.futbol.view.test;
 import junit.framework.TestCase;
 import org.apache.wicket.util.tester.WicketTester;
 
+import ar.com.nybble.futbol.view.WicketApplication;
+
 /**
  * Simple test using the WicketTester
  */
