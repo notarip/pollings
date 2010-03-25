@@ -55,14 +55,14 @@ public class ListaJugador extends WebPage {
 			public void onSubmit() {
 				
 				
-//				for (Iterator iterator = abmJugador.buscarJugadores(); iterator.hasNext();) {
-//					Jugador jugador = (Jugador) iterator.next();
-//					
-//					WebMarkupContainer item = new WebMarkupContainer(repeating.newChildId());
-//					repeating.add(item);
-//					item.add(new Label("id",String.valueOf(jugador.getId())));
-//					item.add(new Label("nombre", jugador.getNombre()));					
-//				}
+				for (Iterator iterator = abmJugador.buscarJugadores(); iterator.hasNext();) {
+					Jugador jugador = (Jugador) iterator.next();
+					
+					WebMarkupContainer item = new WebMarkupContainer(repeating.newChildId());
+					repeating.add(item);
+					item.add(new Label("id",String.valueOf(jugador.getId())));
+					item.add(new Label("nombre", jugador.getNombre()));					
+				}
 			}
 		});	
 		

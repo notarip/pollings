@@ -3,11 +3,22 @@
  */
 package ar.com.nybble.futbol;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import ar.com.nybble.futbol.common.exceptions.JugadorNoEsDelClubException;
+import ar.com.nybble.futbol.common.exceptions.JugadorYaFichadoPorElClubException;
+import ar.com.nybble.futbol.test.TipoDeDocumento;
 
 /**
  * @author notarip
@@ -18,6 +29,7 @@ public class Club {
 
 	private String nombre;
 	private long Id;
+	private Collection<Jugador> jugadores = new ArrayList<Jugador>();
 
 	
 	public Club() {
@@ -59,5 +71,36 @@ public class Club {
 		return nombre;
 	}
 
+	public void ficharJugador(Jugador jugador) {
+		if (this.perteneceAlClub(jugador))
+			throw new JugadorYaFichadoPorElClubException();
+		jugadores.add(jugador);
+	}
+ 
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "club", fetch = FetchType.LAZY)
+	public Collection<Jugador> getJugadores() {
+		return jugadores;
+	}
 
+	public boolean perteneceAlClub(Jugador jugain) {
+		for (Iterator iterator = jugadores.iterator(); iterator.hasNext();) {
+			Jugador juga = (Jugador) iterator.next();
+			if (jugain.equals(juga))
+				return true;
+		}
+		return false;
+	}
+
+	public void rescindirContratoJugador(Jugador pablo) {
+		if (!perteneceAlClub(pablo))
+			throw new JugadorNoEsDelClubException();
+		jugadores.remove(pablo);
+	}
+
+	
+	public void setJugadores(Collection<Jugador> jugadores) {
+		this.jugadores = jugadores;
+	}
+	
+	
 }

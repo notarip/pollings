@@ -14,6 +14,7 @@ import javax.swing.text.StyledEditorKit.ItalicAction;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.context.ApplicationContext;
 
+import ar.com.nybble.futbol.Club;
 import ar.com.nybble.futbol.Documento;
 import ar.com.nybble.futbol.Jugador;
 import ar.com.nybble.futbol.Nacionalidad;
@@ -174,20 +175,28 @@ final class AbmJugadorServiceImpl implements AbmJugadorService {
 	public Iterator<Jugador> buscarJugadoresPorClub(Long idClub){
 		JugadorRepositorio repo = jugadorRepo; //(JugadorRepositorio) TransactionalProxyFactory.newInstance(jugadorRepo);
 		List jugadores = new LinkedList<Jugador>();
-				
+		Club club = null;
 		try {
-			for (Iterator iterator = repo.findAll().iterator(); iterator.hasNext();) {
-				Jugador jugador = (Jugador) iterator.next();
-				if (jugador.getClubVigente() != null &&  jugador.getClubVigente().getId() == idClub){
-					jugadores.add(jugador);
-				}	
-			}
-			
-		} catch (Exception e) {
+			club = (Club) clubRepo.findById(idClub);
+			return club.getJugadores().iterator();
+		} catch (DataSourceException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
-		return jugadores.iterator(); 
+			e1.printStackTrace();
+		}
+		return null;
+//		try {
+//			for (Iterator iterator = repo.findAll().iterator(); iterator.hasNext();) {
+//				Jugador jugador = (Jugador) iterator.next();
+//				if (jugador.getClubVigente() != null &&  jugador.getClubVigente().getId() == idClub){
+//					jugadores.add(jugador);
+//				}	
+//			}
+//			
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			}
+//		return jugadores.iterator(); 
 	}
 
 	@Override

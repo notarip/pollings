@@ -53,7 +53,7 @@ public class ManejoAbmJugador {
 //		pablo.agregarClub(club, new Date());
 //		abmJugador.modificarJugador(pablo);
 		
-		Iterator<Jugador> jugadores = abmJugador.buscarJugadoresPorNombre("Pablo");
+		Iterator<Jugador> jugadores = abmJugador.buscarJugadoresPorClub(new Long(1));
 		for (Iterator<Jugador> iterator = jugadores; iterator.hasNext();) {
 			Jugador object = (Jugador) iterator.next();
 			System.out.println(object);

@@ -35,6 +35,7 @@ public class CambioDeClub implements Comparable<CambioDeClub>{
 		this.fecha = fecha;
 		this.club = club;
 		this.jugador =(jugador);
+		this.club.ficharJugador(jugador);
 	}
 
 	@ManyToOne
