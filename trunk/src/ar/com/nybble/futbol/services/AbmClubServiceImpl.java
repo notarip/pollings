@@ -19,7 +19,7 @@ public class AbmClubServiceImpl implements AbmClubService {
 
 	
 	private ClubRepositorio clubRepo;
-	private Nacionalidad nacion;
+
 	
 	
 	public AbmClubServiceImpl(ClubRepositorio clubrepo) {
@@ -38,17 +38,6 @@ public class AbmClubServiceImpl implements AbmClubService {
 		return clubRepo;
 	}
 	
-
-	public void setNacion(Nacionalidad nacion) {
-		this.nacion = nacion;
-	}
-
-
-	public Nacionalidad getNacion() {
-		return nacion;
-	}
-
-
 	@Override
 	public void crearClub(String nombre) {
 		Club club = new Club(nombre);

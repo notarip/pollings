@@ -25,6 +25,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -69,9 +70,11 @@ public class Jugador implements Persona {
 	private Collection<CambioDeEstado> estados = new ArrayList<CambioDeEstado>();
 	private TipoDeLesion tipoDeLesion;
 	private Nacionalidad nacionalidad;
+	private Club club = null;
 	
 	
 	
+
 	public Jugador() {
 		construccionEnComun();
 	}
@@ -119,6 +122,7 @@ public class Jugador implements Persona {
 	public void agregarClub(Club club1, Date fecha2) {
 		CambioDeClub cambio = new CambioDeClub(club1,fecha2,this);
 		this.getCambiosDeClub().add(cambio);
+		this.club = club1;
 		if (tipoDeLesion == null)
 			getEstados().add(new CambioDeEstado(TipoEstadosJugador.ACTIVO,fecha2, this));
 		else
@@ -206,12 +210,21 @@ public class Jugador implements Persona {
 		getEstados().add(cambio);
 	}
 
+	@ManyToOne
+	@JoinColumn(name= "CLUB_ID")
+	public Club getClub() {
+		return club;
+	}
+		
+	
 	public void desvincularClub(Date fecha2) throws JugadorSinClubException {
 		if (getEstado() == TipoEstadosJugador.SIN_CLUB)
 			throw new JugadorSinClubException();
 		else{
 			CambioDeEstado cambio = new CambioDeEstado(TipoEstadosJugador.SIN_CLUB,fecha2,this);
 			getEstados().add(cambio);
+			this.club.rescindirContratoJugador(this);
+			this.club = null;
 		}
 	}
 
@@ -280,6 +293,9 @@ public class Jugador implements Persona {
 		return (Collection<CambioDeEstado>) estados;
 	}
 
+	public void setClub(Club club) {
+		this.club = club;
+	}
 	
 	@Override
 	public String toString() {

@@ -12,7 +12,6 @@
 		
 	<bean id="AbmClubService"
 	class="ar.com.nybble.futbol.services.AbmClubServiceImpl">
-	<property name="nacion" ref="nacionalidad"></property>
 	<property name="clubRepo" ref="clubRepositorio"></property>
 	</bean>
 

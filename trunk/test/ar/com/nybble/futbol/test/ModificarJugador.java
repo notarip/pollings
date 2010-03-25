@@ -20,7 +20,8 @@ import static org.junit.Assert.*;
 
 public class ModificarJugador {
 	
-	Jugador pablo = new Jugador();
+	Documento doc = new Documento("29317973",TipoDeDocumento.DNI);
+	Jugador pablo = new Jugador(doc);
 	Date fecha = new Date();
 	Club club1 = new Club("Milan");
 	TipoDeLesion lesion = TipoDeLesion.DISTENSIÓN_FEMORAL_POSTERIOR;
@@ -29,7 +30,6 @@ public class ModificarJugador {
 	TipoEstadosJugador activo = TipoEstadosJugador.ACTIVO;
 	TipoEstadosJugador lesionado = TipoEstadosJugador.LESIONADO;
 	TipoEstadosJugador sinclub = TipoEstadosJugador.SIN_CLUB;
-	Documento doc = new Documento("29317973",TipoDeDocumento.DNI);
 	
 	
 	
@@ -96,7 +96,6 @@ public class ModificarJugador {
 	@Test
 	public void lesionarJugador() {
 		pablo.notificarLesion(fecha,lesion);
-		System.out.println(pablo.getEstado());
 		assertTrue(!pablo.enActividad());
 	}
 		
@@ -209,6 +208,7 @@ public class ModificarJugador {
 	 */
 	@Test
 	public void queCuandoSeQuedeSinClubEstadoSeaSinClub() {
+		pablo.agregarClub(club1, fecha);
 		pablo.desvincularClub(fecha);
 		assertEquals(sinclub, pablo.getEstado());
 	}
@@ -218,6 +218,7 @@ public class ModificarJugador {
 	 */
 	@Test (expected = JugadorSinClubException.class)
 	public void queParaDesvincularceDeUnClubTengaUnoAsignado() {
+		pablo.agregarClub(club1, fecha);
 		pablo.desvincularClub(fecha);
 		pablo.desvincularClub(fecha);
 	}
@@ -227,6 +228,7 @@ public class ModificarJugador {
 	 */
 	@Test
 	public void queCuandoSeQuedeSinClubGuardeLaFecha() {
+		pablo.agregarClub(club1, fecha);
 		pablo.desvincularClub(fecha);
 		assertEquals(fecha, pablo.getFechaEstadoActual());
 	}
