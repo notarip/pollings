@@ -8,8 +8,11 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 
+import ar.com.nybble.futbol.common.exceptions.CantidadDeClubsErroneaException;
+import ar.com.nybble.futbol.common.exceptions.ClubNoPerteneceAlTorneoException;
 import ar.com.nybble.futbol.common.exceptions.ClubPertenecienteAlTorneoException;
 import ar.com.nybble.futbol.common.exceptions.CupoDeClubsCompletoException;
+import ar.com.nybble.futbol.common.exceptions.NoSeAgregaronTodosLosClubsException;
 import ar.com.nybble.futbol.common.exceptions.TorneoHabilitadoException;
 
 /**
@@ -18,6 +21,8 @@ import ar.com.nybble.futbol.common.exceptions.TorneoHabilitadoException;
  */
 public class Torneo {
 	
+	public static final int CLUBS_MAXIMO = 30;
+	public static final int CLUBS_MINIMO = 2;
 	private String nombre = null;
 	private Integer cantidadClubs = null;
 	private TipoDeTorneo tipoDeTorneo = null;
@@ -31,7 +36,7 @@ public class Torneo {
 
 	public Torneo(String nombre, Integer cantidadClubs,TipoDeTorneo tipoDeTorneo, Date fecha) {
 		this.nombre = nombre;
-		this.cantidadClubs = cantidadClubs;
+		this.setCantidadClubs(cantidadClubs);
 		this.tipoDeTorneo = tipoDeTorneo;
 		this.fechaDeCreacion = fecha;
 	}
@@ -43,10 +48,10 @@ public class Torneo {
 	}
 
 	public Object getCantitdadClubs() {
-		return this.cantidadClubs;
+		return this.getCantidadClubs();
 	}
 
-	public Date getFecha() {
+	public Date getFechaDeCreacion() {
 		return this.fechaDeCreacion;
 	}
 
@@ -55,11 +60,17 @@ public class Torneo {
 	}
 
 	public void cargarClub(Club club) {
-		if (clubs.size() == this.cantidadClubs)
+		if (estaHabilitado())
+			throw new TorneoHabilitadoException();
+		if (cupoCompleto())
 			throw new CupoDeClubsCompletoException();
 		if (perteneceAlTorneo(club))
 			throw new ClubPertenecienteAlTorneoException();
 		clubs.add(club);
+	}
+
+	private boolean cupoCompleto() {
+		return (clubs.size() == this.getCantidadClubs());
 	}
 
 	public boolean perteneceAlTorneo(Club club) {
@@ -74,7 +85,20 @@ public class Torneo {
 	public void habilitar(Date fecha2) {
 		if (estaHabilitado())
 			throw new TorneoHabilitadoException();
+		if (!cantidadDeClubsValida(this.cantidadClubs))
+			throw new CantidadDeClubsErroneaException();
+		if (!cupoCompleto())
+			throw new NoSeAgregaronTodosLosClubsException();
+			
 		this.fechaDeHabilitacion = fecha2;
+		
+		
+	}
+
+	private boolean cantidadDeClubsValida(Integer cantidadClubs2) {
+		if (((cantidadClubs2 % 2) == 0) && ((cantidadClubs2 >= CLUBS_MINIMO) && (cantidadClubs2 <= CLUBS_MAXIMO)))
+			return true;
+		return false;
 	}
 
 	public boolean estaHabilitado() {
@@ -83,5 +107,29 @@ public class Torneo {
 		else
 			return false;
 		
+	}
+
+	public Date getFechaHabilitacion() {
+		return this.fechaDeHabilitacion;
+	}
+
+	public void setCantidadClubs(Integer cantidadClubs) {
+		this.cantidadClubs = cantidadClubs;
+	}
+
+	public Integer getCantidadClubs() {
+		return cantidadClubs;
+	}
+
+	public void sacarClub(Club club1) {
+		if (estaHabilitado())
+			throw new TorneoHabilitadoException();
+		if (!perteneceAlTorneo(club1))
+			throw new ClubNoPerteneceAlTorneoException();
+		for (Iterator iterator = clubs.iterator(); iterator.hasNext();) {
+			Club club = (Club) iterator.next();
+			if (club.equals(club1))
+				iterator.remove();
+		}
 	}
 }
