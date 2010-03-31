@@ -14,6 +14,7 @@ import ar.com.nybble.futbol.common.exceptions.ClubPertenecienteAlTorneoException
 import ar.com.nybble.futbol.common.exceptions.CupoDeClubsCompletoException;
 import ar.com.nybble.futbol.common.exceptions.NoSeAgregaronTodosLosClubsException;
 import ar.com.nybble.futbol.common.exceptions.TorneoHabilitadoException;
+import ar.com.nybble.futbol.common.exceptions.TorneoNoHabilitadoException;
 
 /**
  * @author notarip
@@ -29,6 +30,7 @@ public class Torneo {
 	private Date fechaDeCreacion = null;
 	private Collection<Club> clubs = new ArrayList<Club>();
 	private Date fechaDeHabilitacion = null;
+	private Collection<Partido> partidos = new ArrayList<Partido>();
 	
 	public Torneo() {
 		// TODO Auto-generated constructor stub
@@ -131,5 +133,22 @@ public class Torneo {
 			if (club.equals(club1))
 				iterator.remove();
 		}
+	}
+
+	public void generarPartidos() {
+		if (!estaHabilitado())
+			throw new TorneoNoHabilitadoException();
+		for (Iterator iterator = clubs.iterator(); iterator.hasNext();) {
+			Club club = (Club) iterator.next();
+			partidos.add(new Partido());
+			
+		}
+		
+	}
+
+	public boolean tienePartidos() {
+		if  (partidos.size() != 0)
+			return true;
+		return false;
 	}
 }
