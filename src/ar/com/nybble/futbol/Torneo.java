@@ -8,11 +8,13 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 
+import ar.com.nybble.futbol.common.LicenciadoEnMatematicas;
 import ar.com.nybble.futbol.common.exceptions.CantidadDeClubsErroneaException;
 import ar.com.nybble.futbol.common.exceptions.ClubNoPerteneceAlTorneoException;
 import ar.com.nybble.futbol.common.exceptions.ClubPertenecienteAlTorneoException;
 import ar.com.nybble.futbol.common.exceptions.CupoDeClubsCompletoException;
 import ar.com.nybble.futbol.common.exceptions.NoSeAgregaronTodosLosClubsException;
+import ar.com.nybble.futbol.common.exceptions.PartidosYaGeneradosException;
 import ar.com.nybble.futbol.common.exceptions.TorneoHabilitadoException;
 import ar.com.nybble.futbol.common.exceptions.TorneoNoHabilitadoException;
 
@@ -30,7 +32,7 @@ public class Torneo {
 	private Date fechaDeCreacion = null;
 	private Collection<Club> clubs = new ArrayList<Club>();
 	private Date fechaDeHabilitacion = null;
-	private Collection<Partido> partidos = new ArrayList<Partido>();
+	private Collection<Partido> partidos = null;
 	
 	public Torneo() {
 		// TODO Auto-generated constructor stub
@@ -138,17 +140,27 @@ public class Torneo {
 	public void generarPartidos() {
 		if (!estaHabilitado())
 			throw new TorneoNoHabilitadoException();
-		for (Iterator iterator = clubs.iterator(); iterator.hasNext();) {
-			Club club = (Club) iterator.next();
-			partidos.add(new Partido());
-			
-		}
+		partidos =  new LicenciadoEnMatematicas().combinarPartidos(clubs, this.tipoDeTorneo);
+
 		
 	}
 
 	public boolean tienePartidos() {
-		if  (partidos.size() != 0)
+		if  (partidos != null)
 			return true;
 		return false;
+	}
+
+	public Integer getCantidadDePartidos() {
+		if (tienePartidos())
+			return partidos.size();
+		else
+			return 0;
+	}
+	
+	public void setTipoDeTorneo(TipoDeTorneo tipoDeTorneo) {
+		if (tienePartidos())
+			throw new PartidosYaGeneradosException();
+		this.tipoDeTorneo = tipoDeTorneo;
 	}
 }
