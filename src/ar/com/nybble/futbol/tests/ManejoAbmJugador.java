@@ -1,23 +1,14 @@
 package ar.com.nybble.futbol.tests;
 
-import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
 
-import org.springframework.aop.aspectj.AspectJAdviceParameterNameDiscoverer.AmbiguousBindingException;
 import org.springframework.context.ApplicationContext;
 
-import ar.com.nybble.futbol.CambioDeEstado;
-import ar.com.nybble.futbol.Club;
-import ar.com.nybble.futbol.Documento;
 import ar.com.nybble.futbol.Jugador;
-import ar.com.nybble.futbol.Nacionalidad;
-import ar.com.nybble.futbol.TipoDeLesion;
 import ar.com.nybble.futbol.common.ContextFactory;
 import ar.com.nybble.futbol.dataSource.util.DataSourceException;
 import ar.com.nybble.futbol.services.AbmClubService;
 import ar.com.nybble.futbol.services.AbmJugadorService;
-import ar.com.nybble.futbol.test.TipoDeDocumento;
 
 public class ManejoAbmJugador {
 

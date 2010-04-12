@@ -3,15 +3,11 @@
  */
 package ar.com.nybble.futbol.services;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.swing.text.StyledEditorKit.ItalicAction;
-
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.context.ApplicationContext;
 
 import ar.com.nybble.futbol.Club;

@@ -3,15 +3,16 @@
  */
 package ar.com.nybble.futbol.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import ar.com.nybble.futbol.common.exceptions.JugadorNoEsDelClubException;
-import ar.com.nybble.futbol.common.exceptions.JugadorYaFichadoPorElClubException;
 import ar.com.nybble.futbol.Club;
 import ar.com.nybble.futbol.Documento;
 import ar.com.nybble.futbol.Jugador;
+import ar.com.nybble.futbol.common.exceptions.JugadorNoEsDelClubException;
+import ar.com.nybble.futbol.common.exceptions.JugadorYaFichadoPorElClubException;
 
 /**
  * @author notarip

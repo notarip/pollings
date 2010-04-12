@@ -2,10 +2,11 @@
  * 
  */
 package ar.com.nybble.futbol.test;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import ar.com.nybble.futbol.Club;
-import static org.junit.Assert.*;
 /**
  * @author Administrador
  *

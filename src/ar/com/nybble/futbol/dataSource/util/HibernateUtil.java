@@ -4,6 +4,7 @@ package ar.com.nybble.futbol.dataSource.util;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,24 +37,24 @@ public class HibernateUtil {
     
     /**
      * Mapa donde se guardan las <code>SessionFactory</code> para cada uno de
-     * los archivos de configuración.
+     * los archivos de configuraciï¿½n.
      */
     private static final Map sessionFactories = new HashMap();
     
     /**
      * Variable <code>ThreadLocal</code> donde se guardan las
      * <code>Session</code> y <code>Transaction</code> para cada archivo de
-     * configuración.
+     * configuraciï¿½n.
      */
     private static final ThreadLocal sessions = new ThreadLocal();
     
     /*
-     * Bloque estático de inicialización.
+     * Bloque estï¿½tico de inicializaciï¿½n.
      */
     static {
         
         /*
-         * Inicialización de la sesión por defecto.
+         * Inicializaciï¿½n de la sesiï¿½n por defecto.
          */
         try {
             SessionFactory sessionFactory = new AnnotationConfiguration().configure(new File(DEFAULT))
@@ -69,15 +70,15 @@ public class HibernateUtil {
         }
         
         /*
-         * Inicialización de la sesión de TEST.
+         * Inicializaciï¿½n de la sesiï¿½n de TEST.
          */
         try {
             SessionFactory sessionFactory = new Configuration().configure(TEST)
             .buildSessionFactory();
             sessionFactories.put(TEST, sessionFactory);
         } catch (Throwable t) {
-            // Si no existe el archivo de configuración de test, no se
-            // conseidera un error. Para cada try/catch sólo deberá lanzarse
+            // Si no existe el archivo de configuraciï¿½n de test, no se
+            // conseidera un error. Para cada try/catch sï¿½lo deberï¿½ lanzarse
             // DataSourceException en caso de que la existencia del archivo sea
             // requerida.
         }
@@ -85,10 +86,10 @@ public class HibernateUtil {
     
     /**
      * Inicializa una <code>SessionFactory</code> a partir de un archivo de
-     * configuración.
+     * configuraciï¿½n.
      *
      * @param key
-     *            nombre del archivo de configuración.
+     *            nombre del archivo de configuraciï¿½n.
      * @throws DataSourceException 
      */
     public static void initialize(String key) throws DataSourceException {
@@ -317,7 +318,7 @@ public class HibernateUtil {
     }
     
     /*
-     * Método de utilidad que devuelve el map asociado al thread actual o uno
+     * Mï¿½todo de utilidad que devuelve el map asociado al thread actual o uno
      * nuevo en caso de que no lo hubiera.
      */
     private static Map getThreadLocalMap() {

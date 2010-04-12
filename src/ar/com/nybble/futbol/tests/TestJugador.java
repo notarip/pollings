@@ -18,7 +18,7 @@ public class TestJugador {
 		System.out.println(pablo.getEstado());
 		System.out.println(pablo.getEstado().hashCode());
 		
-		pablo.notificarLesion(new Date(), TipoDeLesion.DISTENSIÓN_FEMORAL_POSTERIOR);
+		pablo.notificarLesion(new Date(), TipoDeLesion.DISTENSION_FEMORAL_POSTERIOR);
 		
 			
 		System.out.println(pablo.getEstado());
@@ -29,7 +29,7 @@ public class TestJugador {
 		System.out.println(pablo.getEstado());
 		System.out.println(pablo.getEstado().hashCode());
 		
-		pablo.notificarLesion(new Date(), TipoDeLesion.DISTENSIÓN_FEMORAL_POSTERIOR);
+		pablo.notificarLesion(new Date(), TipoDeLesion.DISTENSION_FEMORAL_POSTERIOR);
 		
 		System.out.println(pablo.getEstado());
 		System.out.println(pablo.getEstado().hashCode());

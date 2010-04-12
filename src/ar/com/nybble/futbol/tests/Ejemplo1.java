@@ -4,16 +4,14 @@
 package ar.com.nybble.futbol.tests;
 
 
-import java.util.Date;
-
 import ar.com.nybble.futbol.Club;
-import ar.com.nybble.futbol.Documento;
 import ar.com.nybble.futbol.Jugador;
 import ar.com.nybble.futbol.Nacionalidad;
-import ar.com.nybble.futbol.dataSource.repositorio.*;
+import ar.com.nybble.futbol.dataSource.repositorio.ClubRepositorioImpl;
+import ar.com.nybble.futbol.dataSource.repositorio.JugadorRepositorioImpl;
+import ar.com.nybble.futbol.dataSource.repositorio.NacionalidadRepositorioImpl;
 import ar.com.nybble.futbol.dataSource.util.DataSourceException;
 import ar.com.nybble.futbol.dataSource.util.HibernateUtil;
-import ar.com.nybble.futbol.test.TipoDeDocumento;
 
 
 
