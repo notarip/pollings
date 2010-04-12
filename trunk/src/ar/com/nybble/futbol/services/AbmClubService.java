@@ -3,7 +3,6 @@
  */
 package ar.com.nybble.futbol.services;
 
-import java.util.Collection;
 import java.util.Iterator;
 
 import ar.com.nybble.futbol.Club;

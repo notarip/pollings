@@ -1,9 +1,6 @@
 package ar.com.nybble.futbol.view;
 
 import org.apache.wicket.protocol.http.WebApplication;
-import org.springframework.aop.aspectj.AspectJAdviceParameterNameDiscoverer.AmbiguousBindingException;
-
-import ar.com.nybble.futbol.view.test.AbmClub;
 
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start class.

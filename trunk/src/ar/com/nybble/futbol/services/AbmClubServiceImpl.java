@@ -6,7 +6,6 @@ package ar.com.nybble.futbol.services;
 import java.util.Iterator;
 
 import ar.com.nybble.futbol.Club;
-import ar.com.nybble.futbol.Nacionalidad;
 import ar.com.nybble.futbol.dataSource.repositorio.ClubRepositorio;
 import ar.com.nybble.futbol.dataSource.util.DataSourceException;
 import ar.com.nybble.futbol.dataSource.util.TransactionalProxyFactory;

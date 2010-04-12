@@ -1,18 +1,11 @@
 package ar.com.nybble.futbol.view.test;
 
-import java.io.NotActiveException;
-import java.util.Iterator;
-import java.util.LinkedList;
-
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.repeater.RepeatingView;
-
-import ar.com.nybble.futbol.CambioDeClub;
-import ar.com.nybble.futbol.Club;
 
 
 /**

@@ -5,9 +5,7 @@ package ar.com.nybble.futbol.tests;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import ar.com.nybble.futbol.Club;
 import ar.com.nybble.futbol.services.AbmClubService;
-import ar.com.nybble.futbol.services.AbmClubServiceFactory;
 
 
 public class ManejoAbmClub {

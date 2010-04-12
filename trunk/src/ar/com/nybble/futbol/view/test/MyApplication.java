@@ -2,8 +2,6 @@ package ar.com.nybble.futbol.view.test;
 
 import org.apache.wicket.protocol.http.WebApplication;
 
-import ar.com.nybble.futbol.view.Pagina1;
-
 /**
  * @author Administrador
  */

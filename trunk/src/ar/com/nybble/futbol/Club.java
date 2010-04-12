@@ -14,11 +14,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import ar.com.nybble.futbol.common.exceptions.JugadorNoEsDelClubException;
 import ar.com.nybble.futbol.common.exceptions.JugadorYaFichadoPorElClubException;
-import ar.com.nybble.futbol.test.TipoDeDocumento;
 
 /**
  * @author notarip

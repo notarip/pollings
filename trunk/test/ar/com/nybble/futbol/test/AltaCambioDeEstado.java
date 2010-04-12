@@ -3,15 +3,17 @@
  */
 package ar.com.nybble.futbol.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Date;
 
 import org.junit.Test;
 
 import ar.com.nybble.futbol.CambioDeEstado;
 import ar.com.nybble.futbol.Documento;
-import ar.com.nybble.futbol.TipoEstadosJugador;
 import ar.com.nybble.futbol.Jugador;
+import ar.com.nybble.futbol.TipoEstadosJugador;
 
 /**
  * @author notarip

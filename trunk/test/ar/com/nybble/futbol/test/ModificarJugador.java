@@ -4,14 +4,21 @@
 package ar.com.nybble.futbol.test;
 
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Date;
 
 import org.junit.Test;
 
-import ar.com.nybble.futbol.*;
+import ar.com.nybble.futbol.Club;
+import ar.com.nybble.futbol.Documento;
+import ar.com.nybble.futbol.Jugador;
+import ar.com.nybble.futbol.Nacionalidad;
+import ar.com.nybble.futbol.TipoDeLesion;
+import ar.com.nybble.futbol.TipoEstadosJugador;
 import ar.com.nybble.futbol.common.exceptions.JugadorSinClubException;
 import ar.com.nybble.futbol.common.exceptions.JugadorSinLesionException;
-import static org.junit.Assert.*;
 
 /**
  * @author notarip
@@ -24,7 +31,7 @@ public class ModificarJugador {
 	Jugador pablo = new Jugador(doc);
 	Date fecha = new Date();
 	Club club1 = new Club("Milan");
-	TipoDeLesion lesion = TipoDeLesion.DISTENSIÓN_FEMORAL_POSTERIOR;
+	TipoDeLesion lesion = TipoDeLesion.DOLOR_NERVIO_INTERDIGITAL;
 	Nacionalidad nacionalidad = new Nacionalidad("PERUANO");
 	TipoEstadosJugador retirado = TipoEstadosJugador.RETIRADO;
 	TipoEstadosJugador activo = TipoEstadosJugador.ACTIVO;
@@ -100,7 +107,7 @@ public class ModificarJugador {
 	}
 		
 	/**
-	 * Asignar una lesión a un jugador 
+	 * Asignar una lesiï¿½n a un jugador 
 	 */
 	@Test
 	public void asignarUnaLesionAUnJugador() {
