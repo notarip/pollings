@@ -19,9 +19,9 @@ public class WicketApplication extends WebApplication
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */
-	public Class<AbmClub> getHomePage()
+	public Class<ConsultaClubs> getHomePage()
 	{
-		return AbmClub.class;
+		return ConsultaClubs.class;
 	}
 
 }
