@@ -4,6 +4,8 @@ import org.mortbay.jetty.Connector;
 import org.mortbay.jetty.Server;
 import org.mortbay.jetty.bio.SocketConnector;
 import org.mortbay.jetty.webapp.WebAppContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
  
 
 public class Start1 {
@@ -11,6 +13,7 @@ public class Start1 {
 	public static void main(String[] args) throws Exception {
 		Server server = new Server();
 		SocketConnector connector = new SocketConnector();
+		
 		
 		// Set some timeout options to make debugging easier.
 		connector.setMaxIdleTime(1000 * 60 * 60);
