@@ -1,7 +1,8 @@
-package ar.com.nybble.futbol.view;
+package ar.com.nybble.futbol.view.test;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+
 
 /**
  * @author notarip
