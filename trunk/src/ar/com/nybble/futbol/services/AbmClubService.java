@@ -28,6 +28,14 @@ public interface AbmClubService {
 	 */
 	public Club buscarClub(Long id);
 	
+	
+	/**
+	 * Busca clubs por nombre
+	 * @param nombre
+	 * @return Clubs
+	 */
+	public Iterator<Club> buscarClubsPorNombre(String nombre);
+	
 	/**
 	 * Actualiza un club existente
 	 * @param club
