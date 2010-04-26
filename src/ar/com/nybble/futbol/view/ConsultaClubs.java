@@ -24,9 +24,10 @@ import org.apache.wicket.model.Model;
 
 import ar.com.nybble.futbol.Club;
 import ar.com.nybble.futbol.Jugador;
+import ar.com.nybble.futbol.common.ContextFactory;
 import ar.com.nybble.futbol.services.AbmClubService;
 import ar.com.nybble.futbol.services.AbmJugadorService;
-import ar.com.nybble.futbol.services.common.SpringContext;
+
 
 /**
  * @author Administrador
@@ -88,13 +89,14 @@ public class ConsultaClubs extends WebPage {
 	}
 	
 	private void consultarYModelar(String busquedaTxt, String criterioTxt) {
-		AbmClubService abmClub = (AbmClubService) SpringContext.context.getBean("AbmClubService");
-		AbmJugadorService abmJugador = (AbmJugadorService) SpringContext.context.getBean("AbmJugadorService");
+		AbmClubService abmClub = (AbmClubService) ContextFactory.getInstancia().getBean("AbmClubService");
+		AbmJugadorService abmJugador = (AbmJugadorService) ContextFactory.getInstancia().getBean("AbmJugadorService");
 		
 		
-		if (criterioTxt == POR_CLUB){
-			for (Iterator iterator = abmClub.buscarClubsPorNombre(busquedaTxt);; iterator.hasNext()) {
+		if (criterioTxt.equals(POR_CLUB)){
+			for (Iterator iterator = abmClub.buscarClubsPorNombre(busquedaTxt); iterator.hasNext();) {
 				Club club = (Club) iterator.next();
+				System.out.println(club);
 				for (Iterator iterator2 = abmJugador.buscarJugadoresPorClub(club.getId()); iterator2.hasNext();) {
 					Jugador jugador = (Jugador) iterator2.next();
 					resultado.add(jugador);
