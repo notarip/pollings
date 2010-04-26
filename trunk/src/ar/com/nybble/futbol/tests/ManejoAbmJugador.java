@@ -1,9 +1,11 @@
 package ar.com.nybble.futbol.tests;
 
+import java.util.Date;
 import java.util.Iterator;
 
 import org.springframework.context.ApplicationContext;
 
+import ar.com.nybble.futbol.Club;
 import ar.com.nybble.futbol.Jugador;
 import ar.com.nybble.futbol.common.ContextFactory;
 import ar.com.nybble.futbol.dataSource.util.DataSourceException;
@@ -40,7 +42,7 @@ public class ManejoAbmJugador {
 		
 //		Club club = abmClub.buscarClub(new Long(1));
 //		
-//		Jugador pablo = abmJugador.buscarJugador(new Long(12));
+//		Jugador pablo = abmJugador.buscarJugador(new Long(5));
 //		pablo.agregarClub(club, new Date());
 //		abmJugador.modificarJugador(pablo);
 		
@@ -48,7 +50,7 @@ public class ManejoAbmJugador {
 		for (Iterator<Jugador> iterator = jugadores; iterator.hasNext();) {
 			Jugador object = (Jugador) iterator.next();
 			System.out.println(object);
-//			System.out.println(object.getClubVigente());
+			System.out.println(object.getClubVigente());
 		}
 		
 //		Iterator<Jugador> jugadores =  abmJugador.buscarJugadores();
