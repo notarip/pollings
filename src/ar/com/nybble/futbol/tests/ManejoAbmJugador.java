@@ -6,26 +6,26 @@ import java.util.Iterator;
 import org.springframework.context.ApplicationContext;
 
 import ar.com.nybble.futbol.Club;
+import ar.com.nybble.futbol.Documento;
 import ar.com.nybble.futbol.Jugador;
+import ar.com.nybble.futbol.Nacionalidad;
 import ar.com.nybble.futbol.common.ContextFactory;
 import ar.com.nybble.futbol.dataSource.util.DataSourceException;
 import ar.com.nybble.futbol.services.AbmClubService;
 import ar.com.nybble.futbol.services.AbmJugadorService;
+import ar.com.nybble.futbol.test.TipoDeDocumento;
 
+/**
+ * @author notarip
+ *
+ */
 public class ManejoAbmJugador {
 
 	/**
 	 * @param args
 	 * @throws DataSourceException 
 	 */
-	/**
-	 * @param args
-	 * @throws DataSourceException
-	 */
-	/**
-	 * @param args
-	 * @throws DataSourceException
-	 */
+
 	public static void main(String[] args) throws DataSourceException {
 		
 		ApplicationContext context = ContextFactory.getInstancia();
@@ -34,24 +34,25 @@ public class ManejoAbmJugador {
 
 
 		
+/*		
+		Nacionalidad nac = new Nacionalidad("ARGENTINA");
+		Documento doc = new Documento("14300001", TipoDeDocumento.DNI);
+		Date fecha = new Date();
+		abmJugador.crearJugador("Diego Maradona", fecha, nac, doc);
+	*/
+		Club club = abmClub.buscarClub(new Long(4));
 		
-//		Nacionalidad nac = new Nacionalidad("ARGENTINO");
-//		Documento doc = new Documento("29300000", TipoDeDocumento.DNI);
-//		Date fecha = new Date();
-//		abmJugador.crearJugador("Armando Samarbide", fecha, nac, doc);
+		Jugador pablo = abmJugador.buscarJugador(new Long(8));
+		pablo.agregarClub(club, new Date());
+		abmJugador.modificarJugador(pablo);
+
 		
-//		Club club = abmClub.buscarClub(new Long(1));
-//		
-//		Jugador pablo = abmJugador.buscarJugador(new Long(5));
-//		pablo.agregarClub(club, new Date());
-//		abmJugador.modificarJugador(pablo);
-		
-		Iterator<Jugador> jugadores = abmJugador.buscarJugadoresPorClub(new Long(1));
-		for (Iterator<Jugador> iterator = jugadores; iterator.hasNext();) {
-			Jugador object = (Jugador) iterator.next();
-			System.out.println(object);
-			System.out.println(object.getClubVigente());
-		}
+//		Iterator<Jugador> jugadores = abmJugador.buscarJugadoresPorClub(new Long(1));
+//		for (Iterator<Jugador> iterator = jugadores; iterator.hasNext();) {
+//			Jugador object = (Jugador) iterator.next();
+//			System.out.println(object);
+//			System.out.println(object.getClubVigente());
+//		}
 		
 //		Iterator<Jugador> jugadores =  abmJugador.buscarJugadores();
 //		for (Iterator iterator = jugadores; iterator.hasNext();) {

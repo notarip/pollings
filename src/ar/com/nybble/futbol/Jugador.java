@@ -246,7 +246,7 @@ public class Jugador implements Persona {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (this.documento.equals(((Jugador) obj).getDocumento()))
+		if (this.getDocumento().equals(((Jugador) obj).getDocumento()))
 			return true;
 		return false;
 	}

@@ -5,6 +5,10 @@ import javax.persistence.Id;
 
 import ar.com.nybble.futbol.test.TipoDeDocumento;
 
+/**
+ * @author notarip
+ *
+ */
 @Entity
 public class Documento {
 
@@ -45,8 +49,8 @@ public class Documento {
 	
 	@Override
 	public boolean equals(Object otroDoc) {
-		if (this.numero == ((Documento) otroDoc).getNumero() && 
-		this.tipo == ((Documento) otroDoc).getTipoDeDocumento())
+		if (this.getNumero().equals(((Documento) otroDoc).getNumero())	&& 
+				this.getTipoDeDocumento().equals(((Documento) otroDoc).getTipoDeDocumento()))
 			return true;
 		else
 			return false;

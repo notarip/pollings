@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.wicket.Page;
+import org.apache.wicket.PageParameters;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
@@ -19,7 +21,10 @@ import org.apache.wicket.markup.html.form.RadioChoice;
 import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.IPageLink;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.link.PageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -82,9 +87,6 @@ public class ConsultaClubs extends WebPage {
 		
 		
 
-
-		
-		
 		add(formBusqueda);
 		add(formResultados);
 		
@@ -93,12 +95,26 @@ public class ConsultaClubs extends WebPage {
 			protected void populateItem(ListItem<Jugador> item) {
 				jugaNauta = item.getModelObject();
 				item.add(new Label("item", item.getModelObject().toString()));
-				item.add(new Link ("link") {
+				item.add(new PageLink<DetalleJugador>("link", new IPageLink(){
+
 					@Override
-					public void onClick() {
-						setResponsePage(new DetalleJugador());	
+					public Page getPage() {
+						return new DetalleJugador(jugaNauta);
 					}
-				});
+
+					@Override
+					public Class<? extends Page> getPageIdentity() {
+						return DetalleJugador.class;
+					}
+				
+				}));
+				
+//				item.add(new Link ("link") {
+//					@Override
+//					public void onClick() {
+//						setResponsePage(new DetalleJugador());	
+//					}
+//				});
 			}
 		});
 		
@@ -113,7 +129,6 @@ public class ConsultaClubs extends WebPage {
 		if (criterioTxt.equals(POR_CLUB)){
 			for (Iterator iterator = abmClub.buscarClubsPorNombre(busquedaTxt); iterator.hasNext();) {
 				Club club = (Club) iterator.next();
-				System.out.println(club);
 				for (Iterator iterator2 = abmJugador.buscarJugadoresPorClub(club.getId()); iterator2.hasNext();) {
 					Jugador jugador = (Jugador) iterator2.next();
 					resultado.add(jugador);
