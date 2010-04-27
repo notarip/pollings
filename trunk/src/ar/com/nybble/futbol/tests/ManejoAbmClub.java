@@ -30,12 +30,12 @@ public class ManejoAbmClub {
 		
 		
 		
-//		abmClub.crearClub("BOCA JUNIORS");
+		abmClub.crearClub("RACING");
 		
-		for (Iterator iterator = abmClub.buscarClubsPorNombre("boca"); iterator.hasNext();) {
-			Club club = (Club) iterator.next();
-			System.out.println(club);
-		}
+//		for (Iterator iterator = abmClub.buscarClubsPorNombre("boca"); iterator.hasNext();) {
+//			Club club = (Club) iterator.next();
+//			System.out.println(club);
+//		}
 		 
 				
 		System.out.println("listo !");
