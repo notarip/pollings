@@ -1,11 +1,14 @@
 package ar.com.nybble.futbol.view;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.wicket.ResourceReference;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
@@ -16,6 +19,7 @@ import org.apache.wicket.markup.html.form.RadioChoice;
 import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -30,7 +34,7 @@ import ar.com.nybble.futbol.services.AbmJugadorService;
 
 
 /**
- * @author Administrador
+ * @author notarip
  */
 public class ConsultaClubs extends WebPage {
 	
@@ -48,9 +52,11 @@ public class ConsultaClubs extends WebPage {
 	Label criterio = new Label("criterio", new Model(""));
 	
 	Form formResultados = new Form("formResultados");
-//	RepeatingView repeating = new RepeatingView("itemResultado");
+
 	
 	List resultado = new LinkedList<Jugador>();
+	
+	Jugador jugaNauta;
 	
 	
 	
@@ -61,12 +67,11 @@ public class ConsultaClubs extends WebPage {
 		formBusqueda.add(radioCriterioGroup);
 		formBusqueda.add(resultadoL);
 		formBusqueda.add(criterio);
-		//formResultados.add(repeating);
 		
 		formBusqueda.add(new Button("buscar"){
 			@Override
 			public void onSubmit() {
-				 
+				resultado.clear(); 
 				String busquedaTxt = (String) busqueda.getModelObject();
 				String criterioTxt = radioCriterioGroup.getDefaultModelObjectAsString();
 				consultarYModelar(busquedaTxt,criterioTxt);
@@ -74,14 +79,26 @@ public class ConsultaClubs extends WebPage {
 				criterio.setDefaultModelObject(criterioTxt);
 			}
 		});
+		
+		
+
+
+		
+		
 		add(formBusqueda);
 		add(formResultados);
 		
 		formResultados.add(new ListView<Jugador>("rows",resultado) {
 			@Override
 			protected void populateItem(ListItem<Jugador> item) {
-				Jugador jugador = item.getModelObject();
-				item.add(new Label("item", jugador.toString()));
+				jugaNauta = item.getModelObject();
+				item.add(new Label("item", item.getModelObject().toString()));
+				item.add(new Link ("link") {
+					@Override
+					public void onClick() {
+						setResponsePage(new DetalleJugador());	
+					}
+				});
 			}
 		});
 		
@@ -108,24 +125,7 @@ public class ConsultaClubs extends WebPage {
 				resultado.add(jugador);
 			}
 		}
-			
-		
-
-		
-//		for (Iterator iterator = resultado.iterator(); iterator.hasNext();) {
-//			Jugador jugador = (Jugador) iterator.next();
-//			WebMarkupContainer item = new WebMarkupContainer(repeating.newChildId());
-//			repeating.add(item);
-//			item.add(new Label("item", jugador.toString()));
-//			System.out.println(jugador.toString());
-//		}
-		
-		
+	
 	}
-	
-	
-	
-	
-	
 }
 
