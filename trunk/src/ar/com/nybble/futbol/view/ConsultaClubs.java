@@ -1,34 +1,23 @@
 package ar.com.nybble.futbol.view;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.wicket.Page;
-import org.apache.wicket.PageParameters;
-import org.apache.wicket.ResourceReference;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.form.AjaxButton;
-import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.Radio;
 import org.apache.wicket.markup.html.form.RadioChoice;
-import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.image.Image;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.IPageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.link.PageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.markup.repeater.RepeatingView;
-import org.apache.wicket.markup.repeater.data.ListDataProvider;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import ar.com.nybble.futbol.Club;
@@ -95,26 +84,30 @@ public class ConsultaClubs extends WebPage {
 			protected void populateItem(ListItem<Jugador> item) {
 				jugaNauta = item.getModelObject();
 				item.add(new Label("item", item.getModelObject().toString()));
-				item.add(new PageLink<DetalleJugador>("link", new IPageLink(){
-
+				item.add(new Link ("link",item.getModel()) {
+					
 					@Override
-					public Page getPage() {
-						return new DetalleJugador(jugaNauta);
+					public void onClick() {
+						Jugador jugador = (Jugador) getModelObject();
+						setResponsePage(new DetalleJugador(jugador));
 					}
+				});
 
-					@Override
-					public Class<? extends Page> getPageIdentity() {
-						return DetalleJugador.class;
-					}
 				
-				}));
-				
-//				item.add(new Link ("link") {
+//				item.add(new PageLink<DetalleJugador>("link", new IPageLink(){
+//
 //					@Override
-//					public void onClick() {
-//						setResponsePage(new DetalleJugador());	
+//					public Page getPage() {
+//						return new DetalleJugador(jugaNauta);
 //					}
-//				});
+//
+//					@Override
+//					public Class<? extends Page> getPageIdentity() {
+//						return DetalleJugador.class;
+//					}
+//				
+//				}));
+				
 			}
 		});
 		
