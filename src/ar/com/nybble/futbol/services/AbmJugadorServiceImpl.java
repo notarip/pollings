@@ -114,7 +114,7 @@ final class AbmJugadorServiceImpl implements AbmJugadorService {
 		
 		JugadorRepositorio repo =  (JugadorRepositorio) TransactionalProxyFactory.newInstance(jugadorRepo);
 		Jugador jugador = new Jugador ();
-		jugador.setNombre(nombre);
+		jugador.setNombre(nombre.toUpperCase());
 		jugador.setFechaNacimiento(fechaDeNacimiento);
 		jugador.setNacionalidad(nacionalidad);
 		jugador.setDocumento(documento);

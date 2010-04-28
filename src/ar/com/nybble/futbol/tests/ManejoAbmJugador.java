@@ -2,6 +2,8 @@ package ar.com.nybble.futbol.tests;
 
 import java.util.Date;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 
@@ -10,6 +12,7 @@ import ar.com.nybble.futbol.Documento;
 import ar.com.nybble.futbol.Jugador;
 import ar.com.nybble.futbol.Nacionalidad;
 import ar.com.nybble.futbol.common.ContextFactory;
+import ar.com.nybble.futbol.common.Fecha;
 import ar.com.nybble.futbol.dataSource.util.DataSourceException;
 import ar.com.nybble.futbol.services.AbmClubService;
 import ar.com.nybble.futbol.services.AbmJugadorService;
@@ -33,18 +36,43 @@ public class ManejoAbmJugador {
 		AbmClubService abmClub = (AbmClubService) context.getBean("AbmClubService");
 
 
+		Long dni = new Long(10000009); //IMPORTANTE: DESPUES DE UN CORRIDA ACTUALIZAR !!!!
+		List nombres = new LinkedList<String>();
+//		nombres.add("DIEGO MARADONA");
+//		nombres.add("PABLO NOTARI");
+//		nombres.add("SERGIO SATURNO");
+//		nombres.add("CARLOS MAC ALLISTER");
+//		nombres.add("VICTOR MAGNANO");
+//		nombres.add("FELIPE MAGNELLI");
+//		nombres.add("RAUL MARADONA");
+//		nombres.add("NELSON VIVAS");
+		nombres.add("Jorge da Silva");
+		nombres.add("Hugo De León");
+		nombres.add("Carlos Diogo");
+		nombres.add("Carlos Enrique");
+		nombres.add("Juan Joya");
+		nombres.add("Omar Enrique Mallea");
+		nombres.add("Reinaldo Merlo");
+		nombres.add("Daniel Montenegro");		
+/*
 		
-/*		
-		Nacionalidad nac = new Nacionalidad("ARGENTINA");
-		Documento doc = new Documento("14300001", TipoDeDocumento.DNI);
-		Date fecha = new Date();
-		abmJugador.crearJugador("Diego Maradona", fecha, nac, doc);
-	*/
-		Club club = abmClub.buscarClub(new Long(4));
 		
-		Jugador pablo = abmJugador.buscarJugador(new Long(8));
-		pablo.agregarClub(club, new Date());
-		abmJugador.modificarJugador(pablo);
+		for (Iterator iterator = nombres.iterator(); iterator.hasNext();) {
+			String nombre = (String) iterator.next();
+			dni++;
+			Documento doc = new Documento(dni.toString(), TipoDeDocumento.DNI);
+			abmJugador.crearJugador(nombre, new Fecha(), new Nacionalidad("ARGENTINA"), doc);
+		}
+	
+
+		Club club = abmClub.buscarClub(new Long(1));
+		for (Iterator iterator = nombres.iterator(); iterator.hasNext();) {
+			String nombre = (String) iterator.next();
+			Jugador pablo = (Jugador) abmJugador.buscarJugadoresPorNombre(nombre).next();
+			pablo.agregarClub(club, new Fecha());
+			abmJugador.modificarJugador(pablo);
+		}
+*/		
 
 		
 //		Iterator<Jugador> jugadores = abmJugador.buscarJugadoresPorClub(new Long(1));
