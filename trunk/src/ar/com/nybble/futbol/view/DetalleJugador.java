@@ -3,6 +3,7 @@ package ar.com.nybble.futbol.view;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.Model;
 
 
@@ -22,23 +23,12 @@ public class DetalleJugador extends WebPage {
 	
 	
 	public DetalleJugador() {
-		form.add(nombre);
-		form.add(club);
-		form.add(fecha);
-		form.add(nacionalidad);
-		form.add(estado);
-		add(form);
+		construccionEnComun();
 		nombre.setDefaultModelObject("jugador nulo");
 	}
 	
 	public DetalleJugador(Jugador jugador) {
-		form.add(nombre);
-		form.add(club);
-		form.add(fecha);
-		form.add(nacionalidad);
-		form.add(estado);
-		add(form);
-
+		construccionEnComun();
 		if (jugador == null)
 			nombre.setDefaultModelObject("jugador nulo");
 		else{
@@ -50,7 +40,21 @@ public class DetalleJugador extends WebPage {
 		}	
 	}
 
-
+	private void construccionEnComun(){
+		form.add(new Link("home") {
+			@Override
+			public void onClick() {
+				setResponsePage(new ConsultaClubs());
+			}
+		});
+		form.add(nombre);
+		form.add(club);
+		form.add(fecha);
+		form.add(nacionalidad);
+		form.add(estado);
+		add(form);
+		
+	}
 	
 	
 
