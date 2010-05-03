@@ -46,7 +46,7 @@ public class ManejoAbmJugador {
 //		nombres.add("FELIPE MAGNELLI");
 //		nombres.add("RAUL MARADONA");
 //		nombres.add("NELSON VIVAS");
-		nombres.add("Jorge da Silva");
+	/*	nombres.add("Jorge da Silva");
 		nombres.add("Hugo De León");
 		nombres.add("Carlos Diogo");
 		nombres.add("Carlos Enrique");
