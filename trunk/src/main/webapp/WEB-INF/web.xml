@@ -17,18 +17,22 @@
 	-->
 
 	<filter>
-		<filter-name>wicket.myproject</filter-name>
+		<filter-name>Fulbo2</filter-name>
  		<filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
 		<init-param>
 			<param-name>applicationClassName</param-name>
-			<param-value>ar.com.nybble.futbol.view.test.WicketApplication</param-value>
+			<param-value>ar.com.nybble.futbol.view.WicketApplication</param-value>
  		</init-param>
  	</filter>
 
- <filter-mapping>
+ <!--  <filter-mapping>
   <filter-name>wicket.myproject</filter-name>
 	<url-pattern>/*</url-pattern>
- </filter-mapping>
+ </filter-mapping> -->
 
+<filter-mapping>
+  <filter-name>Fulbo2</filter-name>
+	<url-pattern>/*</url-pattern>
+ </filter-mapping>
 
 </web-app>
