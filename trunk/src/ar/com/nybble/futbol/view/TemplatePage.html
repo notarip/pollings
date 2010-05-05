@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title wicket:id="title">title comes here</title>
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/template/style.css"/>
+</head>
+<body>
+    <span />
+
+    <div id="header" class="borderedBlock">
+     <table width="100%">
+      <tr>
+       <td id="ad">
+         <span >Comentario del Panel</span>
+       </td>
+       <td>
+         <input type="button" value="change ad" />
+       </td>
+      </tr>
+     </table>
+    </div>
+
+    <table width="100%">
+
+      <tr>
+        <td id="left" class="borderedBlock">
+         <ul>
+          <li><a href="#" >Page 1</a></li>
+          <li><a href="#" >Page 2</a></li>
+         </ul>
+        </td>
+        <td id="content" class="borderedBlock">
+            <wicket:child />
+        </td>
+      </tr>
+
+    </table>
+
+    <div id="footer" class="borderedBlock">
+     footer
+    </div>
+
+</body>
+</html>
