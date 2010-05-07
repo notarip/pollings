@@ -12,7 +12,7 @@ import ar.com.nybble.futbol.Jugador;
 /**
  * @author notarip
  */
-public class DetalleJugador extends WebPage {
+public class DetalleJugador extends TemplatePage {
 	Form form = new Form("form");
 	Label nombre = new Label("nombre", new Model(""));
 	Label club = new Label("club", new Model(""));
