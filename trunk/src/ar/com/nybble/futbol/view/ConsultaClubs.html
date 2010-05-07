@@ -3,10 +3,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <body>
-<form action="">
-	<img  src="WebContent/img/logo.png" alt="pelota de fulbo" style="height: 54px; width: 58px"/>
-	<h3>Sistema integral de Analisis y Estadisticas de Fulbol</h3>
-</form>
+
+  <wicket:extend>
+
 
 <form wicket:id="formBusqueda" action="" >
 	<input wicket:id="busqueda"  type="text" style="width: 352px"></input>
@@ -22,13 +21,13 @@
 	</ol>
 </form>
 
-<form wicket:id="formResultados" action="">
+ <form wicket:id="formResultados" action="">  
 	<tr wicket:id="rows" class="even">
 		<span wicket:id="item">[resultados]</span><a href="#" wicket:id="link" > Seleccionar</a><br>
 	</tr>
-</form>
+ </form> 
 
-  
+    </wicket:extend>
 </body>
 </html>
 

@@ -30,7 +30,7 @@ import ar.com.nybble.futbol.services.AbmJugadorService;
 /**
  * @author notarip
  */
-public class ConsultaClubs extends WebPage {
+public class ConsultaClubs extends TemplatePage {
 	
 	
 	private static final String POR_CLUB = new String("Por Club");
@@ -78,6 +78,7 @@ public class ConsultaClubs extends WebPage {
 
 		add(formBusqueda);
 		add(formResultados);
+		
 		
 		formResultados.add(new ListView<Jugador>("rows",resultado) {
 			@Override
