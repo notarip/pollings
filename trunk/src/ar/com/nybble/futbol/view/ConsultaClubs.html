@@ -15,19 +15,29 @@
 		<input type="radio"></input>
 	</span>
 	<br>
-	<ol>
+<!-- 	<ul>
 	  <li> <span wicket:id="resultado">[1er item]</span></li>
 	  <li> <span wicket:id="criterio">[2do item]</span></li>
-	</ol>
+	</ul>  -->
 </form>
 
- <form wicket:id="formResultados" action="">  
-	<tr wicket:id="rows" class="even">
-		<span wicket:id="item">[resultados]</span><a href="#" wicket:id="link" > Seleccionar</a><br>
-	</tr>
+ <form wicket:id="formResultados" action="">
+ 	<table> 
+	 	<tr>
+	 		<th>Opción</th>
+	 		<th>Jugador</th>
+	 	</tr> 
+	 	<tr wicket:id="rows" class="even">
+	 		<td><a href="#" wicket:id="link" >Detalle</a></td>
+	 		<td><span wicket:id="item">[resultados]</span></td>
+	 	</tr>
+	</table>
  </form> 
 
-    </wicket:extend>
+
+</wicket:extend>
+
+
 </body>
 </html>
 
