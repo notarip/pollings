@@ -29,6 +29,7 @@ import ar.com.nybble.futbol.services.AbmJugadorService;
 
 /**
  * @author notarip
+ * Las unicas palabras que merecen existir son aquellas que son mejores que el silencio.
  */
 public class ConsultaClubs extends TemplatePage {
 	
@@ -59,22 +60,23 @@ public class ConsultaClubs extends TemplatePage {
 		
 		formBusqueda.add(busqueda);
 		formBusqueda.add(radioCriterioGroup);
-		formBusqueda.add(resultadoL);
-		formBusqueda.add(criterio);
+//		formBusqueda.add(resultadoL);
+//		formBusqueda.add(criterio);
 		
 		formBusqueda.add(new Button("buscar"){
 			@Override
 			public void onSubmit() {
-				resultado.clear(); 
+				resultado.clear();
+				formResultados.setVisible(true);
 				String busquedaTxt = (String) busqueda.getModelObject();
 				String criterioTxt = radioCriterioGroup.getDefaultModelObjectAsString();
 				consultarYModelar(busquedaTxt,criterioTxt);
-				resultadoL.setDefaultModelObject(busquedaTxt);
-				criterio.setDefaultModelObject(criterioTxt);
+//				resultadoL.setDefaultModelObject(busquedaTxt);
+//				criterio.setDefaultModelObject(criterioTxt);
 			}
 		});
 		
-		
+		formResultados.setVisible(false);
 
 		add(formBusqueda);
 		add(formResultados);
@@ -93,22 +95,6 @@ public class ConsultaClubs extends TemplatePage {
 						setResponsePage(new DetalleJugador(jugador));
 					}
 				});
-
-				
-//				item.add(new PageLink<DetalleJugador>("link", new IPageLink(){
-//
-//					@Override
-//					public Page getPage() {
-//						return new DetalleJugador(jugaNauta);
-//					}
-//
-//					@Override
-//					public Class<? extends Page> getPageIdentity() {
-//						return DetalleJugador.class;
-//					}
-//				
-//				}));
-				
 			}
 		});
 		

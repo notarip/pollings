@@ -1,3 +1,4 @@
+package ar.com.nybble.futbol.view;
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -14,15 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ar.com.nybble.futbol.view;
 
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
@@ -30,44 +28,22 @@ import javax.swing.tree.TreeModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.tree.AbstractTree;
-import org.apache.wicket.markup.html.tree.BaseTree;
-import org.apache.wicket.markup.html.tree.LinkTree;
-import org.apache.wicket.markup.html.tree.BaseTree.ILinkCallback;
-import org.apache.wicket.model.PropertyModel;
 
-import ar.com.nybble.futbol.Jugador;
 
 /**
- * Base page that serves as a template for pages that inherit from it. Doesn't have to be abstract,
- * but was made abstract here to stress the fact that this page is not meant for direct use.
+ * This is a base class for all pages with tree example.
  * 
- * @author Eelco Hillenius
+ * @author Matej Knopp
  */
-public abstract class TemplatePage extends WebPage
+public abstract class BaseTreePage extends WebPage
 {
-    /** title of the current page. */
-    private String pageTitle = "(no title)";
-    private BaseTree tree;
 
-    protected AbstractTree getTree()
-    {
-        return tree;
-    }
-    
     /**
-     * Constructor
+     * Default constructor
      */
-    public TemplatePage()
+    public BaseTreePage()
     {
-        add(new Label("title", new PropertyModel<String>(this, "pageTitle")));
-        tree = new LinkTree("tree", createTreeModel());
-        add(tree);
-        tree.getTreeState().collapseAll();
-        
-               
     	
         add(new AjaxLink("expandAll")
         {
@@ -88,30 +64,17 @@ public abstract class TemplatePage extends WebPage
                 getTree().updateTree(target);
             }
         });
-        
+
     }
 
     /**
-     * Gets the title.
+     * Returns the tree on this pages. This is used to collapse, expand the tree and to switch the
+     * rootless mode.
      * 
-     * @return title
+     * @return Tree instance on this page
      */
-    public final String getPageTitle()
-    {
-        return pageTitle;
-    }
+    protected abstract AbstractTree getTree();
 
-    /**
-     * Sets the title.
-     * 
-     * @param title
-     *            title
-     */
-    public final void setPageTitle(String title)
-    {
-        pageTitle = title;
-    }
-    
     /**
      * Creates the model that feeds the tree.
      * 
@@ -119,25 +82,51 @@ public abstract class TemplatePage extends WebPage
      */
     protected TreeModel createTreeModel()
     {
-        List<Object> l1 = new MenuList("Menu");
-        
-        l1.add("popo");
+        List<Object> l1 = new ArrayList<Object>();
+        l1.add("test 1.1");
+        l1.add("test 1.2");
+        l1.add("test 1.3");
+        List<Object> l2 = new ArrayList<Object>();
+        l2.add("test 2.1");
+        l2.add("test 2.2");
+        l2.add("test 2.3");
+        List<Object> l3 = new ArrayList<Object>();
+        l3.add("test 3.1");
+        l3.add("test 3.2");
+        l3.add("test 3.3");
 
-      
-       // l1.add("Auditoria");
-       // List<Object> l2 = new MenuList("Consultas");
-       // l2.add("consulta 1");
-       // l2.add("consulta 2");
-       // l2.add("consulta 3");
-        
-       // l1.add(l2);
+        l2.add(l3);
+
+        l2.add("test 2.4");
+        l2.add("test 2.5");
+        l2.add("test 2.6");
+
+        l3 = new ArrayList<Object>();
+        l3.add("test 3.1");
+        l3.add("test 3.2");
+        l3.add("test 3.3");
+        l2.add(l3);
+
+        l1.add(l2);
+
+        l2 = new ArrayList<Object>();
+        l2.add("test 2.1");
+        l2.add("test 2.2");
+        l2.add("test 2.3");
+
+        l1.add(l2);
+
+        l1.add("test 1.3");
+        l1.add("test 1.4");
+        l1.add("test 1.5");
+
         return convertToTreeModel(l1);
     }
 
     private TreeModel convertToTreeModel(List<Object> list)
     {
         TreeModel model = null;
-        DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(new ModelBean(((MenuList) list).getNombre()));
+        DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(new ModelBean("ROOT"));
         add(rootNode, list);
         model = new DefaultTreeModel(rootNode);
         return model;
@@ -150,16 +139,18 @@ public abstract class TemplatePage extends WebPage
             Object o = i.next();
             if (o instanceof List)
             {
-                DefaultMutableTreeNode child = new DefaultMutableTreeNode(new ModelBean(((MenuList)o).getNombre()));
+                DefaultMutableTreeNode child = new DefaultMutableTreeNode(new ModelBean(
+                    "subtree..."));
                 parent.add(child);
                 add(child, (List<Object>)o);
             }
             else
             {
-                DefaultMutableTreeNode child = new DefaultMutableTreeNode(o);
-                parent.add(child); 
-                
+                DefaultMutableTreeNode child = new DefaultMutableTreeNode(new ModelBean(
+                    o.toString()));
+                parent.add(child);
             }
         }
     }
+
 }

@@ -4,7 +4,6 @@
     <title wicket:id="title">title comes here</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <!-- <link rel="stylesheet" type="text/css" href="http://www.wicketstuff.org/wicket14/template/style.css"/>  -->
 </head>
 <body>
     <span />
@@ -26,10 +25,14 @@
 
       <tr>
         <td id="left" class="borderedBlock">
-         <ul>
-          <li><a href="#" >Page 1</a></li>
-          <li><a href="#" >Page 2</a></li>
-         </ul>
+        <a wicket:id="expandAll">Expand</a>&nbsp;&nbsp;
+    	<a wicket:id="collapseAll">Collapse</a>&nbsp;&nbsp;
+        <!-- tree -->
+		    <table ><tr><td>
+		        <div wicket:id="tree" class="my-tree">  
+		        </div>  
+		    </td></tr></table>
+		<!-- tree -->
         </td>
         <td id="content" class="borderedBlock">
             <wicket:child />
@@ -39,7 +42,7 @@
     </table>
 
     <div id="footer" class="borderedBlock">
-     footer
+		footer
     </div>
 
 </body>
