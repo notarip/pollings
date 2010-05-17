@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<body>
+
+  <wicket:extend>
+
+
+<form wicket:id="formBusqueda" action="" >
+	<input wicket:id="busqueda"  type="text" style="width: 352px"></input>
+	<input wicket:id="buscar" type="submit" value="Buscar" ></input>
+	<br>
+</form>
+
+ <form wicket:id="formResultados" action="">
+ 	<table> 
+	 	<tr>
+	 		<th>Opción</th>
+	 		<th>Club</th>
+	 	</tr> 
+	 	<tr wicket:id="rows" class="even">
+	 		<td><a href="#" wicket:id="link" >Detalle</a></td>
+	 		<td><span wicket:id="item">[resultados]</span></td>
+	 	</tr>
+	</table>
+ </form> 
+
+
+</wicket:extend>
+
+
+</body>
+</html>
+
+
+

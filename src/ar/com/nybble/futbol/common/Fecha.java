@@ -24,6 +24,7 @@ public class Fecha extends Date{
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	@Override
 	public String toString() {
 		DateFormat formateador = DateFormat.getInstance();

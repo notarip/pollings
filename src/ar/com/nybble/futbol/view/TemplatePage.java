@@ -76,6 +76,8 @@ public abstract class TemplatePage extends WebPage
         		ModelBean clase = (ModelBean) ((DefaultMutableTreeNode)node).getUserObject();
         		if (clase.isLinkiable())
         			setResponsePage(((Class)clase.getContent()));
+        		else
+        			tree.getTreeState().expandNode(node);
         	}
         };
         
@@ -145,7 +147,7 @@ public abstract class TemplatePage extends WebPage
         
         List<Object> l2 = new MenuList("Consultas");
         l2.add(new ModelBean("Jugadores", ConsultaJugadoresPage.class));
-        l2.add(new ModelBean("Clubs", ConsultaJugadoresPage.class));
+        l2.add(new ModelBean("Clubs", ConsultaClubsPage.class));
         
         
         

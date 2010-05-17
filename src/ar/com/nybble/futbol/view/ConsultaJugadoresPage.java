@@ -60,9 +60,7 @@ public class ConsultaJugadoresPage extends TemplatePage {
 		
 		formBusqueda.add(busqueda);
 		formBusqueda.add(radioCriterioGroup);
-//		formBusqueda.add(resultadoL);
-//		formBusqueda.add(criterio);
-		
+	
 		formBusqueda.add(new Button("buscar"){
 			@Override
 			public void onSubmit() {
@@ -71,8 +69,6 @@ public class ConsultaJugadoresPage extends TemplatePage {
 				String busquedaTxt = (String) busqueda.getModelObject();
 				String criterioTxt = radioCriterioGroup.getDefaultModelObjectAsString();
 				consultarYModelar(busquedaTxt,criterioTxt);
-//				resultadoL.setDefaultModelObject(busquedaTxt);
-//				criterio.setDefaultModelObject(criterioTxt);
 			}
 		});
 		

@@ -4,7 +4,7 @@
 package ar.com.nybble.futbol;
 
 /**
- * @author Administrador
+ * @author notarip
  *
  */
 public enum TipoDeTorneo {LIGA_SIMPLE, LIGA_DOBLE
