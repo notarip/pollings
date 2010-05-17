@@ -29,9 +29,9 @@ import ar.com.nybble.futbol.services.AbmJugadorService;
 
 /**
  * @author notarip
- * Las unicas palabras que merecen existir son aquellas que son mejores que el silencio.
+ * Las unicas palabras que merecen existir son aquellas mejores que el silencio.
  */
-public class ConsultaClubs extends TemplatePage {
+public class ConsultaJugadoresPage extends TemplatePage {
 	
 	
 	private static final String POR_CLUB = new String("Por Club");
@@ -56,7 +56,7 @@ public class ConsultaClubs extends TemplatePage {
 	
 	
 	
-	public ConsultaClubs() {
+	public ConsultaJugadoresPage() {
 		
 		formBusqueda.add(busqueda);
 		formBusqueda.add(radioCriterioGroup);
@@ -92,7 +92,7 @@ public class ConsultaClubs extends TemplatePage {
 					@Override
 					public void onClick() {
 						Jugador jugador = (Jugador) getModelObject();
-						setResponsePage(new DetalleJugador(jugador));
+						setResponsePage(new DetalleJugadorPage(jugador));
 					}
 				});
 			}

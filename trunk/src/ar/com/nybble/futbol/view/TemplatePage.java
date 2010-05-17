@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.naming.LinkLoopException;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -31,6 +32,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.tree.AbstractTree;
 import org.apache.wicket.markup.html.tree.BaseTree;
@@ -38,7 +40,10 @@ import org.apache.wicket.markup.html.tree.LinkTree;
 import org.apache.wicket.markup.html.tree.BaseTree.ILinkCallback;
 import org.apache.wicket.model.PropertyModel;
 
+import ar.com.nybble.futbol.CambioDeClub;
 import ar.com.nybble.futbol.Jugador;
+import ar.com.nybble.futbol.view.util.MenuList;
+import ar.com.nybble.futbol.view.util.ModelBean;
 
 /**
  * Base page that serves as a template for pages that inherit from it. Doesn't have to be abstract,
@@ -49,7 +54,7 @@ import ar.com.nybble.futbol.Jugador;
 public abstract class TemplatePage extends WebPage
 {
     /** title of the current page. */
-    private String pageTitle = "(no title)";
+    private String pageTitle = "F.U.L.B.O.";
     private BaseTree tree;
 
     protected AbstractTree getTree()
@@ -63,7 +68,19 @@ public abstract class TemplatePage extends WebPage
     public TemplatePage()
     {
         add(new Label("title", new PropertyModel<String>(this, "pageTitle")));
-        tree = new LinkTree("tree", createTreeModel());
+        tree = new LinkTree("tree", createTreeModel()){
+        	@Override
+        	protected void onNodeLinkClicked(Object node, BaseTree tree,
+        			AjaxRequestTarget target) {
+        		super.onNodeLinkClicked(node, tree, target);
+        		ModelBean clase = (ModelBean) ((DefaultMutableTreeNode)node).getUserObject();
+        		if (clase.isLinkiable())
+        			setResponsePage(((Class)clase.getContent()));
+        	}
+        };
+        
+        
+        
         add(tree);
         tree.getTreeState().collapseAll();
         
@@ -113,24 +130,26 @@ public abstract class TemplatePage extends WebPage
     }
     
     /**
-     * Creates the model that feeds the tree.
+     * Crea el arbol del menu, para agregar una raiz
+     * hay que crear un <code>MenuList</code> con el nombre con
+     * el que se quiere que apararezca en el arbol
+     * Para agregar enlaces hay que utilizar <code>ModelBean</code>
+     * con el nombre del enlace y la clase que se quiere enlazar.
      * 
-     * @return New instance of tree model.
      */
     protected TreeModel createTreeModel()
     {
         List<Object> l1 = new MenuList("Menu");
+        l1.add(new ModelBean("Auditoria"));
+        l1.add(new ModelBean("Sistemas"));
         
-        l1.add("popo");
-
-      
-       // l1.add("Auditoria");
-       // List<Object> l2 = new MenuList("Consultas");
-       // l2.add("consulta 1");
-       // l2.add("consulta 2");
-       // l2.add("consulta 3");
+        List<Object> l2 = new MenuList("Consultas");
+        l2.add(new ModelBean("Jugadores", ConsultaJugadoresPage.class));
+        l2.add(new ModelBean("Clubs", ConsultaJugadoresPage.class));
         
-       // l1.add(l2);
+        
+        
+        l1.add(l2);
         return convertToTreeModel(l1);
     }
 
@@ -162,4 +181,7 @@ public abstract class TemplatePage extends WebPage
             }
         }
     }
+    
+    
+          
 }
