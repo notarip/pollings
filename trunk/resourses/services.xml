@@ -9,6 +9,8 @@
 	<bean id="jugadorRepositorio" class = "ar.com.nybble.futbol.dataSource.repositorio.JugadorRepositorioImpl"></bean>
 	<bean id ="documentoRepositorio" class = "ar.com.nybble.futbol.dataSource.repositorio.DocumentoRepositorioImpl"></bean>
 	<bean id ="nacionalidadRepositorio" class = "ar.com.nybble.futbol.dataSource.repositorio.NacionalidadRepositorioImpl" ></bean>
+	<bean id ="torneoRepositorio" class = "ar.com.nybble.futbol.dataSource.repositorio.TorneoRepositorioImpl" ></bean>
+	<bean id ="partidoRepositorio" class = "ar.com.nybble.futbol.dataSource.repositorio.PartidoRepositorioImpl" ></bean>
 		
 	<bean id="AbmClubService"
 	class="ar.com.nybble.futbol.services.AbmClubServiceImpl">
@@ -25,4 +27,6 @@
 	</bean>
 		
 		
+
+
 </beans>
