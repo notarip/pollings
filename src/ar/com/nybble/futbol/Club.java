@@ -13,6 +13,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import ar.com.nybble.futbol.common.exceptions.JugadorNoEsDelClubException;
@@ -28,6 +31,7 @@ public class Club {
 	private String nombre;
 	private long Id;
 	private Collection<Jugador> jugadores = new ArrayList<Jugador>();
+	private Collection<Torneo> torneos = new ArrayList<Torneo>();
 
 	
 	public Club() {
@@ -48,7 +52,17 @@ public class Club {
 		return Id;
 	}
 	
+	@ManyToMany (cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+	//se ignora el mappedBy por que lo resuelve el otro lado de la relacion
+	public Collection<Torneo> getTorneos() {
+		return torneos;
+	}
 	
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "club", fetch = FetchType.LAZY)
+	public Collection<Jugador> getJugadores() {
+		return jugadores;
+	}
+
 	@Override
 	public String toString() {
 		return this.getNombre();
@@ -75,10 +89,6 @@ public class Club {
 		jugadores.add(jugador);
 	}
  
-	@OneToMany (cascade = CascadeType.ALL, mappedBy = "club", fetch = FetchType.LAZY)
-	public Collection<Jugador> getJugadores() {
-		return jugadores;
-	}
 
 	public boolean perteneceAlClub(Jugador jugain) {
 		for (Iterator iterator = jugadores.iterator(); iterator.hasNext();) {
@@ -100,5 +110,13 @@ public class Club {
 		this.jugadores = jugadores;
 	}
 	
+	public void agregarTorneo(Torneo torneo){
+		this.torneos.add(torneo);
+	}
 	
+	
+	
+	private void setTorneos(Collection<Torneo> torneos) {
+		this.torneos = torneos;
+	}
 }
