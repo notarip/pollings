@@ -19,7 +19,7 @@
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
 		<!-- Drop and re-create the database schema on startup -->
-		  <!-- <property name="hbm2ddl.auto">update</property> -->     
+		   <property name="hbm2ddl.auto">update</property>      
 
 	
 		<mapping class="ar.com.nybble.futbol.Club" />
@@ -29,6 +29,9 @@
 		<mapping class="ar.com.nybble.futbol.TipoDeLesion" />
 		<mapping class="ar.com.nybble.futbol.CambioDeEstado" />
 		<mapping class="ar.com.nybble.futbol.CambioDeClub" />
+		<mapping class="ar.com.nybble.futbol.Torneo" />
+		<mapping class="ar.com.nybble.futbol.Partido" />
+		<mapping class="ar.com.nybble.futbol.TipoDeTorneo" />
 		
 		
 		
