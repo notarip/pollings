@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Random;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +18,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,7 +28,7 @@ import javax.persistence.Transient;
 
 import org.springframework.test.annotation.Timed;
 
-import ar.com.nybble.futbol.common.LicenciadoEnMatematicas;
+import ar.com.nybble.futbol.common.Fecha;
 import ar.com.nybble.futbol.common.exceptions.CantidadDeClubsErroneaException;
 import ar.com.nybble.futbol.common.exceptions.ClubNoPerteneceAlTorneoException;
 import ar.com.nybble.futbol.common.exceptions.ClubPertenecienteAlTorneoException;
@@ -106,7 +109,7 @@ public class Torneo {
 		return partidos;
 	}
 	
-	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany (cascade = CascadeType.ALL, mappedBy = "torneos", fetch = FetchType.LAZY)
 	public Collection<Club> getClubs() {
 		return clubs;
 	}
@@ -146,6 +149,8 @@ public class Torneo {
 		if (perteneceAlTorneo(club))
 			throw new ClubPertenecienteAlTorneoException();
 		clubs.add(club);
+		club.agregarTorneo(this);
+		
 	}
 
 	private boolean cupoCompleto() {
@@ -233,4 +238,86 @@ public class Torneo {
 			throw new PartidosYaGeneradosException();
 		this.tipoDeTorneo = tipoDeTorneo;
 	}
+	
+	
+/******************************************************************/
+/*********************CLASE INTERNA*******************************/
+	
+	private static class LicenciadoEnMatematicas {
+		
+		
+		
+		private Club[] bolillero = null;
+		private Collection<Partido> partidos = new ArrayList<Partido>();
+		private Collection<Club> clubs = null;
+		private int cantidad;
+		private Torneo torneo;
+		private LicenciadoEnMatematicas instancia;
+	
+
+
+		public LicenciadoEnMatematicas() {
+			instancia = this;
+		}
+		
+		public LicenciadoEnMatematicas getInstancia() {
+			return instancia;
+		}
+		
+		public Collection<Partido> combinarPartidos(Collection<Club> clubs, TipoDeTorneo tipoTorneo, Torneo torneo){
+			cantidad = clubs.size();
+			this.clubs = clubs;
+			this.torneo = torneo;
+			crearBolillero(cantidad);
+			for (int i = 0; i < bolillero.length-1; i++) {
+				for (int j = 0; j < bolillero.length/2; j++) {
+					partidos.add(new Partido(bolillero[j],bolillero[cantidad -j-1],new Fecha(2010, 1, i+1), torneo));
+				}
+				
+				for (int j = 0; j < bolillero.length-2; j++) {
+					Club aux = bolillero[j];
+					bolillero[j] = bolillero[j+1];
+					bolillero[j+1] = aux;
+				}
+			}
+			if (tipoTorneo == TipoDeTorneo.LIGA_DOBLE){
+				Collection<Partido> partidos2 = new ArrayList<Partido>();
+				for (Iterator iterator = partidos.iterator(); iterator.hasNext();) {
+					Partido partido = (Partido) iterator.next();
+					partidos2.add(new Partido(partido.getVisita(),partido.getLocal(), new Fecha (2010,1,cantidad-1), torneo));
+				}
+				for (Iterator iterator = partidos2.iterator(); iterator.hasNext();) {
+					Partido partido = (Partido) iterator.next();
+					partidos.add(partido);
+				}
+			}
+				
+			
+			return partidos;
+			
+		}
+
+		
+		private void crearBolillero(int cantidad) {
+			bolillero = new Club[cantidad];
+			Random random = new Random();
+			for (Iterator iterator = clubs.iterator(); iterator.hasNext();) {
+				Club club = (Club) iterator.next();
+				int posicion = random.nextInt(cantidad-1);
+				if (bolillero[posicion] != null){
+					posicion = 0; 
+					while (bolillero[posicion] != null){
+						posicion++;
+					}
+				}
+				bolillero[posicion] = club;
+			}
+		}
+	}
+/*********************FIN CLASE INTERNA*******************************/	
+/******************************************************************/
+	
+	
+	
+	
 }
