@@ -60,7 +60,7 @@ public class AltaDeUnTorneo {
 	 */
 	@Test
 	public void darDeAltaUnTorneoLaCantidadDeClubs() {
-		assertEquals(cantidadClubs,apertura2010.getCantitdadClubs());		
+		assertEquals(cantidadClubs,apertura2010.getCantidadClubs());		
 
 	}
 	

@@ -41,12 +41,7 @@ public class DetalleJugadorPage extends TemplatePage {
 	}
 
 	private void construccionEnComun(){
-		form.add(new Link("home") {
-			@Override
-			public void onClick() {
-				setResponsePage(new ConsultaJugadoresPage());
-			}
-		});
+
 		form.add(nombre);
 		form.add(club);
 		form.add(fecha);
