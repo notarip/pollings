@@ -12,7 +12,7 @@ import ar.com.nybble.futbol.Jugador;
 /**
  * @author notarip
  */
-public class DetalleJugador extends TemplatePage {
+public class DetalleJugadorPage extends TemplatePage {
 	Form form = new Form("form");
 	Label nombre = new Label("nombre", new Model(""));
 	Label club = new Label("club", new Model(""));
@@ -22,12 +22,12 @@ public class DetalleJugador extends TemplatePage {
 	
 	
 	
-	public DetalleJugador() {
+	public DetalleJugadorPage() {
 		construccionEnComun();
 		nombre.setDefaultModelObject("jugador nulo");
 	}
 	
-	public DetalleJugador(Jugador jugador) {
+	public DetalleJugadorPage(Jugador jugador) {
 		construccionEnComun();
 		if (jugador == null)
 			nombre.setDefaultModelObject("jugador nulo");
@@ -44,7 +44,7 @@ public class DetalleJugador extends TemplatePage {
 		form.add(new Link("home") {
 			@Override
 			public void onClick() {
-				setResponsePage(new ConsultaClubs());
+				setResponsePage(new ConsultaJugadoresPage());
 			}
 		});
 		form.add(nombre);

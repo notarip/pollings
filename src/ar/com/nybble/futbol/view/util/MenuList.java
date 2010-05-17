@@ -1,4 +1,4 @@
-package ar.com.nybble.futbol.view;
+package ar.com.nybble.futbol.view.util;
 
 import java.util.ArrayList;
 
