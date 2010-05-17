@@ -36,25 +36,25 @@ public class ManejoAbmJugador {
 		AbmClubService abmClub = (AbmClubService) context.getBean("AbmClubService");
 
 
-		Long dni = new Long(10000009); //IMPORTANTE: DESPUES DE UN CORRIDA ACTUALIZAR !!!!
+		Long dni = new Long(10000018); //IMPORTANTE: DESPUES DE UN CORRIDA ACTUALIZAR !!!!
 		List nombres = new LinkedList<String>();
-//		nombres.add("DIEGO MARADONA");
-//		nombres.add("PABLO NOTARI");
-//		nombres.add("SERGIO SATURNO");
-//		nombres.add("CARLOS MAC ALLISTER");
-//		nombres.add("VICTOR MAGNANO");
-//		nombres.add("FELIPE MAGNELLI");
-//		nombres.add("RAUL MARADONA");
-//		nombres.add("NELSON VIVAS");
-	/*	nombres.add("Jorge da Silva");
-		nombres.add("Hugo De León");
-		nombres.add("Carlos Diogo");
-		nombres.add("Carlos Enrique");
-		nombres.add("Juan Joya");
-		nombres.add("Omar Enrique Mallea");
-		nombres.add("Reinaldo Merlo");
-		nombres.add("Daniel Montenegro");		
-/*
+		nombres.add("DIEGO MARADONA");
+		nombres.add("PABLO NOTARI");
+		nombres.add("SERGIO SATURNO");
+		nombres.add("CARLOS MAC ALLISTER");
+		nombres.add("VICTOR MAGNANO");
+		nombres.add("FELIPE MAGNELLI");
+		nombres.add("RAUL MARADONA");
+		nombres.add("NELSON VIVAS");
+//		nombres.add("Jorge da Silva");
+//		nombres.add("Hugo De León");
+//		nombres.add("Carlos Diogo");
+//		nombres.add("Carlos Enrique");
+//		nombres.add("Juan Joya");
+//		nombres.add("Omar Enrique Mallea");
+//		nombres.add("Reinaldo Merlo");
+//		nombres.add("Daniel Montenegro");		
+
 		
 		
 		for (Iterator iterator = nombres.iterator(); iterator.hasNext();) {
@@ -72,7 +72,7 @@ public class ManejoAbmJugador {
 			pablo.agregarClub(club, new Fecha());
 			abmJugador.modificarJugador(pablo);
 		}
-*/		
+		
 
 		
 //		Iterator<Jugador> jugadores = abmJugador.buscarJugadoresPorClub(new Long(1));
