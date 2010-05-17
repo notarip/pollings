@@ -11,6 +11,7 @@ import java.util.Random;
 import ar.com.nybble.futbol.Club;
 import ar.com.nybble.futbol.Partido;
 import ar.com.nybble.futbol.TipoDeTorneo;
+import ar.com.nybble.futbol.Torneo;
 
 /**
  * @author notarip
@@ -24,6 +25,7 @@ public class LicenciadoEnMatematicas {
 	private Collection<Partido> partidos = new ArrayList<Partido>();
 	private Collection<Club> clubs = null;
 	private int cantidad;
+	private Torneo torneo;
 	
 	
 	public LicenciadoEnMatematicas() {
@@ -31,13 +33,14 @@ public class LicenciadoEnMatematicas {
 	}
 	
 	
-	public Collection<Partido> combinarPartidos(Collection<Club> clubs, TipoDeTorneo tipoTorneo){
+	public Collection<Partido> combinarPartidos(Collection<Club> clubs, TipoDeTorneo tipoTorneo, Torneo torneo){
 		cantidad = clubs.size();
 		this.clubs = clubs;
+		this.torneo = torneo;
 		crearBolillero(cantidad);
 		for (int i = 0; i < bolillero.length-1; i++) {
 			for (int j = 0; j < bolillero.length/2; j++) {
-				partidos.add(new Partido(bolillero[j],bolillero[cantidad -j-1],new Fecha(2010, 1, i+1)));
+				partidos.add(new Partido(bolillero[j],bolillero[cantidad -j-1],new Fecha(2010, 1, i+1), torneo));
 			}
 			
 			for (int j = 0; j < bolillero.length-2; j++) {
@@ -50,7 +53,7 @@ public class LicenciadoEnMatematicas {
 			Collection<Partido> partidos2 = new ArrayList<Partido>();
 			for (Iterator iterator = partidos.iterator(); iterator.hasNext();) {
 				Partido partido = (Partido) iterator.next();
-				partidos2.add(new Partido(partido.getVisita(),partido.getLocal(), new Fecha (2010,1,cantidad-1)));
+				partidos2.add(new Partido(partido.getVisita(),partido.getLocal(), new Fecha (2010,1,cantidad-1), torneo));
 			}
 			for (Iterator iterator = partidos2.iterator(); iterator.hasNext();) {
 				Partido partido = (Partido) iterator.next();

@@ -24,12 +24,12 @@ public class PruebaMatematico {
 		clubs.add(new Club("club6"));
 		
 		
-		ArrayList<Partido> pares = (ArrayList<Partido>) paenza.combinarPartidos(clubs,TipoDeTorneo.LIGA_DOBLE);
+/*		ArrayList<Partido> pares = (ArrayList<Partido>) paenza.combinarPartidos(clubs,TipoDeTorneo.LIGA_DOBLE);
 		for (Iterator iterator = pares.iterator(); iterator.hasNext();) {
 			Partido par = (Partido) iterator.next();
 			System.out.println(par);
 		}
-
+*/
 	}
 
 }

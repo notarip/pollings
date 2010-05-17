@@ -61,10 +61,10 @@ public class Torneo {
 	}
 
 	public Torneo(String nombre, Integer cantidadClubs,TipoDeTorneo tipoDeTorneo, Date fecha) {
-		this.nombre = nombre;
+		this.setNombre(nombre);
 		this.setCantidadClubs(cantidadClubs);
-		this.tipoDeTorneo = tipoDeTorneo;
-		this.fechaDeCreacion = fecha;
+		this.setTipoDeTorneo(tipoDeTorneo);
+		this.setFechaDeCreacion(fecha);
 	}
 	
 	@Id
@@ -90,15 +90,13 @@ public class Torneo {
 		return this.tipoDeTorneo;
 	}
 	
-	@Column (name = "CREACION")
 	@Temporal(TemporalType.DATE)
 	public Date getFechaDeCreacion() {
 		return this.fechaDeCreacion;
 	}
 
-	@Column (name = "HABILITACION")
 	@Temporal(TemporalType.DATE)
-	public Date getFechaHabilitacion() {
+	public Date getFechaDeHabilitacion() {
 		return this.fechaDeHabilitacion;
 	}
 	
@@ -117,6 +115,28 @@ public class Torneo {
 	private void setId(long id) {
 		Id = id;
 	}
+	
+	private void setClubs(Collection<Club> clubs) {
+		this.clubs = clubs;
+	}
+	
+	private void setFechaDeCreacion(Date fechaDeCreacion) {
+		this.fechaDeCreacion = fechaDeCreacion;
+	}
+	
+	private void setFechaDeHabilitacion(Date fechaDeHabilitacion) {
+		this.fechaDeHabilitacion = fechaDeHabilitacion;
+	}
+	
+	private void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	private void setPartidos(Collection<Partido> partidos) {
+		this.partidos = partidos;
+	}
+	
+	
 
 	public void cargarClub(Club club) {
 		if (estaHabilitado())
@@ -189,7 +209,7 @@ public class Torneo {
 	public void generarPartidos() {
 		if (!estaHabilitado())
 			throw new TorneoNoHabilitadoException();
-		partidos =  new LicenciadoEnMatematicas().combinarPartidos(clubs, this.tipoDeTorneo);
+		partidos =  new LicenciadoEnMatematicas().combinarPartidos(clubs, this.tipoDeTorneo, this);
 
 		
 	}

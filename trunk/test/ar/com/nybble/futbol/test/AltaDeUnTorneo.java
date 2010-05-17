@@ -142,7 +142,7 @@ public class AltaDeUnTorneo {
 		apertura2010.cargarClub(club1);
 		apertura2010.cargarClub(club2);
 		apertura2010.habilitar(fecha);
-		assertEquals(fecha, apertura2010.getFechaHabilitacion());
+		assertEquals(fecha, apertura2010.getFechaDeHabilitacion());
 	}
 	
 	/**

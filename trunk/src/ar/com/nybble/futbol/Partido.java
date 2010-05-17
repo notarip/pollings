@@ -3,10 +3,14 @@
  */
 package ar.com.nybble.futbol;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,11 +30,13 @@ public class Partido {
 	private Club local = null;
 	private Club visita = null;
 	private Fecha fecha = null;
+	private Torneo torneo = null;
 
-	public Partido(Club local, Club visita, Fecha fecha) {
+	public Partido(Club local, Club visita, Fecha fecha, Torneo torneo) {
 		this.local = local;
 		this.visita = visita;
 		this.fecha = fecha;
+		this.torneo = torneo;
 	}
 	
 	public Partido() {
@@ -55,11 +61,15 @@ public class Partido {
 	}
 	
 	@Temporal(TemporalType.DATE)
-	public Fecha getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 	
-	
+	@ManyToOne
+	@JoinColumn (name = "TORNEO_ID")
+	public Torneo getTorneo() {
+		return torneo;
+	}
 
 	public void setLocal(Club local) {
 		this.local = local;
@@ -72,6 +82,15 @@ public class Partido {
 	private void setId(long id) {
 		Id = id;
 	}
+	
+	private void setFecha(Fecha fecha) {
+		this.fecha = fecha;
+	}
+	
+	private void setTorneo(Torneo torneo) {
+		this.torneo = torneo;
+	}
+	
 	
 	@Override
 	public String toString() {
