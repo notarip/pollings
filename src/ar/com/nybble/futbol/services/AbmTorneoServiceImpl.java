@@ -3,10 +3,9 @@
  */
 package ar.com.nybble.futbol.services;
 
-import java.util.Collection;
+
 import java.util.Date;
 import java.util.Iterator;
-
 import ar.com.nybble.futbol.Club;
 import ar.com.nybble.futbol.TipoDeTorneo;
 import ar.com.nybble.futbol.Torneo;

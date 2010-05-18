@@ -18,7 +18,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -26,15 +25,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import org.springframework.test.annotation.Timed;
-
 import ar.com.nybble.futbol.common.Fecha;
 import ar.com.nybble.futbol.common.exceptions.CantidadDeClubsErroneaException;
 import ar.com.nybble.futbol.common.exceptions.ClubNoPerteneceAlTorneoException;
 import ar.com.nybble.futbol.common.exceptions.ClubPertenecienteAlTorneoException;
 import ar.com.nybble.futbol.common.exceptions.CupoDeClubsCompletoException;
 import ar.com.nybble.futbol.common.exceptions.NoSeAgregaronTodosLosClubsException;
-import ar.com.nybble.futbol.common.exceptions.PartidosYaGeneradosException;
 import ar.com.nybble.futbol.common.exceptions.TorneoHabilitadoException;
 import ar.com.nybble.futbol.common.exceptions.TorneoNoHabilitadoException;
 
