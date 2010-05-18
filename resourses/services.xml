@@ -25,7 +25,12 @@
 	<property name="documentoRepo" ref = "documentoRepositorio"></property>
 	<property name="nacionalidadRepo" ref = "nacionalidadRepositorio"></property>
 	</bean>
-		
+
+	<bean id="AbmTorneoService"
+	class="ar.com.nybble.futbol.services.AbmTorneoServiceImpl">
+	<property name="torneoRepo" ref="torneoRepositorio"></property>
+	<property name="partidoRepo" ref="partidoRepositorio"></property>
+	</bean>		
 		
 
 

@@ -116,7 +116,7 @@ public class Club {
 	
 	
 	
-	private void setTorneos(Collection<Torneo> torneos) {
+	public void setTorneos(Collection<Torneo> torneos) {
 		this.torneos = torneos;
 	}
 }

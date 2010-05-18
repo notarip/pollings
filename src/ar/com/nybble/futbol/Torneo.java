@@ -115,7 +115,7 @@ public class Torneo {
 	}
 	
 
-	private void setId(long id) {
+	public void setId(long id) {
 		Id = id;
 	}
 	
@@ -234,8 +234,8 @@ public class Torneo {
 	}
 	
 	public void setTipoDeTorneo(TipoDeTorneo tipoDeTorneo) {
-		if (tienePartidos())
-			throw new PartidosYaGeneradosException();
+//		if (this.getTipoDeTorneo() != null && tienePartidos())
+//			throw new PartidosYaGeneradosException();
 		this.tipoDeTorneo = tipoDeTorneo;
 	}
 	
