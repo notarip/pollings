@@ -29,13 +29,15 @@ public class ManejoAbmClub {
 		AbmClubService abmClub = (AbmClubService) ContextFactory.getInstancia().getBean("AbmClubService");
 		
 		
+		Club club = abmClub.buscarClub(new Long(55));
+		System.out.println(club);
 		
 		//abmClub.crearClub("RACING");
 		
-		for (Iterator iterator = abmClub.buscarClubsPorNombre("boca"); iterator.hasNext();) {
-			Club club = (Club) iterator.next();
-			System.out.println(club);
-		}
+//		for (Iterator iterator = abmClub.buscarClubsPorNombre("boca"); iterator.hasNext();) {
+//			Club club = (Club) iterator.next();
+//			System.out.println(club);
+//		}
 		 
 				
 		System.out.println("listo !");
