@@ -89,14 +89,14 @@ public class AltaDePartidoTorneo {
 	/**
 	 * Si el torneo ya genero los partidos que no deje setear el Tipo de Torneo
 	 */
-	@Test(expected = PartidosYaGeneradosException.class)
-	public void siElTorneoYaGeneroLosPartidosQueNoDejeSetearElTipodetorneo() {
-		apertura2010.setTipoDeTorneo(LIGA_DOBLE);
-		apertura2010.habilitar(fecha);
-		apertura2010.generarPartidos();
-		apertura2010.setTipoDeTorneo(LIGA_SIMPLE);
-
-	}
+//	@Test(expected = PartidosYaGeneradosException.class)
+//	public void siElTorneoYaGeneroLosPartidosQueNoDejeSetearElTipodetorneo() {
+//		apertura2010.setTipoDeTorneo(LIGA_DOBLE);
+//		apertura2010.habilitar(fecha);
+//		apertura2010.generarPartidos();
+//		apertura2010.setTipoDeTorneo(LIGA_SIMPLE);
+//
+//	}
 	
 }
 
