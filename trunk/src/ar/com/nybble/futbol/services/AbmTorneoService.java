@@ -43,6 +43,8 @@ public interface AbmTorneoService {
 	 * @return Iterator<Torneo>
 	 */
 	public Iterator<Torneo> buscarTorneos();
+
+	public Iterator buscarTorneoPorNombre(String busquedaTxt);
 	
 	
 

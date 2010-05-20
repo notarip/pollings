@@ -148,6 +148,8 @@ public abstract class TemplatePage extends WebPage
         List<Object> l2 = new MenuList("Consultas");
         l2.add(new ModelBean("Jugadores", ConsultaJugadoresPage.class));
         l2.add(new ModelBean("Clubs", ConsultaClubsPage.class));
+        l2.add(new ModelBean("Torneos", ConsultaTorneoPage.class));
+        
         
         
         

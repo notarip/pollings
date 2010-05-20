@@ -6,6 +6,9 @@ package ar.com.nybble.futbol.services;
 
 import java.util.Date;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 import ar.com.nybble.futbol.Club;
 import ar.com.nybble.futbol.TipoDeTorneo;
 import ar.com.nybble.futbol.Torneo;
@@ -55,6 +58,24 @@ public class AbmTorneoServiceImpl implements AbmTorneoService {
 		return null;
 	}
 
+	@Override
+	public Iterator buscarTorneoPorNombre(String nombre) {
+		List torneos = new LinkedList<Torneo>();
+		
+		try {
+			for (Iterator iterator = torneoRepo.findAll().iterator(); iterator.hasNext();) {
+				Torneo torneo = (Torneo) iterator.next();
+				if (torneo.getNombre().contains(nombre) || (torneo.getNombre().contains(nombre.toUpperCase())) ){
+					torneos.add(torneo);
+				}	
+			}
+		} catch (Exception e) {
+		
+			e.printStackTrace();
+			}
+		return torneos.iterator(); 
+
+	}
 	
 	@Override
 	public void crearTorneo(String nombre, Iterator<Club> clubs, Integer cantidadClubs,TipoDeTorneo tipoDeTorneo, Date fecha) {
@@ -106,5 +127,7 @@ public class AbmTorneoServiceImpl implements AbmTorneoService {
 	public PartidoRepositorio getPartidoRepo() {
 		return partidoRepo;
 	}
+
+
 
 }
