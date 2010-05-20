@@ -66,8 +66,7 @@ public abstract class RepositoryImpl implements Repository {
     }
     
     public Collection findAll() throws DataSourceException {
-    	System.out.println("llegue RepositoryImpl.java");
-        return this.findBy(this.getCriteria());
+    	return this.findBy(this.getCriteria());
     }
     
     public Object findById(Serializable id) throws DataSourceException {

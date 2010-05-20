@@ -29,7 +29,7 @@ public class Partido {
 	private long Id;
 	private Club local = null;
 	private Club visita = null;
-	private Fecha fecha = null;
+	private Date fecha = null;
 	private Torneo torneo = null;
 
 	public Partido(Club local, Club visita, Fecha fecha, Torneo torneo) {
@@ -83,7 +83,7 @@ public class Partido {
 		Id = id;
 	}
 	
-	private void setFecha(Fecha fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 	
