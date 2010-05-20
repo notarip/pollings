@@ -17,19 +17,21 @@ public class PruebaTorneo {
 		AbmClubService abmClub = (AbmClubService) ContextFactory.getInstancia().getBean("AbmClubService");
 
 		
-		System.out.println(abmTorneo);
+		
 		//abmTorneo.crearTorneo("apertura 2010", abmClub.buscarClubs(),new Integer(2), TipoDeTorneo.LIGA_DOBLE, new Fecha(2010,1,1));
-		Torneo torneo = abmTorneo.buscarTorneos().next();
-		System.out.println(torneo.getCantidadClubs());
-		System.out.println(torneo.getFechaDeCreacion());
-		System.out.println(torneo.getFechaDeHabilitacion());
+		Torneo torneo = abmTorneo.buscarTorneo(new Long(2));
 		
-		for (Iterator iterator = torneo.getPartidos().iterator(); iterator.hasNext();) {
-			Partido partido = (Partido) iterator.next();
-			System.out.println(partido);
-			
-		}
+	
+//		System.out.println(torneo.getCantidadClubs());
+//		System.out.println(torneo.getFechaDeCreacion());
+//		System.out.println(torneo.getFechaDeHabilitacion());
 		
+//		for (Iterator iterator = torneo.getPartidos().iterator(); iterator.hasNext();) {
+//			Partido partido = (Partido) iterator.next();
+//			System.out.println(partido);
+//			
+//		}
+//		
 		
 		
 	

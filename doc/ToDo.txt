@@ -1,0 +1,9 @@
+-Pantalla de login con tabla de usuarios
+-Menus parametrizados desde tablas
+-Dar mas funcionalidad al Partido
+-Pagina de Consulta (ConsultaTorneoPage) de torneos y detalles (DetalleTorneoPage) de Torneo
+-Pagina de detalles (DetallePartidoPage) enganchada desde el torneo el Torneo
+-Enganchar DetallePartidoPage desde el jugador
+-Enganchar la ConsultaTorneoPage desde el Club (un contructor con parametros)
+-Avanzar con los ABMs
+-
