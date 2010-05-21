@@ -31,7 +31,7 @@ public class ConsultaTorneoPage extends TemplatePage {
 	Form formResultados = new Form("formResultados");
 	TextField busqueda = new TextField("busqueda", new Model(""));
 	List resultado = new LinkedList<Jugador>();
-	Club clubNauta;
+	Torneo torneoNauta;
 	
 	public ConsultaTorneoPage() {
 		formBusqueda.add(busqueda);
@@ -49,10 +49,10 @@ public class ConsultaTorneoPage extends TemplatePage {
 		add(formBusqueda);
 		add(formResultados);
 		
-		formResultados.add(new ListView<Club>("rows",resultado) {
+		formResultados.add(new ListView<Torneo>("rows",resultado) {
 			@Override
-			protected void populateItem(ListItem<Club> item) {
-				clubNauta = item.getModelObject();
+			protected void populateItem(ListItem<Torneo> item) {
+				torneoNauta = item.getModelObject();
 				item.add(new Label("item", item.getModelObject().toString()));
 				item.add(new Link ("link",item.getModel()) {
 					@Override

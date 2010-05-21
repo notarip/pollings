@@ -210,7 +210,7 @@ public class Torneo {
 	public void generarPartidos() {
 		if (!estaHabilitado())
 			throw new TorneoNoHabilitadoException();
-		partidos =  new LicenciadoEnMatematicas().combinarPartidos(clubs, this.tipoDeTorneo, this);
+		this.setPartidos(new LicenciadoEnMatematicas().combinarPartidos(clubs, this.tipoDeTorneo, this));
 
 		
 	}
@@ -235,6 +235,12 @@ public class Torneo {
 		this.tipoDeTorneo = tipoDeTorneo;
 	}
 	
+	
+
+	@Override
+	public String toString() {
+		return this.getNombre();
+	}
 	
 /******************************************************************/
 /*********************CLASE INTERNA*******************************/

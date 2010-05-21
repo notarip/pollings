@@ -7,11 +7,28 @@
 <form wicket:id="form" action="">
 <h2><span wicket:id="nombre">[nombre]</span><br></h2>
 <ul>
-  <!-- <li><span wicket:id="club">  </span></li>  -->
+   <li><span wicket:id="cantClubs">#Culbs </span></li> 
+   <li><span wicket:id="fechaIni">Fecha Inicio </span></li>
 </ul>
+</form>
+
+<!-- Lista de los clubs -->
+<form wicket:id="formPartidos" action="">
+ 	<table> 
+	 	<tr>
+	 		<th>Opcion</th>
+	 		<th>Local</th>
+	 		<th>Visita</th>
+	 	</tr> 
+	 	<tr wicket:id="rows" class="even">
+	 		<td><a href="#" wicket:id="lnkPartido" >Ver Partido</a></td>
+	 		<td><a href="#" wicket:id="lnkLocal" ><span wicket:id="local"></span></a></td>
+	 		<td><a href="#" wicket:id="lnkVisita" ><span wicket:id="visita"></span></a></td>
+	 	</tr>
+	</table>
+ </form>   
 
 
-</form>  
 
   </wicket:extend>
 </body>

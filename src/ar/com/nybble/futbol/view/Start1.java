@@ -22,7 +22,7 @@ public class Start1 {
 		WebAppContext bb = new WebAppContext();
 		bb.setServer(server);
 		bb.setContextPath("/");
-		bb.setWar("WebContent/WEB-INF");
+		bb.setWar("WebContent");
 		
 		// START JMX SERVER
 		// MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
