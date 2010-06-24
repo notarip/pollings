@@ -82,7 +82,7 @@ public class DetalleTorneoPage extends TemplatePage {
 					
 					@Override
 					public void onClick() {
-						Club clubNauta = ((Partido)getModelObject()).getLocal();
+						Club clubNauta = ((Partido)getModelObject()).getVisita();
 						setResponsePage(new DetalleClubPage(clubNauta));
 					}
 				};
