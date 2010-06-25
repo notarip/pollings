@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
@@ -14,11 +15,14 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
 
+import sun.reflect.generics.tree.Tree;
+
 import ar.com.nybble.futbol.Club;
 import ar.com.nybble.futbol.Jugador;
 import ar.com.nybble.futbol.common.ContextFactory;
 import ar.com.nybble.futbol.services.AbmClubService;
 import ar.com.nybble.futbol.services.AbmJugadorService;
+import ar.com.nybble.futbol.view.util.ModelBean;
 
 /**
  * @author notarip
@@ -32,6 +36,14 @@ public class ConsultaClubsPage extends TemplatePage {
 	Club clubNauta;
 	
 	public ConsultaClubsPage() {
+		Construccion();
+	}
+	
+	public ConsultaClubsPage(PageParameters parm) {
+		Construccion();
+	}
+	
+	private void Construccion() {
 		formBusqueda.add(busqueda);
 		formBusqueda.add(new Button("buscar"){
 			@Override

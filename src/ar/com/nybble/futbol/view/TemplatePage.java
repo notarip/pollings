@@ -28,6 +28,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 
+import org.apache.wicket.PageParameters;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebPage;
@@ -55,7 +56,7 @@ public abstract class TemplatePage extends WebPage
 {
     /** title of the current page. */
     private String pageTitle = "F.U.L.B.O.";
-    private BaseTree tree;
+    public BaseTree tree;
 
     protected AbstractTree getTree()
     {
@@ -74,8 +75,11 @@ public abstract class TemplatePage extends WebPage
         			AjaxRequestTarget target) {
         		super.onNodeLinkClicked(node, tree, target);
         		ModelBean clase = (ModelBean) ((DefaultMutableTreeNode)node).getUserObject();
-        		if (clase.isLinkiable())
-        			setResponsePage(((Class)clase.getContent()));
+        		if (clase.isLinkiable()){
+        			PageParameters parm = new PageParameters();
+        			parm.put("node", node);
+        			setResponsePage(((Class)clase.getContent()),parm);
+        		}
         		else
         			tree.getTreeState().expandNode(node);
         	}
