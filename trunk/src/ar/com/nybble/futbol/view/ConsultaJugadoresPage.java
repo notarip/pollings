@@ -53,11 +53,13 @@ public class ConsultaJugadoresPage extends TemplatePage {
 	
 	Jugador jugaNauta;
 	
-	
-	
-	
 	public ConsultaJugadoresPage() {
+		this.Construccion();
+		this.tree.getTreeState().expandAll();
 		
+	}
+	
+	private void Construccion(){
 		formBusqueda.add(busqueda);
 		formBusqueda.add(radioCriterioGroup);
 	
@@ -93,9 +95,8 @@ public class ConsultaJugadoresPage extends TemplatePage {
 				});
 			}
 		});
-		
-		
 	}
+	
 	
 	private void consultarYModelar(String busquedaTxt, String criterioTxt) {
 		AbmClubService abmClub = (AbmClubService) ContextFactory.getInstancia().getBean("AbmClubService");

@@ -76,16 +76,12 @@ public abstract class TemplatePage extends WebPage
         		super.onNodeLinkClicked(node, tree, target);
         		ModelBean clase = (ModelBean) ((DefaultMutableTreeNode)node).getUserObject();
         		if (clase.isLinkiable()){
-        			PageParameters parm = new PageParameters();
-        			parm.put("node", node);
-        			setResponsePage(((Class)clase.getContent()),parm);
+        			setResponsePage(((Class)clase.getContent()));
         		}
         		else
         			tree.getTreeState().expandNode(node);
         	}
         };
-        
-        
         
         add(tree);
         tree.getTreeState().collapseAll();

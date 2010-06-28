@@ -37,11 +37,8 @@ public class ConsultaClubsPage extends TemplatePage {
 	
 	public ConsultaClubsPage() {
 		Construccion();
-	}
-	
-	public ConsultaClubsPage(PageParameters parm) {
-		Construccion();
-	}
+		this.tree.getTreeState().expandAll();
+		}
 	
 	private void Construccion() {
 		formBusqueda.add(busqueda);
