@@ -46,7 +46,7 @@ public class DetalleTorneoPage extends TemplatePage {
 			fechaIni.setDefaultModelObject(torneo.getFechaDeHabilitacion());
 			cantClubs.setDefaultModelObject(torneo.getCantidadClubs());
 						
-			/**VER POR QUE NO TRAE LOS PARTIDOS */
+			
 			for (Iterator iterator = torneo.getPartidos().iterator(); iterator.hasNext();) {
 				Partido Partido = (Partido) iterator.next();
 				resultado.add(Partido);

@@ -33,7 +33,13 @@ public class ConsultaTorneoPage extends TemplatePage {
 	List resultado = new LinkedList<Jugador>();
 	Torneo torneoNauta;
 	
+
 	public ConsultaTorneoPage() {
+		this.Construccion();
+		this.tree.getTreeState().expandAll();
+	}
+	
+	private void Construccion(){
 		formBusqueda.add(busqueda);
 		formBusqueda.add(new Button("buscar"){
 			@Override
@@ -63,7 +69,10 @@ public class ConsultaTorneoPage extends TemplatePage {
 				});
 			}
 		});
+
+		
 	}
+	
 
 	private void consultarYModelar(String busquedaTxt) {
 		AbmTorneoService abmTorneo = (AbmTorneoService) ContextFactory.getInstancia().getBean("AbmTorneoService");
